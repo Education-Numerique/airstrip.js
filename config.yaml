@@ -1,5 +1,0 @@
-dev:
-  deploy: "/Users/dmp/buildd"
-
-release:
-  deploy: "/var/www/deploy/static"
