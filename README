@@ -1,0 +1,1 @@
+A project containing purely static "root" files, and that should be used as well to output build results from other (client) projects.
