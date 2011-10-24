@@ -10,7 +10,6 @@ task :default => [:deploy]
 
 task :deploy do
 	desc("Deploying static stuff")
-	p DIST_PATH
 	mkdir_p DIST_PATH
 	cp_r FileList.new('src/*'), DIST_PATH
 end
