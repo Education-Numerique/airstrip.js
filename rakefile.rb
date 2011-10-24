@@ -1,13 +1,10 @@
 require 'yaml'
 
 @config = YAML.load_file("config.yaml")
-@config['platform'] = "dev" if ENV['PLATFORM'].nil?
+ENV['PLATFORM'] = "dev" if ENV['PLATFORM'].nil?
+@config['platform'] = ENV['PLATFORM']
 
-PROJECT_NAME = File.basename(File.dirname(__FILE__))
-
-DIST_PATH = File.join(@config[@config['platform']]['deploy'], PROJECT_NAME)
-
-
+DIST_PATH = @config[@config['platform']]['deploy']
 
 task :default => [:deploy]
 
