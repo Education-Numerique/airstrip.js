@@ -729,6 +729,7 @@ var _roxee_bridge = {};
           f.data = decodeURIComponent(f.data);
           try{
             // Avoid parsing stuff that *obviously* is not JSON
+            console.log("Errrr" , f.data.charAt(0), f.data.charAt(1));
             if(f.data.charAt(0) == "{")
               f.data = JSON.parse(f.data);
           }catch(ex){
@@ -818,7 +819,7 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
     for(var i in headers)
       _xhr.setRequestHeader(i, headers[i]);
     // Do we have a file by any chance?
-    if(data instanceof String)
+    if(typeof data == "string")
       data = dataURItoBlob(data);
     _xhr.send(data);
   }catch(e){
