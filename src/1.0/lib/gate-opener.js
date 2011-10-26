@@ -775,7 +775,7 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
 {
   var _xhr = new XMLHttpRequest();
   _xhr.id = id;
-  _xhr.onreadystatechange = osrc;
+  _xhr.onreadystatechange = orsc;
 /*  _xhr.onreadystatechange = (function(){
     var t = _xhr;
     return function(){orsc.apply(t);};
