@@ -817,7 +817,7 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
     for(var i in headers)
       _xhr.setRequestHeader(i, headers[i]);
     // Do we have a file by any chance?
-    if(data && (typeof data == "string") && (data.substr(0, 5) == "data:")){
+    if(data && (typeof data == "string") && (data.substr(0, 5) == "data:"))
       data = dataURItoBlob(data);
     _xhr.send(data);
   }catch(e){
