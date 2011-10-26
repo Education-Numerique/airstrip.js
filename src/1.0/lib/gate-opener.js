@@ -728,7 +728,9 @@ var _roxee_bridge = {};
             f[i] = e[i];
           f.data = decodeURIComponent(f.data);
           try{
-            f.data = JSON.parse(f.data);
+            // Avoid parsing stuff that *obviously* is not JSON
+            if(f.data.charAt(0) == "{")
+              f.data = JSON.parse(f.data);
           }catch(ex){
           }
 
@@ -769,30 +771,65 @@ var _roxee_bridge = {};
   };
   
 })(_roxee_bridge);
+// Name of the signal sent up for whenever we say we are ready
 var READY = "ready";
 
+// A helper to convert the shit back from data/url to native file objects
+var dataURItoBlob = function(dataURI) {
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs
+    var byteString = atob(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    // write the ArrayBuffer to a blob, and you're done
+    var bb;
+    try {
+        bb = new BlobBuilder();
+    } catch(e) {
+        try {
+            bb = new WebKitBlobBuilder();
+        } catch(e) {
+            bb = new MozBlobBuilder();
+        }
+    }
+
+    bb.append(ab);
+    return bb.getBlob(mimeString);
+};
+
+// A very simple xhr wrapper to handle the actual requests
 var _roxee_xhr = function(orsc, id, method, url, headers, data)
 {
   var _xhr = new XMLHttpRequest();
   _xhr.id = id;
   _xhr.onreadystatechange = orsc;
-/*  _xhr.onreadystatechange = (function(){
-    var t = _xhr;
-    return function(){orsc.apply(t);};
-  })();*/
   // Open can fail in a number of circunstances
   try{
     _xhr.open(method, url, true);
     for(var i in headers)
       _xhr.setRequestHeader(i, headers[i]);
+    // Do we have a file by any chance?
+    if(data instanceof String)
+      data = dataURItoBlob(data);
     _xhr.send(data);
   }catch(e){
     bouncer.apply(_xhr);
   }
 };
 
+// The "caller" url
 var parent_url = decodeURIComponent( document.location.hash.replace( /^#/, '' ) );
 
+// The callback that handles XHR answers
 var bouncer = function(){
   var r = {
     id: this.id,
@@ -813,6 +850,7 @@ var bouncer = function(){
   _roxee_bridge.postMessage( r, parent_url, parent );
 };
 
+// The message listener
 var receiver = function(e){
   var d = e.data;
   if(("id" in d) && ("method" in d) && ("url" in d)){
@@ -824,4 +862,6 @@ var receiver = function(e){
 
 // Anyone can use this gate - the server will just enforce origin restriction based on app key host declarations
 _roxee_bridge.receiveMessage(receiver, function(){return true;});
+
+// Say we are ready
 _roxee_bridge.postMessage( READY, parent_url, parent );
