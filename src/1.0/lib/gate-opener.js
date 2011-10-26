@@ -787,7 +787,7 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
       _xhr.setRequestHeader(i, headers[i]);
     _xhr.send(data);
   }catch(e){
-    bouncer.apply(this);
+    bouncer.apply(_xhr);
   }
 };
 
