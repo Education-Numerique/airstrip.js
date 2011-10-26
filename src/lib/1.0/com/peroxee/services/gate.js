@@ -4,14 +4,20 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
 {
   var _xhr = new XMLHttpRequest();
   _xhr.id = id;
-  _xhr.onreadystatechange = (function(){
+  _xhr.onreadystatechange = osrc;
+/*  _xhr.onreadystatechange = (function(){
     var t = _xhr;
     return function(){orsc.apply(t);};
-  })();
-  _xhr.open(method, url, true);
-  for(var i in headers)
-    _xhr.setRequestHeader(i, headers[i]);
-  _xhr.send(data);
+  })();*/
+  // Open can fail in a number of circunstances
+  try{
+    _xhr.open(method, url, true);
+    for(var i in headers)
+      _xhr.setRequestHeader(i, headers[i]);
+    _xhr.send(data);
+  }catch(e){
+    bouncer.apply(this);
+  }
 };
 
 var parent_url = decodeURIComponent( document.location.hash.replace( /^#/, '' ) );
@@ -36,15 +42,6 @@ var bouncer = function(){
   _roxee_bridge.postMessage( r, parent_url, parent );
 };
 
-var honey = function(source){
-  // For now, just let them play
-/*  for(var x = 0; x < whitelist.length; x++)
-    if(source.match(whitelist[x]))
-      return true;
-  return false;*/
-  return true;
-};
-
 var receiver = function(e){
   var d = e.data;
   if(("id" in d) && ("method" in d) && ("url" in d)){
@@ -54,5 +51,6 @@ var receiver = function(e){
   }
 }
 
-_roxee_bridge.receiveMessage(receiver, honey);
+// Anyone can use this gate - the server will just enforce origin restriction based on app key host declarations
+_roxee_bridge.receiveMessage(receiver, function(){return true;});
 _roxee_bridge.postMessage( READY, parent_url, parent );
