@@ -816,6 +816,7 @@ var _roxee_xhr = function(orsc, id, method, url, headers, data)
     _xhr.open(method, url, true);
     for(var i in headers)
       _xhr.setRequestHeader(i, headers[i]);
+    _xhr.setRequestHeader("Origin", parent_url.match(/^(http:\/\/[^\/]+)/).pop());
     // Do we have a file by any chance?
     if(data && (typeof data == "string") && (data.substr(0, 5) == "data:"))
       data = dataURItoBlob(data);
