@@ -53,21 +53,21 @@ def build():
     # Add external dependencies
 
     fulllist = {
-        "jasmine":
+        "jasmine-latest":
             {
                "License": "MIT",
                 "Source": ["http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"],
                 "Destination": "org/pivotal",
                 "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0"
             },
-        "closure":
+        "closure-latest":
             {
                 "License": "Apache",
                 "Source":  ["http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip"],
                 "Destination": "org/google", 
                 "Latest": "closure/goog"
             },
-        "modernizr":
+        "modernizr-latest":
             {
                 "License": "MIT/BSD",
                 "Source": [
@@ -82,21 +82,21 @@ def build():
                 "Destination": "org/modernizr",
                 "Latest": ""
             },
-        "jquery":
+        "jquery-latest.js":
             {
                 "License": "MIT/GPL",
                 "Source": ["http://code.jquery.com/jquery-1.7.js"],
                 "Destination": "org/jquery",
                 "Latest": "jquery-1.7.js"
             },
-        "backbone":
+        "backbone-latest.js":
             {
                 "License": "MIT",
                 "Source": ["http://documentcloud.github.com/backbone/backbone.js"],
                 "Destination": "org/backbone",
                 "Latest": "backbone.js"
             },
-        "sproutcore":
+        "sproutcore-latest.js":
             {
                 "License": "MIT",
                 "Source": ["http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"],
@@ -104,14 +104,14 @@ def build():
                 "Latest": "sproutcore-2.0.beta.3.js"
             },
 
-        "h5bp":
+        "h5bp-latest":
             {
                 "License": "UNSPECIFIED",
                 "Source": ["http://www.initializr.com/builder?mode=custom&h5bp-analytics&h5bp-chromeframe&h5bp-css&h5bp-csshelpers&h5bp-favicon&h5bp-iecond&h5bp-mediaqueries&h5bp-mediaqueryprint&h5bp-readmemd&h5bp-scripts&html5shiv"],
                 "Destination": "org/h5bp",
                 "Latest": ""
             },
-        "normalize":
+        "normalize-latest.css":
             {
                 "License": "UNSPECIFIED",
                 "Source": ["https://raw.github.com/necolas/normalize.css/master/normalize.css"],
@@ -134,7 +134,7 @@ def build():
                 description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + "</dd><dd>".join(v) + "</dd>\n"
         description += "\t</dl>\n</section>\n"
         deepcopy(burne["Source"], os.path.join(BUILD_ROOT, "third-party", burne["Destination"]))
-        sh("cd " + BUILD_ROOT + "/third-party" + "; rm " + k + "-latest.js; ln -s " + burne["Destination"] + "/" + burne["Latest"] + " " +  k + "-latest.js")
+        sh("cd " + BUILD_ROOT + "/third-party" + "; rm " + k + "; ln -s " + burne["Destination"] + "/" + burne["Latest"] + " " +  k )
 
 
     h5 = os.path.join(BUILD_ROOT, "third-party", fulllist["h5bp"]["Destination"])
