@@ -121,7 +121,7 @@ def build():
     description = "<h2>Third parties</h2>"
     for (k, burne) in fulllist.items():
         description += "<section>\n"
-        description += "\t<h3><a href=\"" + k + "-latest.js\">" + k + "</a></h3>\n\t<dl>\n"
+        description += "\t<h3><a href=\"third-party/" + k + "-latest.js\">" + k + "</a></h3>\n\t<dl>\n"
         for (key, v) in burne.items():
             if(isinstance(v, str)):
                 description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + v + "</dd>\n"
