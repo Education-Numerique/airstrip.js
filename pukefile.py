@@ -47,8 +47,8 @@ def build():
     fulllist = {
         "jasmine":
             {"License": "MIT", "Source": "http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip", "Destination": "org/pivotal", "Latest": ""},
-        "modernizr":
-            {"License": "MIT/BSD", "Source": "http://saveasbro.com/download/modernizr.custom.32744.js", "Destination": "org/modernizr", "Latest": ""},
+#        "modernizr":
+#            {"License": "MIT/BSD", "Source": "http://saveasbro.com/download/modernizr.custom.32744.js", "Destination": "org/modernizr", "Latest": ""},
         "closure":
             {"License": "Apache", "Source":  "http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip", "Destination": "org/google", "Latest": ""},
         "jquery":
@@ -67,7 +67,7 @@ def build():
             description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + v + "</dd>\n"
         description += "\t</dl>\n</section>\n"
 
-#        deepcopy(burne["Source"], os.path.join(BUILD_ROOT, "third-party", burne["Destination"]))
+        deepcopy(burne["Source"], os.path.join(BUILD_ROOT, "third-party", burne["Destination"]))
 
     file = "src/third-party/index.html"
     s = Sed()
