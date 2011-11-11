@@ -13,7 +13,7 @@ def default():
     executeTask("build")
 
 @task("Deploy")
-def deploy:
+def deploy():
     DEPLOY_ROOT = "/var/www/deploy/static"
     executetask("build")
     deepcopy("dist", DEPLOY_ROOT)
