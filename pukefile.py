@@ -22,9 +22,7 @@ def default():
 
 @task("Clean all output dirs")
 def clean():
-    console.log(BUILD_ROOT)
-    raise "toto"
-#    sh("rm -R " + BUILD_ROOT)
+    sh("rm -R " + BUILD_ROOT)
 #    sh("rm -R " + DEPLOY_ROOT)
 
 @task("Deploy")
