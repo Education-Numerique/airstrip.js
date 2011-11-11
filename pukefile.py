@@ -12,6 +12,11 @@
 def default():
     executeTask("build")
 
+@task("Deploy")
+def deploy:
+    DEPLOY_ROOT = "/var/www/deploy/static"
+    executetask("build")
+    deepcopy("dist", DEPLOY_ROOT)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build():
@@ -67,6 +72,7 @@ def build():
     file = "src/third-party/index.html"
     s = Sed()
     s.add("{PUKE-LIST}", description)
+
 
 #    combine(file, os.path.join(BUILD_ROOT, "third-party", "index.html"), replace=s)
 
