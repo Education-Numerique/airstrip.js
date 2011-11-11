@@ -109,8 +109,15 @@ def build():
                 "License": "UNSPECIFIED",
                 "Source": ["http://www.initializr.com/builder?mode=custom&h5bp-analytics&h5bp-chromeframe&h5bp-css&h5bp-csshelpers&h5bp-favicon&h5bp-iecond&h5bp-mediaqueries&h5bp-mediaqueryprint&h5bp-readmemd&h5bp-scripts&html5shiv"],
                 "Destination": "org/h5bp",
-                "Latest": "builder"
+                "Latest": ""
             },
+        "normalize":
+            {
+                "License": "UNSPECIFIED",
+                "Source": ["https://raw.github.com/necolas/normalize.css/master/normalize.css"],
+                "Destination": "org/normalize",
+                "Latest": "normalize.css"
+            }
 
 
 
