@@ -8,21 +8,35 @@
 # XXX humans: <link type="text/plain" rel="author" href="http://domain/humans.txt" />
 # humanstxt.org
 
+global ALLOWED_DOMAIN
+global BUILD_ROOT
+global DEPLOY_ROOT
+
+ALLOWED_DOMAIN = Env.get("ALLOWED_DOMAIN", "app.roxee.net");
+BUILD_ROOT = "dist"
+DEPLOY_ROOT = Env.get("DEPLOY_ROOT", "/Users/dmp/buildd")
+
 @task("Default")
 def default():
     executeTask("build")
 
+@task("Clean all output dirs")
+def clean():
+    console.log(BUILD_ROOT)
+    raise "toto"
+#    sh("rm -R " + BUILD_ROOT)
+#    sh("rm -R " + DEPLOY_ROOT)
+
 @task("Deploy")
 def deploy():
-    DEPLOY_ROOT = "/var/www/deploy/static"
     executeTask("build")
-    deepcopy("dist", DEPLOY_ROOT)
+    # XXX gotcha
+    list = FileList(BUILD_ROOT)
+    deepcopy(list, DEPLOY_ROOT)
+
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build():
-    # Consts
-    ALLOWED_DOMAIN = "app.roxee.net"
-    BUILD_ROOT = "dist"
 
     # Crossdomain
     list = "src/crossdomain.xml"
@@ -38,43 +52,105 @@ def build():
     sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
     combine(list, BUILD_ROOT + "/robots.txt", replace = sed)
 
-    # Other stuff
-    list = FileList("src", exclude="*robots.txt,*crossdomain.xml")
-    deepcopy(list, BUILD_ROOT)
-
     # Add external dependencies
 
     fulllist = {
         "jasmine":
-            {"License": "MIT", "Source": "http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip", "Destination": "org/pivotal", "Latest": ""},
-#        "modernizr":
-#            {"License": "MIT/BSD", "Source": "http://saveasbro.com/download/modernizr.custom.32744.js", "Destination": "org/modernizr", "Latest": ""},
+            {
+               "License": "MIT",
+                "Source": ["http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"],
+                "Destination": "org/pivotal",
+                "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0"
+            },
         "closure":
-            {"License": "Apache", "Source":  "http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip", "Destination": "org/google", "Latest": ""},
+            {
+                "License": "Apache",
+                "Source":  ["http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip"],
+                "Destination": "org/google", 
+                "Latest": "closure/goog"
+            },
+        "modernizr":
+            {
+                "License": "MIT/BSD",
+                "Source": [
+                    "http://www.modernizr.com/i/js/modernizr.2.0.6-prebuild.js",
+                    "http://www.modernizr.com/i/js/modernizr.load.1.0.2.js",
+                    "http://www.modernizr.com/i/js/feature-detects/cookies.js",
+                    "http://www.modernizr.com/i/js/feature-detects/custom-protocol-handler.js",
+                    "http://www.modernizr.com/i/js/feature-detects/elem-details.js",
+                    "http://www.modernizr.com/i/js/feature-detects/file-api.js",
+                    "http://www.modernizr.com/i/js/feature-detects/url-data-uri.js"
+                ],
+                "Destination": "org/modernizr",
+                "Latest": ""
+            },
         "jquery":
-            {"License": "MIT/GPL", "Source": "http://code.jquery.com/jquery-1.7.js", "Destination": "org/jquery", "Latest": "jquery-1.7.js"},
+            {
+                "License": "MIT/GPL",
+                "Source": ["http://code.jquery.com/jquery-1.7.js"],
+                "Destination": "org/jquery",
+                "Latest": "jquery-1.7.js"
+            },
         "backbone":
-            {"License": "MIT", "Source": "http://documentcloud.github.com/backbone/backbone.js", "Destination": "org/backbone", "Latest": "backbone.js"},
+            {
+                "License": "MIT",
+                "Source": ["http://documentcloud.github.com/backbone/backbone.js"],
+                "Destination": "org/backbone",
+                "Latest": "backbone.js"
+            },
         "sproutcore":
-            {"License": "MIT", "Source": "http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js", "Destination": "org/sproutcore", "Latest": "sproutcore-2.0.beta.3.js"}
+            {
+                "License": "MIT",
+                "Source": ["http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"],
+                "Destination": "org/sproutcore",
+                "Latest": "sproutcore-2.0.beta.3.js"
+            },
+
+        "h5bp":
+            {
+                "License": "UNSPECIFIED",
+                "Source": ["http://www.initializr.com/builder?mode=custom&h5bp-analytics&h5bp-chromeframe&h5bp-css&h5bp-csshelpers&h5bp-favicon&h5bp-iecond&h5bp-mediaqueries&h5bp-mediaqueryprint&h5bp-readmemd&h5bp-scripts&html5shiv"],
+                "Destination": "org/h5bp",
+                "Latest": "builder"
+            },
+
+
+
     }
 
-    description = ""
+    description = "<h2>Third parties</h2>"
     for (k, burne) in fulllist.items():
         description += "<section>\n"
-        description += "\t<h2><a href=\"" + k + "-latest.js/\">" + k + "</a></h2>\n\t<dl>\n"
+        description += "\t<h3><a href=\"" + k + "-latest.js\">" + k + "</a></h3>\n\t<dl>\n"
         for (key, v) in burne.items():
-            description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + v + "</dd>\n"
+            if(isinstance(v, str)):
+                description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + v + "</dd>\n"
+            else:
+                description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + "</dd><dd>".join(v) + "</dd>\n"
         description += "\t</dl>\n</section>\n"
-
         deepcopy(burne["Source"], os.path.join(BUILD_ROOT, "third-party", burne["Destination"]))
+        sh("cd " + BUILD_ROOT + "/third-party" + "; rm " + k + "-latest.js; ln -s " + burne["Destination"] + "/" + burne["Latest"] + " " +  k + "-latest.js")
 
-    file = "src/third-party/index.html"
+
+    h5 = os.path.join(BUILD_ROOT, "third-party", fulllist["h5bp"]["Destination"])
+    sh("cd " + h5 + "; rm builder.zip; mv builder* builder.zip")
+    unpack(os.path.join(h5, "builder.zip"), h5)
+
+
+    goog = os.path.join(BUILD_ROOT, "third-party", fulllist["closure"]["Destination"])
+    unpack(os.path.join(goog, "closure-library-20111110-r1376.zip"), goog)
+
+    jasm = os.path.join(BUILD_ROOT, "third-party", fulllist["jasmine"]["Destination"])
+    unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
+
+    file = "src/doc.html"
     s = Sed()
     s.add("{PUKE-LIST}", description)
 
+    deepcopy(file, BUILD_ROOT, replace=s)
 
-#    combine(file, os.path.join(BUILD_ROOT, "third-party", "index.html"), replace=s)
 
-#    sh("cd dist/tmp; unzip jasmine-standalone-1.1.0.zip")
+    # Deepcopy other stuff
+    list = FileList("src", exclude="*robots.txt,*crossdomain.xml,*doc.html")
+    deepcopy(list, BUILD_ROOT)
 
