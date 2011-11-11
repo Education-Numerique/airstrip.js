@@ -15,7 +15,7 @@ def default():
 @task("Deploy")
 def deploy():
     DEPLOY_ROOT = "/var/www/deploy/static"
-    executetask("build")
+    executeTask("build")
     deepcopy("dist", DEPLOY_ROOT)
 
 @task("Deploying the static ressources, including approved third party dependencies")
