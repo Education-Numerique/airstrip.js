@@ -137,15 +137,15 @@ def build():
         sh("cd " + BUILD_ROOT + "/third-party" + "; rm " + k + "; ln -s " + burne["Destination"] + "/" + burne["Latest"] + " " +  k )
 
 
-    h5 = os.path.join(BUILD_ROOT, "third-party", fulllist["h5bp"]["Destination"])
+    h5 = os.path.join(BUILD_ROOT, "third-party", fulllist["h5bp-latest"]["Destination"])
     sh("cd " + h5 + "; rm builder.zip; mv builder* builder.zip")
     unpack(os.path.join(h5, "builder.zip"), h5)
 
 
-    goog = os.path.join(BUILD_ROOT, "third-party", fulllist["closure"]["Destination"])
+    goog = os.path.join(BUILD_ROOT, "third-party", fulllist["closure-latest"]["Destination"])
     unpack(os.path.join(goog, "closure-library-20111110-r1376.zip"), goog)
 
-    jasm = os.path.join(BUILD_ROOT, "third-party", fulllist["jasmine"]["Destination"])
+    jasm = os.path.join(BUILD_ROOT, "third-party", fulllist["jasmine-latest"]["Destination"])
     unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
 
     file = "src/doc.html"
