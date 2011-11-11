@@ -22,7 +22,7 @@ def default():
 
 @task("Clean all output dirs")
 def clean():
-    sh("rm -R " + BUILD_ROOT)
+    rm(BUILD_ROOT)
 #    sh("rm -R " + DEPLOY_ROOT)
 
 @task("Deploy")
@@ -117,9 +117,15 @@ def build():
                 "Source": ["https://raw.github.com/necolas/normalize.css/master/normalize.css"],
                 "Destination": "org/normalize",
                 "Latest": "normalize.css"
-            }
+            },
 
-
+        "console-latest.js":
+            {
+                "License": "UNSPECIFIED",
+                "Source": ["https://raw.github.com/kayahr/console-shim/master/console-shim.js"],
+                "Destination": "org/kayahr",
+                "Latest": "console-shim.js"
+            },
 
     }
 
