@@ -16,9 +16,17 @@ ALLOWED_DOMAIN = Env.get("ALLOWED_DOMAIN", "app.roxee.net");
 BUILD_ROOT = "dist"
 DEPLOY_ROOT = Env.get("DEPLOY_ROOT", "/Users/dmp/buildd")
 
+
+global mafunction
+
+def mafunction(param):
+    print "toto"
+
 @task("Default")
 def default():
-    executeTask("build")
+    print "defulta"
+    mafunction("stuff")
+#    executeTask("build")
 
 @task("Clean all output dirs")
 def clean():
@@ -73,15 +81,35 @@ def build():
                 "Source": [
                     "http://www.modernizr.com/i/js/modernizr.2.0.6-prebuild.js",
                     "http://www.modernizr.com/i/js/modernizr.load.1.0.2.js",
+                    "http://www.modernizr.com/i/js/respond.js",
                     "http://www.modernizr.com/i/js/feature-detects/cookies.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-backgroundrepeat.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-backgroundsizecover.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-boxsizing.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-cubicbezierrange.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-displaytable.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-overflow-scrolling.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-pointerevents.js",
+                    "http://www.modernizr.com/i/js/feature-detects/css-userselect.js",
                     "http://www.modernizr.com/i/js/feature-detects/custom-protocol-handler.js",
+                    "http://www.modernizr.com/i/js/feature-detects/dom-createElement-attrs.js",
                     "http://www.modernizr.com/i/js/feature-detects/elem-details.js",
+                    "http://www.modernizr.com/i/js/feature-detects/elem-progress-meter.js",
+                    "http://www.modernizr.com/i/js/feature-detects/emoji.js",
+                    "http://www.modernizr.com/i/js/feature-detects/event-deviceorientation-motion.js",
                     "http://www.modernizr.com/i/js/feature-detects/file-api.js",
-                    "http://www.modernizr.com/i/js/feature-detects/url-data-uri.js"
+                    "http://www.modernizr.com/i/js/feature-detects/forms-placeholder.js",
+                    "http://www.modernizr.com/i/js/feature-detects/hyphens.js",
+                    "http://www.modernizr.com/i/js/feature-detects/img-webp.js",
+                    "http://www.modernizr.com/i/js/feature-detects/url-data-uri.js",
+                    "http://www.modernizr.com/i/js/feature-detects/webgl-extensions.js",
+                    "http://www.modernizr.com/i/js/feature-detects/window-framed.js",
+                    "http://www.modernizr.com/i/js/feature-detects/workers-sharedworkers.js"
                 ],
                 "Destination": "org/modernizr",
                 "Latest": ""
             },
+
         "jquery-latest.js":
             {
                 "License": "MIT/GPL",
@@ -126,7 +154,7 @@ def build():
                 "Destination": "org/kayahr",
                 "Latest": "console-shim.js"
             },
-
+#   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     }
 
     description = "<h2>Third parties</h2>"
