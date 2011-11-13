@@ -154,6 +154,22 @@ def build():
                 "Destination": "org/kayahr",
                 "Latest": "console-shim.js"
             },
+        "jquery-bbq-latest.js":
+            {
+                "License": "BSD/MIT",
+                "Source": ["https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"],
+                "Destination": "org/cowboy",
+                "Latest": "jquery.ba-bbq.js"
+            },
+
+        "html5shim-latest.js":
+            {
+                "License": "MIT/GPL",
+                "Source": ["https://html5shim.googlecode.com/svn/trunk/html5.js"],
+                "Destination": "org/",
+                "Latest": "html5.js"
+            }
+# 
 #   <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     }
 
