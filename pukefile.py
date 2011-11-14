@@ -113,7 +113,7 @@ def build():
             },
 
     # A simple (hopefully) loader
-        "labjs-stable":
+        "labjs-stable.js":
             {
                 "License": "MIT",
                 "Source": ["http://labjs.com/releases/LABjs-2.0.3.zip"],
@@ -226,7 +226,7 @@ def build():
     jasm = os.path.join(BUILD_ROOT, "lib", fulllist["jasmine-stable.js"]["Destination"])
     unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
 
-    labjs = os.path.join(BUILD_ROOT, "lib", fulllist["labjs-stable"]["Destination"])
+    labjs = os.path.join(BUILD_ROOT, "lib", fulllist["labjs-stable.js"]["Destination"])
     unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
 
     # Build-up the description file
