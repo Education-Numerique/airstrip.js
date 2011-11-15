@@ -17,26 +17,16 @@ BUILD_ROOT = Env.get("BUILD_ROOT", "dist");
 DEPLOY_ROOT = Env.get("DEPLOY_ROOT", "/Users/dmp/buildd")
 
 
-global mafunction
-
-def mafunction(param):
-    print "toto"
-
 @task("Default")
 def default():
-    print "defulta"
-    mafunction("stuff")
-#    executeTask("build")
+    executeTask("build")
 
 @task("Clean all output dirs")
 def clean():
     rm(BUILD_ROOT)
-#    sh("rm -R " + DEPLOY_ROOT)
 
 @task("Deploy")
 def deploy():
-    executeTask("build")
-    # XXX gotcha
     list = FileList(BUILD_ROOT)
     deepcopy(list, DEPLOY_ROOT)
 
