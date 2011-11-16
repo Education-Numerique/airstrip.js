@@ -8,7 +8,12 @@ platform:
 invariant:
     # Where to output the stuff when building
     BUILD_ROOT: 'dist'
+    # License to be replaced in files
+    LICENSE: '<a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>'
+    # Copyright to be replaced in files
+    COPYRIGHT: '<a href="http://www.webitup.fr">Web It Up</a>'
 
+    # Third-party libraries we use
     COLLECTION:
     # We use only the core part of jasmine (h.ackitup.net our own reporters)
         jasmine-stable.js:
