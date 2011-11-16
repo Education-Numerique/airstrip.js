@@ -1,0 +1,5 @@
+# Platform dependent stuff: change according to your milage
+platform:
+    # Where to deploy the builded stuff
+    ALLOWED_DOMAIN: 'app.roxee.net'
+    DEPLOY_ROOT: '/var/www/deploy/static/lib'

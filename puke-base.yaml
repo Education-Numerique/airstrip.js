@@ -1,0 +1,126 @@
+# Platform dependent stuff: change according to your milage
+platform:
+    # Where to deploy the builded stuff
+    ALLOWED_DOMAIN: 'app.roxee.net'
+    DEPLOY_ROOT: '/var/www/deploy/static/lib'
+
+# No reason to ever change that
+invariant:
+    # Where to output the stuff when building
+    BUILD_ROOT: 'dist'
+
+    COLLECTION:
+    # We use only the core part of jasmine (h.ackitup.net our own reporters)
+        jasmine-stable.js:
+            License: "MIT"
+            Source: ["http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"]
+            Destination: "com/pivotallabs"
+            Latest: "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
+    # Use that
+        jquery-stable.js:
+            "License": "MIT/GPL"
+            "Source": "http://code.jquery.com/jquery-1.7.js"
+            "Destination": "com/jquery"
+            "Latest": "jquery-1.7.js"
+    # Use that
+        sproutcore-stable.js:
+            "License": "MIT"
+            "Source": ["http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"]
+            "Destination": "com/sproutcore"
+            "Latest": "sproutcore-2.0.beta.3.js"
+    # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
+        normalize-stable.css:
+            "License": "Public domain"
+            "Source": ["https://raw.github.com/necolas/normalize.css/master/normalize.css"]
+            "Destination": "org/normalize"
+            "Latest": "normalize.css"
+
+    # A very simple shim to emulate console when there is none (no "release" per-se either)
+        console-shim-stable.js:
+            "License": "MIT"
+            "Source": ["https://raw.github.com/kayahr/console-shim/master/console-shim.js"]
+            "Destination": "org/kayahr"
+            "Latest": "console-shim.js"
+
+    # A state crap we use to handle history in the documentation
+        jquery-bbq-stable.js:
+            "License": "MIT/GPL"
+            "Source": ["https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"]
+            "Destination": "org/cowboy"
+            "Latest": "jquery.ba-bbq.js"
+
+    # A simple (hopefully) loader
+        labjs-stable.js:
+            "License": "MIT"
+            "Source": ["http://labjs.com/releases/LABjs-2.0.3.zip"]
+            "Destination": "com/labjs"
+            "Latest": "2.0.3/LAB.src.js"
+
+# # We don't use closure (yet)
+#     "closure-latest":
+#         {
+#             "License": "Apache",
+#             "Source":  ["http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip"],
+#             "Destination": "com/google", 
+#             "Latest": "closure/goog"
+#         },
+
+# # Going to reduce that
+#     "modernizr-latest":
+#         {
+#             "License": "MIT/BSD",
+#             "Source": [
+#                 "http://www.modernizr.com/i/js/modernizr.2.0.6-prebuild.js",
+#                 "http://www.modernizr.com/i/js/modernizr.load.1.0.2.js",
+#                 "http://www.modernizr.com/i/js/respond.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/cookies.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-backgroundrepeat.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-backgroundsizecover.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-boxsizing.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-cubicbezierrange.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-displaytable.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-overflow-scrolling.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-pointerevents.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/css-userselect.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/custom-protocol-handler.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/dom-createElement-attrs.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/elem-details.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/elem-progress-meter.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/emoji.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/event-deviceorientation-motion.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/file-api.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/forms-placeholder.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/hyphens.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/img-webp.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/url-data-uri.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/webgl-extensions.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/window-framed.js",
+#                 "http://www.modernizr.com/i/js/feature-detects/workers-sharedworkers.js"
+#             ],
+#             "Destination": "org/modernizr",
+#             "Latest": ""
+#         },
+
+
+#     "backbone-latest.js":
+#         {
+#             "License": "MIT",
+#             "Source": ["http://documentcloud.github.com/backbone/backbone.js"],
+#             "Destination": "org/backbone",
+#             "Latest": "backbone.js"
+#         },
+
+#     "h5bp-latest":
+#         {
+#             "License": "UNSPECIFIED",
+#             "Source": ["http://www.initializr.com/builder?mode=custom&h5bp-analytics&h5bp-chromeframe&h5bp-css&h5bp-csshelpers&h5bp-favicon&h5bp-iecond&h5bp-mediaqueries&h5bp-mediaqueryprint&h5bp-readmemd&h5bp-scripts&html5shiv"],
+#             "Destination": "org/h5bp",
+#             "Latest": ""
+#         },
+#     "html5shim-latest.js":
+#         {
+#             "License": "MIT/GPL",
+#             "Source": ["https://html5shim.googlecode.com/svn/trunk/html5.js"],
+#             "Destination": "org/",
+#             "Latest": "html5.js"
+#         },

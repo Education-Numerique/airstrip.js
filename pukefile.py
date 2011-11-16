@@ -8,190 +8,99 @@
 # XXX humans: <link type="text/plain" rel="author" href="http://domain/humans.txt" />
 # humanstxt.org
 
-global ALLOWED_DOMAIN
-global BUILD_ROOT
-global DEPLOY_ROOT
+# Yak it up
+r = Require('puke-base.yaml')
 
-ALLOWED_DOMAIN = Env.get("ALLOWED_DOMAIN", "app.roxee.net");
-BUILD_ROOT = Env.get("BUILD_ROOT", "dist");
-DEPLOY_ROOT = Env.get("DEPLOY_ROOT", "/Users/dmp/buildd")
+# Get current username to decide what the platform is
+DEV = sh("(id -un)", output=False).strip()
+# Let it be overriden if need be
+PLATFORM = Env.get("PLATFORM", DEV)
 
+# Optionnaly merge with a local file
+r.merge('puke-' + PLATFORM + ".yaml")
+r.yak('invariant')
+r.yak('platform')
 
-@task("Default")
+@task("Default task called")
 def default():
-    executeTask("build")
+    executeTask("deploy")
+#    executeTask("flintdeploy")
+    executeTask("mintdeploy")
+    executeTask("stats")
 
-@task("Clean all output dirs")
+@task("Washing-up the taupe :)")
 def clean():
-    rm(BUILD_ROOT)
+    rm(Yak.BUILD_ROOT)
+    rm(Yak.DEPLOY_ROOT)
 
 @task("Deploy")
 def deploy():
-    list = FileList(BUILD_ROOT)
-    deepcopy(list, DEPLOY_ROOT)
+    executeTask("build")
+    list = FileList(Yak.BUILD_ROOT, exclude = "*.zip,*.tar.gz,*.DS_Store")
+    deepcopy(list, Yak.DEPLOY_ROOT)
 
+@task("Stats report deploy")
+def stats():
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.js")
+    (files, lines, size) = stats(list, title = "Static statistics - javascript")
+#    console.log(files, lines, size)
+
+#    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.js.gz")
+#    stats(list, title = "Static statistics - javascript (+gzed)")
+
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable-min.js")
+    stats(list, title = "Static statistics - minified javascript")
+
+#    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable-min.js.gz")
+#    stats(list, title = "Static statistics - minified javascript (+gzed)")
+
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.css")
+    stats(list, title = "Static statistics - css")
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*.html,*.xml,*.txt")
+    stats(list, title = "Static statistics - (ht|x)ml + txt")
+    list = FileList(Yak.DEPLOY_ROOT, exclude = "*.html,*.xml,*.txt,*.js,*.css")
+    stats(list, title = "Static statistics - other")
+
+@task("Linting")
+def lintdeploy():
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.js")
+    jslint(list, strict=False, nojsdoc=True, relax=True)
+
+@task("Flint")
+def flintdeploy():
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.js")
+    jslint(list, strict=False, nojsdoc=True, relax=True, fix=True)
+
+@task("Minting")
+def mintdeploy():
+    list = FileList(Yak.DEPLOY_ROOT, filter = "*-stable.js")
+    for burne in list.get():
+        m = burne.replace("-stable.js", "-stable-min.js")
+        minify(burne, m)
+#        pack(burne, burne + ".gz")
+#        pack(m, m + ".gz")
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build():
+    sed = Sed()
+    sed.add("<\!--.*-->\s*", "")
+    sed.add("{PUKE-DOM}", Yak.ALLOWED_DOMAIN)
 
     # Crossdomain
     list = "src/crossdomain.xml"
-    sed = Sed()
-    sed.add("<\!--.*-->\s*", "")
-    sed.add("{PUKE-DOM}", ALLOWED_DOMAIN)
-    combine(list, BUILD_ROOT + "/crossdomain.xml", replace = sed)
+    combine(list, Yak.BUILD_ROOT + "/crossdomain.xml", replace = sed)
 
     # Robots
     list = "src/robots.txt"
     sed = Sed()
     # XXX partially fucked-up
     sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
-    combine(list, BUILD_ROOT + "/robots.txt", replace = sed)
-
-    # Add external dependencies
-
-    fulllist = {
-    # We use only the core part of jasmine (h.ackitup.net our own reporters)
-        "jasmine-stable.js":
-            {
-               "License": "MIT",
-                "Source": ["http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"],
-                "Destination": "com/pivotallabs",
-                "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
-            },
-    # Use that
-        "jquery-stable.js":
-            {
-                "License": "MIT/GPL",
-                "Source": ["http://code.jquery.com/jquery-1.7.js"],
-                "Destination": "com/jquery",
-                "Latest": "jquery-1.7.js"
-            },
-    # Use that
-        "sproutcore-stable.js":
-            {
-                "License": "MIT",
-                "Source": ["http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"],
-                "Destination": "com/sproutcore",
-                "Latest": "sproutcore-2.0.beta.3.js"
-            },
-    # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
-        "normalize-stable.css":
-            {
-                "License": "Public domain",
-                "Source": ["https://raw.github.com/necolas/normalize.css/master/normalize.css"],
-                "Destination": "org/normalize",
-                "Latest": "normalize.css"
-            },
-
-    # A very simple shim to emulate console when there is none (no "release" per-se either)
-        "console-stable.js":
-            {
-                "License": "MIT",
-                "Source": ["https://raw.github.com/kayahr/console-shim/master/console-shim.js"],
-                "Destination": "org/kayahr",
-                "Latest": "console-shim.js"
-            },
-
-    # A state crap we use to handle history in the documentation
-        "jquery-bbq-stable.js":
-            {
-                "License": "MIT/GPL",
-                "Source": ["https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"],
-                "Destination": "org/cowboy",
-                "Latest": "jquery.ba-bbq.js"
-            },
-
-    # A simple (hopefully) loader
-        "labjs-stable.js":
-            {
-                "License": "MIT",
-                "Source": ["http://labjs.com/releases/LABjs-2.0.3.zip"],
-                "Destination": "com/labjs",
-                "Latest": "2.0.3/LAB.src.js"
-            },
+    combine(list, Yak.BUILD_ROOT + "/robots.txt", replace = sed)
 
 
-# https://github.com/getify/LABjs/blob/master/LAB.src.js
-
-
-
-
-
-    # # We don't use closure (yet)
-    #     "closure-latest":
-    #         {
-    #             "License": "Apache",
-    #             "Source":  ["http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip"],
-    #             "Destination": "com/google", 
-    #             "Latest": "closure/goog"
-    #         },
-
-    # # Going to reduce that
-    #     "modernizr-latest":
-    #         {
-    #             "License": "MIT/BSD",
-    #             "Source": [
-    #                 "http://www.modernizr.com/i/js/modernizr.2.0.6-prebuild.js",
-    #                 "http://www.modernizr.com/i/js/modernizr.load.1.0.2.js",
-    #                 "http://www.modernizr.com/i/js/respond.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/cookies.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-backgroundrepeat.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-backgroundsizecover.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-boxsizing.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-cubicbezierrange.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-displaytable.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-overflow-scrolling.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-pointerevents.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/css-userselect.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/custom-protocol-handler.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/dom-createElement-attrs.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/elem-details.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/elem-progress-meter.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/emoji.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/event-deviceorientation-motion.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/file-api.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/forms-placeholder.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/hyphens.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/img-webp.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/url-data-uri.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/webgl-extensions.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/window-framed.js",
-    #                 "http://www.modernizr.com/i/js/feature-detects/workers-sharedworkers.js"
-    #             ],
-    #             "Destination": "org/modernizr",
-    #             "Latest": ""
-    #         },
-
-
-    #     "backbone-latest.js":
-    #         {
-    #             "License": "MIT",
-    #             "Source": ["http://documentcloud.github.com/backbone/backbone.js"],
-    #             "Destination": "org/backbone",
-    #             "Latest": "backbone.js"
-    #         },
-
-    #     "h5bp-latest":
-    #         {
-    #             "License": "UNSPECIFIED",
-    #             "Source": ["http://www.initializr.com/builder?mode=custom&h5bp-analytics&h5bp-chromeframe&h5bp-css&h5bp-csshelpers&h5bp-favicon&h5bp-iecond&h5bp-mediaqueries&h5bp-mediaqueryprint&h5bp-readmemd&h5bp-scripts&html5shiv"],
-    #             "Destination": "org/h5bp",
-    #             "Latest": ""
-    #         },
-    #     "html5shim-latest.js":
-    #         {
-    #             "License": "MIT/GPL",
-    #             "Source": ["https://html5shim.googlecode.com/svn/trunk/html5.js"],
-    #             "Destination": "org/",
-    #             "Latest": "html5.js"
-    #         },
-
-
-    }
 
     description = "<h2>Third parties</h2>"
-    for (k, burne) in fulllist.items():
+    for (k, burne) in Yak.COLLECTION.items():
         description += "<section>\n"
         description += "\t<h3><a href=\"lib/" + burne["Destination"] + "/" + k + "\">" + k + "</a></h3>\n\t<dl>\n"
         for (key, v) in burne.items():
@@ -200,9 +109,8 @@ def build():
             else:
                 description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + "</dd><dd>".join(v) + "</dd>\n"
         description += "\t</dl>\n</section>\n"
-        deepcopy(burne["Source"], os.path.join(BUILD_ROOT, "lib", burne["Destination"]))
-        sh("cd " + BUILD_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )
-
+        deepcopy(burne["Source"], os.path.join(Yak.BUILD_ROOT, "lib", burne["Destination"]))
+        sh("cd " + Yak.BUILD_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )
 
     # h5 = os.path.join(BUILD_ROOT, "lib", fulllist["h5bp-latest"]["Destination"])
     # sh("cd " + h5 + "; rm builder.zip; mv builder* builder.zip")
@@ -213,19 +121,19 @@ def build():
     # unpack(os.path.join(goog, "closure-library-20111110-r1376.zip"), goog)
 
     # Unpack these who need it
-    jasm = os.path.join(BUILD_ROOT, "lib", fulllist["jasmine-stable.js"]["Destination"])
+    jasm = os.path.join(Yak.BUILD_ROOT, "lib", Yak.COLLECTION["jasmine-stable.js"]["Destination"])
     unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
 
-    labjs = os.path.join(BUILD_ROOT, "lib", fulllist["labjs-stable.js"]["Destination"])
+    labjs = os.path.join(Yak.BUILD_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
     unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
 
     # Build-up the description file
     file = "src/doc.html"
     s = Sed()
     s.add("{PUKE-LIST}", description)
-    deepcopy(file, BUILD_ROOT, replace=s)
+    deepcopy(file, Yak.BUILD_ROOT, replace=s)
 
     # Deepcopy other stuff
     list = FileList("src", exclude="*robots.txt,*crossdomain.xml,*doc.html")
-    deepcopy(list, BUILD_ROOT)
+    deepcopy(list, Yak.BUILD_ROOT)
 
