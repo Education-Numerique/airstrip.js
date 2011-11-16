@@ -24,6 +24,10 @@ r.yak('platform')
 @task("Default task called")
 def default():
     executeTask("deploy")
+
+@task("All tasks called")
+def all():
+    executeTask("deploy")
 #    executeTask("flintdeploy")
     executeTask("mintdeploy")
     executeTask("stats")
