@@ -69,12 +69,12 @@ def stats():
 @task("Linting")
 def lint():
     list = FileList(Yak.BUILD_ROOT, filter = FILTERING)
-    jslint(list, strict=False, nojsdoc=True, relax=True)
+    jslint(list, relax=True)
 
 @task("Flint")
 def flint():
     list = FileList(Yak.BUILD_ROOT, filter = FILTERING)
-    jslint(list, strict=False, nojsdoc=True, relax=True, fix=True)
+    jslint(list, relax=True, fix=True)
 
 @task("Minting")
 def mint():
