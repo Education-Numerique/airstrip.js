@@ -32,8 +32,11 @@ def default():
 # Clean build and dist
 @task("Washing-up the taupe :)")
 def clean():
-    FileSystem.remove(Yak.BUILD_ROOT)
-    FileSystem.remove(Yak.DEPLOY_ROOT)
+    try:
+        FileSystem.remove(Yak.BUILD_ROOT)
+        FileSystem.remove(Yak.DEPLOY_ROOT)
+    except:
+        pass
 
 # Get whatever has been built and exfilter some crappy stuff
 @task("Deploy")
