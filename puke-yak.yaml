@@ -10,7 +10,7 @@ user-dmp:
 yak:
     # Where to deploy the builded stuff
     ALLOWED_DOMAIN: 'app.roxee.net'
-    DEPLOY_ROOT: '/var/www/deploy/static/lib'
+    DEPLOY_ROOT: '/var/www/deploy'
 
     # No reason to ever change that
     NAME: 'static'
