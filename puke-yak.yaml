@@ -1,11 +1,19 @@
 # Platform dependent stuff: change according to your milage
-platform:
+user-snap:
+
+user-dmp:
+    ALLOWED_DOMAIN: 'app.roxee.net'
+    # Where to deploy the builded stuff
+    DEPLOY_ROOT: '/Users/dmp/buildd/deploy'
+
+yak:
     # Where to deploy the builded stuff
     ALLOWED_DOMAIN: 'app.roxee.net'
     DEPLOY_ROOT: '/var/www/deploy/static/lib'
 
-# No reason to ever change that
-invariant:
+    # No reason to ever change that
+    NAME: 'static'
+    VERSION: ''
     # Where to output the stuff when building
     BUILD_ROOT: 'dist'
     # License to be replaced in files
@@ -24,7 +32,7 @@ invariant:
     # Use that
         jquery-stable.js:
             "License": "MIT/GPL"
-            "Source": "http://code.jquery.com/jquery-1.7.js"
+            "Source": ["http://code.jquery.com/jquery-1.7.js"]
             "Destination": "com/jquery"
             "Latest": "jquery-1.7.js"
     # Use that

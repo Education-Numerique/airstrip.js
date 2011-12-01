@@ -1,26 +1,23 @@
 #!/usr/bin/env puke
 # -*- coding: utf8 -*-
 
+# Yank the file in
+r = Require('puke-yak.yaml')
+# Yak the yak node
+r.yak('yak')
+# Yak-in another node, either the login name or the value of the PLATFORM env variable
+r.yak('user-' + Env.get("PLATFORM", os.getlogin()))
+
+# Mangle the deploy root
+# XXX fix so that ~/ is expanded? Might help.
+Yak.DEPLOY_ROOT = FileSystem.join(Yak.DEPLOY_ROOT, Yak.NAME, Yak.VERSION)
+
 # XXX remove comments from html
 # XXX have a default favicon
 # XXX have a placeholder homepage
 
 # XXX humans: <link type="text/plain" rel="author" href="http://domain/humans.txt" />
 # humanstxt.org
-
-# Yak it up
-r = Require('puke-base.yaml')
-
-# Get current username to decide what the platform is
-DEV = sh("(id -un)", output=False).strip()
-# Let it be overriden if need be
-PLATFORM = Env.get("PLATFORM", DEV)
-
-# Optionnaly merge with a local file
-r.merge('puke-' + PLATFORM + ".yaml")
-r.yak('invariant')
-r.yak('platform')
-
 
 global FILTERING
 FILTERING="*-stable.js"
@@ -35,8 +32,8 @@ def default():
 # Clean build and dist
 @task("Washing-up the taupe :)")
 def clean():
-    rm(Yak.BUILD_ROOT)
-    rm(Yak.DEPLOY_ROOT)
+    FileSystem.remove(Yak.BUILD_ROOT)
+    FileSystem.remove(Yak.DEPLOY_ROOT)
 
 # Get whatever has been built and exfilter some crappy stuff
 @task("Deploy")

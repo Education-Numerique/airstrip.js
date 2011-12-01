@@ -1,5 +1,0 @@
-# Platform dependent stuff: change according to your milage
-platform:
-    ALLOWED_DOMAIN: 'app.roxee.net'
-    # Where to deploy the builded stuff
-    DEPLOY_ROOT: '/Users/dmp/buildd/deploy/static/'
