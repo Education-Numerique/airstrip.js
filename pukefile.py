@@ -6,7 +6,7 @@ r = Require('puke-yak.yaml')
 # Yak the yak node
 r.yak('yak')
 # Yak-in another node, either the login name or the value of the PLATFORM env variable
-r.yak('user-' + Env.get("PLATFORM", os.getlogin()))
+r.yak('user-' + Env.get("PLATFORM", System.LOGIN))
 
 # Mangle the deploy root
 # XXX fix so that ~/ is expanded? Might help.
