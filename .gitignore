@@ -3,3 +3,4 @@ dist/
 .pukecache/
 *.sublime-project
 *.sublime-workspace
+*.pyc

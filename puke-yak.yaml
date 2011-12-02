@@ -1,26 +1,64 @@
-# Platform dependent stuff: change according to your milage
-user-snap:
-    X_PREVENT_YAK_YAKING: 'yeah'
+user-jenkins-Linux:
+    ROOT: '/opt/roxee'
 
-user-dmp:
-    ALLOWED_DOMAIN: 'app.roxee.net'
-    # Where to deploy the builded stuff
-    DEPLOY_ROOT: '/Users/dmp/buildd/deploy'
+user-dmp-box-Darwin:
+    ROOT: '${HOME}/buildd/webitup/build'
+    DEPLOY_ROOT: '${HOME}/buildd/webitup/deploy/web/static'
+    ALLOWED_DOMAIN: 'app.roxee.loft'
+
+user-raildecom-box-Darwin:
+    ROOT: '${HOME}/workspace/webitup/buildd'
+    DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/web'
+    ALLOWED_DOMAIN: 'app.roxee.loft'
 
 yak:
-    # Where to deploy the builded stuff
-    ALLOWED_DOMAIN: 'app.roxee.net'
-    DEPLOY_ROOT: '/var/www/deploy'
-
-    # No reason to ever change that
-    NAME: 'static'
-    VERSION: ''
-    # Where to output the stuff when building
-    BUILD_ROOT: 'dist'
+    ############ Package basic informations
+    # Code name
+    PACKAGE:
+        NAME: static
+    # Version to be replaced in some files, and that might be used in paths
+        VERSION: ''
     # License to be replaced in files
-    LICENSE: '<a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>'
+        LICENSE: '<a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>'
     # Copyright to be replaced in files
-    COPYRIGHT: '<a href="http://www.webitup.fr">Web It Up</a>'
+        COPYRIGHT: '<a href="http://www.webitup.fr">Web It Up</a>'
+    # Repo base url
+        GIT_ROOT: 'https://github.com/webitup/static/blob/master/src/'
+    # Homepage
+        HOME: 'http://h.ackitup.org/products/static'
+
+    ############ Platform dependent stuff: change according to your milage
+    # ROOT: '${HOME}/buildd'
+    ROOT: '${HOME}/REPLACEMENOWROXEE'
+    # All these will be exposed as Yak.NAME_ROOT, where NAME is the key
+    # Note that, if relative, they will be resolved against Yak.ROOT
+    # Example: Yak.BUILD_ROOT <- ${HOME}/buildd/dist
+    ROOT_PATHS:
+        # Where to build the stuff (this is a temporary directory)
+        BUILD: 'build'
+        # # Where to put temporary stuff (download cache, etc)
+        # TMP: 'tmp'
+        # Where to deploy the builded stuff
+        DEPLOY: 'deploy'
+    #     # Where to output zipped packages distros, if need be
+    #     PACK: 'packages'
+    #     # Where to deploy the documentation, if any
+    #     DOC: 'doc'
+    #     # Where to put the startup scripts for the daemons (used only on MAC)
+    #     SCRIPT: 'bin'
+    # # These are generally refered to in startup scripts and conf files as part of templating
+    #     # Where to output configuration files
+    #     ETC: 'etc'
+    #     # Where to make the "data" lives (like databases)
+    #     DATA: 'data'
+    #     # Where any log files should be put
+    #     LOG: 'log'
+    #     # Where pid files and such should be put
+    #     RUN: 'run'
+
+    ###### Project specific settings
+    # This is used to allow access in the XDomain file
+    ALLOWED_DOMAIN: 'app.roxee.net'
 
     # Third-party libraries we use
     COLLECTION:

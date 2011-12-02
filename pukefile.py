@@ -1,16 +1,27 @@
 #!/usr/bin/env puke
 # -*- coding: utf8 -*-
 
-# Yank the file in
-r = Require('puke-yak.yaml')
-# Yak the yak node
-r.yak('yak')
-# Yak-in another node, either the login name or the value of the PLATFORM env variable
-r.yak('user-' + Env.get("PLATFORM", System.LOGIN))
+global PH
+import pukehelpers as PH
 
-# Mangle the deploy root
-# XXX fix so that ~/ is expanded? Might help.
-Yak.DEPLOY_ROOT = FileSystem.join(Yak.DEPLOY_ROOT, Yak.NAME, Yak.VERSION)
+@task("Default task")
+def default():
+    executeTask("build")
+    executeTask("deploy")
+    executeTask("stats")
+
+@task("Calling all interesting tasks")
+def all():
+    executeTask("build")
+#    executeTask("flint")
+    # executeTask("mint")
+    # executeTask("deploy")
+    # executeTask("stats")
+
+@task("Washing-up the taupe :) - cautious mode")
+def clean():
+    PH.globalclean()
+
 
 # XXX remove comments from html
 # XXX have a default favicon
@@ -22,36 +33,12 @@ Yak.DEPLOY_ROOT = FileSystem.join(Yak.DEPLOY_ROOT, Yak.NAME, Yak.VERSION)
 global FILTERING
 FILTERING="*-stable.js"
 
-# Just make-deploy by default
-@task("Default task called")
-def default():
-    executeTask("build")
-    executeTask("deploy")
-    executeTask("stats")
-
-# Clean build and dist
-@task("Washing-up the taupe :)")
-def clean():
-    try:
-        FileSystem.remove(Yak.BUILD_ROOT)
-        FileSystem.remove(Yak.DEPLOY_ROOT)
-    except:
-        pass
-
 # Get whatever has been built and exfilter some crappy stuff
 @task("Deploy")
 def deploy():
     list = FileList(Yak.BUILD_ROOT, exclude = "*.zip,*.tar.gz,*.DS_Store")
     deepcopy(list, Yak.DEPLOY_ROOT)
 
-# Build, minify, deploy, stats
-@task("All tasks called")
-def all():
-    executeTask("build")
-#    executeTask("flint")
-    executeTask("mint")
-    executeTask("deploy")
-    executeTask("stats")
 
 @task("Stats report deploy")
 def stats():
