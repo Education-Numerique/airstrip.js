@@ -14,9 +14,9 @@ def default():
 def all():
     executeTask("build")
 #    executeTask("flint")
-    # executeTask("mint")
-    # executeTask("deploy")
-    # executeTask("stats")
+    executeTask("mint")
+    executeTask("deploy")
+    executeTask("stats")
 
 @task("Washing-up the taupe :) - cautious mode")
 def clean():
