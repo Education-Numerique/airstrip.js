@@ -4,17 +4,17 @@ user-jenkins-box-Linux:
 user-dmp-box-Linux:
     ROOT: '/opt/puke/roxee'
     DEPLOY_ROOT: '/var/www/deploy/static'
-    ALLOWED_DOMAIN: 'app.roxee.net:80'
+    ALLOWED_DOMAIN: 'app.roxee.net'
 
 user-dmp-box-Darwin:
     ROOT: '${HOME}/buildd/webitup/build'
     DEPLOY_ROOT: '${HOME}/buildd/webitup/deploy/web/static'
-    ALLOWED_DOMAIN: 'app.roxee.loft:4242'
+    ALLOWED_DOMAIN: 'app.roxee.loft'
 
 user-raildecom-box-Darwin:
     ROOT: '${HOME}/workspace/webitup/buildd'
     DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/web'
-    ALLOWED_DOMAIN: 'app.roxee.loft:4242'
+    ALLOWED_DOMAIN: 'app.roxee.loft'
 
 yak:
     ############ Package basic informations
