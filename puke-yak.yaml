@@ -1,5 +1,10 @@
-user-jenkins-Linux:
-    ROOT: '/opt/roxee'
+user-jenkins-box-Linux:
+    ROOT: '/opt/puke/roxee'
+
+user-dmp-box-Linux:
+    ROOT: '/opt/puke/roxee'
+    DEPLOY_ROOT: '/var/www/deploy/static'
+    ALLOWED_DOMAIN: 'app.roxee.net:80'
 
 user-dmp-box-Darwin:
     ROOT: '${HOME}/buildd/webitup/build'
