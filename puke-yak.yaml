@@ -1,5 +1,7 @@
 user-jenkins-box-Linux:
     ROOT: '/opt/puke/roxee'
+    DEPLOY_ROOT: '/var/www/deploy/static'
+    ALLOWED_DOMAIN: 'app.roxee.net'
 
 user-dmp-box-Linux:
     ROOT: '/opt/puke/roxee'
@@ -31,6 +33,11 @@ yak:
         GIT_ROOT: 'https://github.com/webitup/static/blob/master/src/'
     # Homepage
         HOME: 'http://h.ackitup.org/products/static'
+
+    # If you have a roxish clone in ../roxish, the deploy path will be sourced from there
+    # If you specify a roxish clone path here, it will be tried, and possibly use the deploy
+    # If neither works, the deploy_root you specify here will be used
+    ROXISH_PATH: '../../roxee/roxish'
 
     ############ Platform dependent stuff: change according to your milage
     # ROOT: '${HOME}/buildd'
@@ -69,10 +76,10 @@ yak:
     COLLECTION:
     # We use only the core part of jasmine (h.ackitup.net our own reporters)
         jasmine-stable.js:
-            License: "MIT"
-            Source: "http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"
-            Destination: "com/pivotallabs"
-            Latest: "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
+            "License": "MIT"
+            "Source": "http://pivotal.github.com/jasmine/downloads/jasmine-standalone-1.1.0.zip"
+            "Destination": "com/pivotallabs"
+            "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
     # Use that
         jquery-stable.js:
             "License": "MIT/GPL"

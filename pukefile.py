@@ -4,6 +4,19 @@
 global PH
 import pukehelpers as PH
 
+# Need to find-out where one should output the builded stuff from roxish pukefile
+# if FileSystem.exists('../roxish/pukefile.py'):
+#     p = sh('cd ../roxish; puke link static')
+#     if p != Yak.DEPLOY_ROOT:
+#         console.warn('Your deploy path doesn\'t match ROXISH expectations - please adjust to %s unless you know what you are doing.' % p)
+# elif FileSystem.exists(FileSystem.join(Yak.ROXISH_PATH, 'pukefile.py')):
+#     p = sh('cd ' + Yak.ROXISH_PATH + '; puke link static -q').strip()
+#     if p != Yak.DEPLOY_ROOT:
+#         console.warn('Your deploy path doesn\'t match ROXISH expectations - please adjust to %s unless you know what you are doing.' % p)
+# else:
+#     console.warn('Couldn\'t find your Roxish clone! Your DEPLOY_ROOT might or might not be valid')
+
+
 @task("Default task")
 def default():
     executeTask("build")
