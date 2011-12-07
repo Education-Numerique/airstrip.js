@@ -15,7 +15,7 @@ user-dmp-box-Darwin:
 
 user-raildecom-box-Darwin:
     ROOT: '${HOME}/workspace/webitup/buildd'
-    DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/static
+    DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/static'
     ALLOWED_DOMAIN: 'app.roxee.loft'
 
 yak:
