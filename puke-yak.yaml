@@ -18,6 +18,10 @@ user-raildecom-box-Darwin:
     DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/static'
     ALLOWED_DOMAIN: 'app.roxee.loft'
 
+user-webitup-box-Darwin:
+    DEPLOY_ROOT: '${HOME}/buildd/deploy/web/static'
+    ALLOWED_DOMAIN: 'app.roxee.loft'
+
 yak:
     ############ Package basic informations
     # Code name
@@ -41,7 +45,7 @@ yak:
 
     ############ Platform dependent stuff: change according to your milage
     # ROOT: '${HOME}/buildd'
-    ROOT: '${HOME}/REPLACEMENOWROXEE'
+    ROOT: '${HOME}/buildd'
     # All these will be exposed as Yak.NAME_ROOT, where NAME is the key
     # Note that, if relative, they will be resolved against Yak.ROOT
     # Example: Yak.BUILD_ROOT <- ${HOME}/buildd/dist
