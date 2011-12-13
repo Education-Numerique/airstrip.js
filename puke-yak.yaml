@@ -96,6 +96,11 @@ yak:
             "Source": "http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"
             "Destination": "com/sproutcore"
             "Latest": "sproutcore-2.0.beta.3.js"
+        ember-stable.js:
+            "License": "MIT"
+            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.js"
+            "Destination": "com/ember"
+            "Latest": "ember-0.9.js"
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
         normalize-stable.css:
             "License": "Public domain"
