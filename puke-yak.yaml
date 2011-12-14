@@ -108,6 +108,13 @@ yak:
             "Destination": "org/normalize"
             "Latest": "normalize.css"
 
+    # i18n JS
+        i18n-stable.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
+            "Destination": "org/fnando"
+            "Latest": "i18n.js"
+
     # A very simple shim to emulate console when there is none (no "release" per-se either)
         console-shim-stable.js:
             "License": "MIT"
