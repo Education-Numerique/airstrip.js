@@ -90,12 +90,7 @@ yak:
             "Source": "http://code.jquery.com/jquery-1.7.js"
             "Destination": "com/jquery"
             "Latest": "jquery-1.7.js"
-    # Use that
-        sproutcore-stable.js:
-            "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/sproutcore/sproutcore20/sproutcore-2.0.beta.3.js"
-            "Destination": "com/sproutcore"
-            "Latest": "sproutcore-2.0.beta.3.js"
+
         ember-stable.js:
             "License": "MIT"
             "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.2.js"
