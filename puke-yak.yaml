@@ -93,9 +93,9 @@ yak:
 
         ember-stable.js:
             "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.2.js"
+            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.3.js"
             "Destination": "com/ember"
-            "Latest": "ember-0.9.2.js"
+            "Latest": "ember-0.9.3.js"
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
         normalize-stable.css:
             "License": "Public domain"
