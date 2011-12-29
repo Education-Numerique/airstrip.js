@@ -136,7 +136,7 @@ yak:
             "License": "MIT"
             "Source": "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
             "Destination": "org/harvest"
-            "Latest": "0.9.5/jquery.chosen.js"
+            "Latest": "jquery.chosen.js"
 
 # # We don't use closure (yet)
 #     "closure-latest":
