@@ -131,6 +131,13 @@ yak:
             "Destination": "com/labjs"
             "Latest": "2.0.3/LAB.src.js"
 
+    # Chosen, a Select Box Enhancer for jQuery
+        chosen-stable.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+            "Destination": "org/harvest"
+            "Latest": "0.9.5/jquery.chosen.js"
+
 # # We don't use closure (yet)
 #     "closure-latest":
 #         {
