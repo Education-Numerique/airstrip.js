@@ -138,6 +138,17 @@ yak:
             "Destination": "org/harvest"
             "Latest": "chosen.jquery.js"
 
+
+    # A library for binding to keys and key combos
+        keyboardjs-stable.js:
+            "License": "BSD"
+            "Source": "https://github.com/downloads/RobertWHurst/KeyboardJS/keyboard.js"
+            "Destination": "org/robertwhurst"
+            "Latest": "keyboard.js"
+
+
+            
+
 # # We don't use closure (yet)
 #     "closure-latest":
 #         {
