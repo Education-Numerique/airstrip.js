@@ -145,7 +145,13 @@ yak:
             "Source": "https://github.com/downloads/RobertWHurst/KeyboardJS/keyboard.js"
             "Destination": "org/robertwhurst"
             "Latest": "keyboard.js"
-
+    
+    # lightweight javascript date library for parsing, manipulating, and formatting dates.
+        momentjs-stable.js:
+            "License": "BSD"
+            "Source": "https://nodeload.github.com/timrwood/moment/zipball/1.2.0"
+            "Destination": "org/timrwood"
+            "Latest": "timrwood-moment-11324f3/moment.js"
 
             
 
