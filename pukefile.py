@@ -129,9 +129,6 @@ def build():
     labjs = os.path.join(Yak.BUILD_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
     unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
 
-    momentjs = os.path.join(Yak.BUILD_ROOT, "lib", Yak.COLLECTION["momentjs-stable.js"]["Destination"])
-    unpack(os.path.join(momentjs, "1.2.0"), os.path.join(momentjs, "momentjs-1.2.0"))
-
     for (k, burne) in Yak.COLLECTION.items():
 #        sh("cd " + Yak.BUILD_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )
         sh("cd " + Yak.BUILD_ROOT + "/lib/" + burne["Destination"] + "; cp -R " + burne["Latest"] + " " +  k )
