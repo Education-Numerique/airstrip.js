@@ -54,16 +54,16 @@ def cautiousclean(pathtoremove, description = 'mouflon'):
 ######## Universal cautious clean
 def globalclean():
     cautiousclean(Yak.BUILD_ROOT, 'temporary build directory')
-    cautiousclean(Yak.TMP_ROOT, 'temporary directory')
+    #cautiousclean(Yak.TMP_ROOT, 'temporary directory')
     cautiousclean(Yak.DEPLOY_ROOT, 'deploy directory for compiled stuff')
-    cautiousclean(Yak.PACK_ROOT, 'directory holding zipped release packages')
-    cautiousclean(Yak.DOC_ROOT, 'directory holding documentation')
-    cautiousclean(Yak.SCRIPT_ROOT, 'directory holding startup and helper scripts')
+    #cautiousclean(Yak.PACK_ROOT, 'directory holding zipped release packages')
+    #cautiousclean(Yak.DOC_ROOT, 'directory holding documentation')
+    #cautiousclean(Yak.SCRIPT_ROOT, 'directory holding startup and helper scripts')
 
-    cautiousclean(Yak.ETC_ROOT, 'configuration directory')
-    cautiousclean(Yak.DATA_ROOT, 'data directory')
-    cautiousclean(Yak.LOG_ROOT, 'log directory')
-    cautiousclean(Yak.RUN_ROOT, 'run/lock/pid files directory')
+    #cautiousclean(Yak.ETC_ROOT, 'configuration directory')
+    #cautiousclean(Yak.DATA_ROOT, 'data directory')
+    #cautiousclean(Yak.LOG_ROOT, 'log directory')
+    #cautiousclean(Yak.RUN_ROOT, 'run/lock/pid files directory')
 
 
 ######## Overload a sed object with {puke-} replaces for all PATHs yak
