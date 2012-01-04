@@ -148,10 +148,10 @@ yak:
     
     # lightweight javascript date library for parsing, manipulating, and formatting dates.
         momentjs-stable.js:
-            "License": "BSD"
-            "Source": "https://github.com/timrwood/moment/tarball/1.2.0"
+            "License": "MIT"
+            "Source": "https://raw.github.com/timrwood/moment/1.2.0/moment.js"
             "Destination": "org/timrwood"
-            "Latest": "momentjs-1.2.0/timrwood-moment-11324f3/moment.js"
+            "Latest": "moment.js"
 
             
 
