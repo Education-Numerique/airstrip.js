@@ -9,8 +9,8 @@ user-dmp-box-Linux:
     ALLOWED_DOMAIN: 'app.roxee.net'
 
 user-dmp-box-Darwin:
-    ROOT: '${HOME}/buildd/webitup/build'
-    DEPLOY_ROOT: '${HOME}/buildd/webitup/deploy/web/static'
+    ROOT: '${HOME}/buildd/webitup.org'
+    DEPLOY_ROOT: '${HOME}/buildd/webitup.org/production/web/static'
     ALLOWED_DOMAIN: 'app.roxee.loft'
 
 user-raildecom-box-Darwin:
@@ -51,7 +51,7 @@ yak:
     # Example: Yak.BUILD_ROOT <- ${HOME}/buildd/dist
     ROOT_PATHS:
         # Where to build the stuff (this is a temporary directory)
-        BUILD: 'build'
+        TMP: 'tmp'
         # # Where to put temporary stuff (download cache, etc)
         # TMP: 'tmp'
         # Where to deploy the builded stuff
@@ -142,10 +142,10 @@ yak:
     # A library for binding to keys and key combos
         keyboardjs-stable.js:
             "License": "BSD"
-            "Source": "https://github.com/downloads/RobertWHurst/KeyboardJS/keyboard.js"
+            "Source": "http://cloud.github.com/downloads/RobertWHurst/KeyboardJS/keyboard.0.2.2.js"
             "Destination": "org/robertwhurst"
-            "Latest": "keyboard.js"
-    
+            "Latest": "keyboard.0.2.2.js"
+
     # lightweight javascript date library for parsing, manipulating, and formatting dates.
         momentjs-stable.js:
             "License": "MIT"
@@ -153,7 +153,7 @@ yak:
             "Destination": "org/timrwood"
             "Latest": "moment.js"
 
-            
+
 
 # # We don't use closure (yet)
 #     "closure-latest":
