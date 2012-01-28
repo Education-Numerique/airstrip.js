@@ -9,8 +9,8 @@ user-dmp-box-Linux:
     ALLOWED_DOMAIN: 'app.roxee.net'
 
 user-dmp-box-Darwin:
-    ROOT: '${HOME}/buildd/webitup.org'
-    DEPLOY_ROOT: '${HOME}/buildd/webitup.org/production/web/static'
+    ROOT: '${HOME}/buildd/stage.webitup.org'
+    DEPLOY_ROOT: '${HOME}/buildd/deploy.webitup.org/web/static'
     ALLOWED_DOMAIN: 'app.roxee.loft'
 
 user-raildecom-box-Darwin:
