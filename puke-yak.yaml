@@ -147,11 +147,13 @@ yak:
             "Latest": "keyboard.0.2.2.js"
 
     # lightweight javascript date library for parsing, manipulating, and formatting dates.
-        momentjs-stable.js:
+        jquery-hoverIntent.js:
             "License": "MIT"
-            "Source": "https://raw.github.com/timrwood/moment/1.2.0/moment.js"
-            "Destination": "org/timrwood"
-            "Latest": "moment.js"
+            "Source": "http://cherne.net/brian/resources/jquery.hoverIntent.js"
+            "Destination": "com/hoverIntent"
+            "Latest": "jquery.hoverIntent.js"
+
+        
 
 
 
