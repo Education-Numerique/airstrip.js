@@ -125,6 +125,7 @@ def build():
     # Unpack these who need it
     jasm = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["jasmine-stable.js"]["Destination"])
     unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
+    # XXX can't use jasmine with patching       if (result.trace.stack) to if (result.trace && result.trace.stack) {
 
     labjs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
     unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
