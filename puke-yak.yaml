@@ -160,8 +160,17 @@ yak:
             "Destination": "com/hoverIntent"
             "Latest": "jquery.hoverIntent.js"
 
-        
+        raphael-min.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js"
+            "Destination": "com/raphaeljs"
+            "Latest": "raphael.js"
 
+        momentjs-stable.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/timrwood/moment/1.5.0/moment.js"
+            "Destination": "org/timrwood"
+            "Latest": "moment.js"
 
 
 # # We don't use closure (yet)
