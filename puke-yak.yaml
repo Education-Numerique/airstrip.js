@@ -171,7 +171,7 @@ yak:
             "License": "BSD"
             "Source": "https://raw.github.com/webitup/history.js/master/build/history.js"
             "Destination": "org/balupton"
-            "Latest": "jquery.history.js"
+            "Latest": "history.js"
 
 
 # # We don't use closure (yet)
