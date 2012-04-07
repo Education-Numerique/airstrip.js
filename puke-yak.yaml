@@ -174,7 +174,7 @@ yak:
 
         jquery-history-stable.js:
             "License": "BSD"
-            "Source": "http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"
+            "Source": "https://raw.github.com/webitup/history.js/master/build/history.js"
             "Destination": "org/balupton"
             "Latest": "jquery.history.js"
 
