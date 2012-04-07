@@ -96,12 +96,7 @@ yak:
             "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.js"
             "Destination": "com/ember"
             "Latest": "ember-0.9.6.js"
-            
-        ember-latest.js:
-            "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-latest.js"
-            "Destination": "com/ember"
-            "Latest": "ember-latest.js"
+        
 
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
         normalize-stable.css:
