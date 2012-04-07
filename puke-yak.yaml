@@ -172,6 +172,12 @@ yak:
             "Destination": "org/timrwood"
             "Latest": "moment.js"
 
+        jquery-history.js:
+            "License": "BSD"
+            "Source": "http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"
+            "Destination": "org/balupton"
+            "Latest": "jquery.history.js"
+
 
 # # We don't use closure (yet)
 #     "closure-latest":
