@@ -1,3 +1,7 @@
+user-roxee-box-Linux:
+    DEPLOY_ROOT: '/home/roxee/www/static'
+    ALLOWED_DOMAIN: 'app.roxee.net'
+
 user-jenkins-box-Linux:
     ROOT: '/opt/puke/jenkins-roxee'
     DEPLOY_ROOT: '/var/www/deploy/static'
