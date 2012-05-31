@@ -98,9 +98,9 @@ yak:
     #http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.js
         ember-stable.js:
             "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.8.1.js"
+            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.8.js"
             "Destination": "com/ember"
-            "Latest": "ember-0.9.8.1.js"
+            "Latest": "ember-0.9.8.js"
         
 
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
