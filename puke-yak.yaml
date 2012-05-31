@@ -85,9 +85,9 @@ yak:
     # We use only the core part of jasmine (h.ackitup.net our own reporters)
         jasmine-stable.js:
             "License": "MIT"
-            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.1.0.zip"
             "Destination": "com/pivotallabs"
-            "Latest": "jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
+            "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
     # Use that
         jquery-stable.js:
             "License": "MIT/GPL"
