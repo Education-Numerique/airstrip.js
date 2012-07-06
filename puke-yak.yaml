@@ -184,6 +184,18 @@ yak:
             "Destination": "org/balupton"
             "Latest": "history.js"
 
+        xmlhttprequest.js:
+            "License": "LGPL"
+            "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
+            "Destination": "org/ilinsky"
+            "Latest": "xmlhttprequest.js"
+
+        stacktrace.js:
+            "License": "PublicDomain"
+            "Source": "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
+            "Destination": "org/eriwen"
+            "Latest": "stacktrace.js"
+
 
 # # We don't use closure (yet)
 #     "closure-latest":
