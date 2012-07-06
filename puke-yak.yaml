@@ -107,7 +107,7 @@ yak:
             "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"
             "Destination": "com/ember"
             "Latest": "ember-0.9.6.min.js"
-        
+
 
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
         normalize-stable.css:
@@ -184,13 +184,13 @@ yak:
             "Destination": "org/balupton"
             "Latest": "history.js"
 
-        xmlhttprequest.js:
+        xmlhttprequest-stable.js:
             "License": "LGPL"
             "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
             "Destination": "org/ilinsky"
-            "Latest": "xmlhttprequest.js"
+            "Latest": "XMLHttpRequest.js"
 
-        stacktrace.js:
+        stacktrace-stable.js:
             "License": "PublicDomain"
             "Source": "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
             "Destination": "org/eriwen"
