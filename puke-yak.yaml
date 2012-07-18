@@ -196,6 +196,12 @@ yak:
             "Destination": "org/eriwen"
             "Latest": "stacktrace.js"
 
+        mousetrap-stable.js:
+            "License": "Apache"
+            "Source" : 'https://raw.github.com/ccampbell/mousetrap/master/mousetrap.js'
+            "Destination": 'org/ccampbell'
+            "Latest" : 'mousetrap.js'
+
 
 # # We don't use closure (yet)
 #     "closure-latest":
