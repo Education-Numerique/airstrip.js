@@ -198,7 +198,7 @@ yak:
 
         mousetrap-stable.js:
             "License": "Apache"
-            "Source" : 'https://raw.github.com/ccampbell/mousetrap/master/mousetrap.js'
+            "Source" : 'https://raw.github.com/webitup/mousetrap/master/mousetrap.js'
             "Destination": 'org/ccampbell'
             "Latest" : 'mousetrap.js'
 
