@@ -174,7 +174,7 @@ yak:
 
         momentjs-stable.js:
             "License": "MIT"
-            "Source": "https://raw.github.com/timrwood/moment/1.5.0/moment.js"
+            "Source": "https://raw.github.com/timrwood/moment/1.7.0/moment.js"
             "Destination": "org/timrwood"
             "Latest": "moment.js"
 
