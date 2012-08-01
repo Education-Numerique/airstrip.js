@@ -184,6 +184,14 @@ yak:
             "Destination": "org/balupton"
             "Latest": "history.js"
 
+        mousetrap-stable.js:
+            "License": "Apache"
+            "Source" : 'https://raw.github.com/webitup/mousetrap/master/mousetrap.js'
+            "Destination": 'org/ccampbell'
+            "Latest" : 'mousetrap.js'
+
+        # Forked and used in a merged form only in js.core (strict mode working)
+        # You should NOT use any of these - they are already provided if you use js.core
         xmlhttprequest-stable.js:
             "License": "LGPL"
             "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
@@ -196,11 +204,12 @@ yak:
             "Destination": "org/eriwen"
             "Latest": "stacktrace.js"
 
-        mousetrap-stable.js:
-            "License": "Apache"
-            "Source" : 'https://raw.github.com/webitup/mousetrap/master/mousetrap.js'
-            "Destination": 'org/ccampbell'
-            "Latest" : 'mousetrap.js'
+        postmessage-stable.js:
+            "License": "MIT/GPL"
+            "Source": "https://raw.github.com/webitup/jquery-postmessage/master/jquery.ba-postmessage.js"
+            "Destination": "org/cowboy"
+            "Latest": "jquery.ba-postmessage.js"
+
 
 
 # # We don't use closure (yet)
