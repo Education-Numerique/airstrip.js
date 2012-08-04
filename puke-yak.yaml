@@ -142,7 +142,7 @@ yak:
     # lightweight javascript date library for parsing, manipulating, and formatting dates.
         jquery-hoverIntent-stable.js:
             "License": "MIT"
-            "Source": "http://cherne.net/brian/resources/jquery.hoverIntent.js"
+            "Source": "https://raw.github.com/hernan/hoverIntent/master/jquery.hoverIntent.js"
             "Destination": "com/hoverIntent"
             "Latest": "jquery.hoverIntent.js"
 
