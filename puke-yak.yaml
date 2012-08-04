@@ -82,13 +82,11 @@ yak:
 
     # Third-party libraries we use
     COLLECTION:
-    # We use only the core part of jasmine (h.ackitup.net our own reporters)
-        jasmine-stable.js:
-            "License": "MIT"
-            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
-            "Destination": "com/pivotallabs"
-            "Latest": "jasmine.js"
-    # Use that
+
+        # -----------------------------
+        # Frameworks
+        # -----------------------------
+
         jquery-stable.js:
             "License": "MIT/GPL"
             "Source": "http://code.jquery.com/jquery-1.7.js"
@@ -109,6 +107,9 @@ yak:
             "Latest": "ember-0.9.6.min.js"
 
 
+        # -----------------------------
+        # Libraries helpers
+        # -----------------------------
     # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
         normalize-stable.css:
             "License": "Public domain"
@@ -122,27 +123,6 @@ yak:
             "Source": "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
             "Destination": "org/fnando"
             "Latest": "i18n.js"
-
-    # A very simple shim to emulate console when there is none (no "release" per-se either)
-        console-shim-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
-            "Destination": "org/kayahr"
-            "Latest": "console-shim.js"
-
-    # A state crap we use to handle history in the documentation
-        jquery-bbq-stable.js:
-            "License": "MIT/GPL"
-            "Source": "https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"
-            "Destination": "org/cowboy"
-            "Latest": "jquery.ba-bbq.js"
-
-    # A simple (hopefully) loader
-        labjs-stable.js:
-            "License": "MIT"
-            "Source": "http://labjs.com/releases/LABjs-2.0.3.zip"
-            "Destination": "com/labjs"
-            "Latest": "2.0.3/LAB.src.js"
 
     # Chosen, a Select Box Enhancer for jQuery
         jquery-chosen-stable.js:
@@ -166,7 +146,7 @@ yak:
             "Destination": "com/hoverIntent"
             "Latest": "jquery.hoverIntent.js"
 
-        raphael-min.js:
+        raphael-stable.js:
             "License": "MIT"
             "Source": "https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js"
             "Destination": "com/raphaeljs"
@@ -200,16 +180,6 @@ yak:
             "Destination": "org/eriwen"
             "Latest": "stacktrace.js"
 
-
-        # -----------------------------
-        # Pure shims, then copied to Spitfire - don't use from here
-        # -----------------------------
-        json.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
-            "Destination": "shims"
-            "Latest": "json3.js"
-
         # Forked and used in a merged form only in js.core (strict mode working)
         # You should NOT use any of these - they are already provided if you use js.core
         xmlhttprequest-stable.js:
@@ -224,6 +194,22 @@ yak:
             "Destination": "org/cowboy"
             "Latest": "jquery.ba-postmessage.js"
 
+        # A very simple shim to emulate console when there is none (no "release" per-se either)
+        console-shim-stable.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
+            "Destination": "org/kayahr"
+            "Latest": "console-shim.js"
+
+        # -----------------------------
+        # Pure shims, then copied to Spitfire - DONT use from here
+        # -----------------------------
+        json.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
+            "Destination": "shims"
+            "Latest": "json3.js"
+
         # -----------------------------
         # Loaders, usable directly from here (or compiled inside jsBoot loader)
         # -----------------------------
@@ -232,6 +218,12 @@ yak:
             "Source": "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
             "Destination": "loaders"
             "Latest": "yui-base.js"
+
+        labjs-stable.js:
+            "License": "MIT"
+            "Source": "http://labjs.com/releases/LABjs-2.0.3.zip"
+            "Destination": "loaders"
+            "Latest": "2.0.3/LAB.src.js"
 
         headjs-stable.js:
             "License": "MIT"
@@ -244,6 +236,23 @@ yak:
             "Source": "https://github.com/jrburke/requirejs/tarball/2.0.4"
             "Destination": "loaders"
             "Latest": "jrburke-requirejs-9d65832/require.js"
+
+
+        # -----------------------------
+        # Tooling
+        # -----------------------------
+
+        jasmine-stable.js:
+            "License": "MIT"
+            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+            "Destination": "com/pivotallabs"
+            "Latest": "jasmine.js"
+        # A state crap we use to handle history in the documentation
+        jquery-bbq-stable.js:
+            "License": "MIT/GPL"
+            "Source": "https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"
+            "Destination": "org/cowboy"
+            "Latest": "jquery.ba-bbq.js"
 
 
 

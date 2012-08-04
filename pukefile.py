@@ -136,7 +136,7 @@ def build():
 
     for (k, burne) in Yak.COLLECTION.items():
 #        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )
-        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; cp -R " + burne["Latest"] + " " +  k )
+        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; cp -R " + burne["Latest"] + " " +  k + "; rm " + burne["Latest"])
 
     # Build-up the description file
     file = "src/doc.html"
