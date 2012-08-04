@@ -31,9 +31,9 @@ def all():
     executeTask("deploy")
     executeTask("stats")
 
-@task("Washing-up the taupe :) - cautious mode")
-def clean():
-    PH.globalclean()
+# @task("Washing-up the taupe :) - cautious mode")
+# def clean():
+#     PH.globalclean()
 
 
 # XXX remove comments from html
