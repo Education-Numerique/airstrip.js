@@ -100,8 +100,6 @@ def build():
     sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
     combine(list, Yak.TMP_ROOT + "/robots.txt", replace = sed)
 
-
-
     description = "<h2>Third parties</h2>"
     for (k, burne) in Yak.COLLECTION.items():
         description += "<section>\n"
@@ -124,11 +122,17 @@ def build():
 
     # Unpack these who need it
     jasm = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["jasmine-stable.js"]["Destination"])
-    unpack(os.path.join(jasm, "jasmine-standalone-1.1.0.zip"), jasm)
+    unpack(os.path.join(jasm, "jasmine-standalone-1.2.0.zip"), jasm)
+    sh('cd "%s"; rm -Rf jasmine-1.2.0; mv lib/jasmine-1.2.0 .; cp -R jasmine-1.2.0 jasmine-stable; rm jasmine-standalone-1.2.0.zip; rm SpecRunner.html; rm -Rf lib; rm -Rf spec; rm -Rf src;' % jasm)
     # XXX can't use jasmine with patching       if (result.trace.stack) to if (result.trace && result.trace.stack) {
 
     labjs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
     unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
+
+    requirejs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["requirejs-stable.js"]["Destination"])
+    unpack(os.path.join(requirejs, "2.0.4"), os.path.join(requirejs))
+    # , "jrburke-requirejs-9d65832"))
+
 
     for (k, burne) in Yak.COLLECTION.items():
 #        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )

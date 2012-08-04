@@ -85,9 +85,9 @@ yak:
     # We use only the core part of jasmine (h.ackitup.net our own reporters)
         jasmine-stable.js:
             "License": "MIT"
-            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.1.0.zip"
+            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
             "Destination": "com/pivotallabs"
-            "Latest": "jasmine-standalone-1.1.0/lib/jasmine-1.1.0/jasmine.js"
+            "Latest": "jasmine.js"
     # Use that
         jquery-stable.js:
             "License": "MIT/GPL"
@@ -190,6 +190,26 @@ yak:
             "Destination": 'org/ccampbell'
             "Latest" : 'mousetrap.js'
 
+
+        # -----------------------------
+        # Enhancements shims
+        # -----------------------------
+        stacktrace-stable.js:
+            "License": "PublicDomain"
+            "Source": "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
+            "Destination": "org/eriwen"
+            "Latest": "stacktrace.js"
+
+
+        # -----------------------------
+        # Pure shims, then copied to Spitfire - don't use from here
+        # -----------------------------
+        json.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
+            "Destination": "shims"
+            "Latest": "json3.js"
+
         # Forked and used in a merged form only in js.core (strict mode working)
         # You should NOT use any of these - they are already provided if you use js.core
         xmlhttprequest-stable.js:
@@ -198,17 +218,42 @@ yak:
             "Destination": "org/ilinsky"
             "Latest": "XMLHttpRequest.js"
 
-        stacktrace-stable.js:
-            "License": "PublicDomain"
-            "Source": "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
-            "Destination": "org/eriwen"
-            "Latest": "stacktrace.js"
-
         postmessage-stable.js:
             "License": "MIT/GPL"
             "Source": "https://raw.github.com/webitup/jquery-postmessage/master/jquery.ba-postmessage.js"
             "Destination": "org/cowboy"
             "Latest": "jquery.ba-postmessage.js"
+
+        # -----------------------------
+        # Loaders, usable directly from here (or compiled inside jsBoot loader)
+        # -----------------------------
+        yahoo-stable.js:
+            "License": "BSD"
+            "Source": "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
+            "Destination": "loaders"
+            "Latest": "yui-base.js"
+
+        headjs-stable.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
+            "Destination": "loaders"
+            "Latest": "head.js"
+
+        requirejs-stable.js:
+            "License": "BSD"
+            "Source": "https://github.com/jrburke/requirejs/tarball/2.0.4"
+            "Destination": "loaders"
+            "Latest": "jrburke-requirejs-9d65832/require.js"
+
+
+
+        # # Forks that are not used per-se
+        # es5-stable.js:
+        #     "License": "MIT"
+        #     "Source": "https://raw.github.com/webitup/es5-shim/master/es5-shim.js"
+        #     "Destination": "org/kriskowal"
+        #     "Latest": "es5-shim.js"
+
 
 
 
