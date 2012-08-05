@@ -126,11 +126,12 @@ def build():
     sh('cd "%s"; rm -Rf jasmine-1.2.0; mv lib/jasmine-1.2.0 .; cp -R jasmine-1.2.0 jasmine-stable; rm jasmine-standalone-1.2.0.zip; rm SpecRunner.html; rm -Rf lib; rm -Rf spec; rm -Rf src;' % jasm)
     # XXX can't use jasmine with patching       if (result.trace.stack) to if (result.trace && result.trace.stack) {
 
-    labjs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
-    unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
+    # labjs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
+    # unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
 
     requirejs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["requirejs-stable.js"]["Destination"])
     unpack(os.path.join(requirejs, "2.0.4"), os.path.join(requirejs))
+    FileSystem.remove(os.path.join(requirejs, "2.0.4"))
     # , "jrburke-requirejs-9d65832"))
 
 
