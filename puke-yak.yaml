@@ -182,11 +182,6 @@ yak:
 
         # Forked and used in a merged form only in js.core (strict mode working)
         # You should NOT use any of these - they are already provided if you use js.core
-        xmlhttprequest-stable.js:
-            "License": "LGPL"
-            "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
-            "Destination": "org/ilinsky"
-            "Latest": "XMLHttpRequest.js"
 
         postmessage-stable.js:
             "License": "MIT/GPL"
@@ -209,6 +204,13 @@ yak:
             "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
             "Destination": "shims"
             "Latest": "console-shim.js"
+
+        # XHR is a terribly buggy thing - this may / should be aggregated unconditionally
+        xmlhttprequest-all.js:
+            "License": "LGPL"
+            "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
+            "Destination": "shims"
+            "Latest": "XMLHttpRequest.js"
 
         # -----------------------------
         # Loaders, usable directly from here (or compiled inside jsBoot loader)
