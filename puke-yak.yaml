@@ -206,7 +206,7 @@ yak:
         # A nice shim to emulate console when there is none (no "release" per-se either)
         console.js:
             "License": "MIT"
-            "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
+            "Source": "https://raw.github.com/webitup/console-shim/master/console-shim.js"
             "Destination": "shims"
             "Latest": "console-shim.js"
 
