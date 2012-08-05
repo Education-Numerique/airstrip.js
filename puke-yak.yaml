@@ -194,13 +194,6 @@ yak:
             "Destination": "org/cowboy"
             "Latest": "jquery.ba-postmessage.js"
 
-        # A very simple shim to emulate console when there is none (no "release" per-se either)
-        console-shim-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
-            "Destination": "org/kayahr"
-            "Latest": "console-shim.js"
-
         # -----------------------------
         # Pure shims, then copied to Spitfire - DONT use from here
         # -----------------------------
@@ -209,6 +202,13 @@ yak:
             "Source": "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
             "Destination": "shims"
             "Latest": "json3.js"
+
+        # A nice shim to emulate console when there is none (no "release" per-se either)
+        console.js:
+            "License": "MIT"
+            "Source": "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
+            "Destination": "shims"
+            "Latest": "console-shim.js"
 
         # -----------------------------
         # Loaders, usable directly from here (or compiled inside jsBoot loader)
