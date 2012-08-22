@@ -1,1 +1,5 @@
-A project containing purely static "root" files, and that may be used as well to output build results from other (client) projects, alongside with pristine third-party dependencies.
+This project is more of a build system helper than anything else.
+
+For what it's worth, it's released in itself under the MIT license.
+Note, though, that the result of the build it produces contains numerous softwares with various license,
+and that by using them means you should agree with their individual licenses, not with the MIT license of this system itself. 

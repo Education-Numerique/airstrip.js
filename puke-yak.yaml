@@ -1,65 +1,52 @@
+# Production
 user-roxee-box-Linux:
     DEPLOY_ROOT: '/home/roxee/www/static'
-    ALLOWED_DOMAIN: 'app.roxee.net'
 
+# Integration
 user-jenkins-box-Linux:
-    ROOT: '/opt/puke/jenkins-roxee'
     DEPLOY_ROOT: '/var/www/deploy/static'
-    ALLOWED_DOMAIN: 'app.roxee.net'
-
-user-dmp-box-Linux:
-    ROOT: '/opt/puke/roxee'
-    DEPLOY_ROOT: '/var/www/deploy/static'
-    ALLOWED_DOMAIN: 'app.roxee.net'
+    ALLOWED_DOMAIN: 'app.sn.ackitup.net'
 
 user-dmp-box-Darwin:
     ROOT: '${HOME}/buildd/stage.webitup.org'
     DEPLOY_ROOT: '${HOME}/buildd/deploy.webitup.org/web/static'
-    ALLOWED_DOMAIN: 'app.roxee.loft'
+    ALLOWED_DOMAIN: 'app.loft.sn.ackitup.net'
 
 user-raildecom-box-Darwin:
     ROOT: '${HOME}/workspace/webitup/buildd'
     DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/static'
     ALLOWED_DOMAIN: 'app.roxee.loft'
 
-user-webitup-box-Darwin:
-    DEPLOY_ROOT: '${HOME}/buildd/deploy/web/static'
-    ALLOWED_DOMAIN: 'app.roxee.loft'
-
 yak:
     ############ Package basic informations
     # Code name
     PACKAGE:
-        NAME: static
-    # Version to be replaced in some files, and that might be used in paths
-        VERSION: ''
+        NAME: static.js
+        VERSION: '0.1'
     # License to be replaced in files
-        LICENSE: '<a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>'
+        LICENSE: '<a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>'
     # Copyright to be replaced in files
         COPYRIGHT: '<a href="http://www.webitup.fr">Web It Up</a>'
+    # Author
+        AUTHOR: '<a href="mailto:dev@webitup.fr">Mangled Deutz & Raildecom</a>'
     # Repo base url
         GIT_ROOT: 'https://github.com/webitup/static/blob/master/src/'
     # Homepage
         HOME: 'http://h.ackitup.org/products/static'
 
-    # If you have a roxish clone in ../roxish, the deploy path will be sourced from there
-    # If you specify a roxish clone path here, it will be tried, and possibly use the deploy
-    # If neither works, the deploy_root you specify here will be used
-    ROXISH_PATH: '../../roxee/roxish'
-
     ############ Platform dependent stuff: change according to your milage
     # ROOT: '${HOME}/buildd'
-    ROOT: '${HOME}/buildd'
+    ROOT: './build'
     # All these will be exposed as Yak.NAME_ROOT, where NAME is the key
     # Note that, if relative, they will be resolved against Yak.ROOT
     # Example: Yak.BUILD_ROOT <- ${HOME}/buildd/dist
     ROOT_PATHS:
         # Where to build the stuff (this is a temporary directory)
-        TMP: 'tmp'
+        BUILD: 'build'
         # # Where to put temporary stuff (download cache, etc)
-        # TMP: 'tmp'
+        TMP: 'tmp'
         # Where to deploy the builded stuff
-        DEPLOY: 'deploy'
+        DEPLOY: 'dist'
     #     # Where to output zipped packages distros, if need be
     #     PACK: 'packages'
     #     # Where to deploy the documentation, if any
@@ -78,189 +65,319 @@ yak:
 
     ###### Project specific settings
     # This is used to allow access in the XDomain file
+    # XXX this is nowhere near ready - flash is dead anyhow
     ALLOWED_DOMAIN: 'app.roxee.net'
 
     # Third-party libraries we use
     COLLECTION:
-
         # -----------------------------
-        # Frameworks
+        # Tooling
         # -----------------------------
 
-    # XXX no reliable https
-        jquery-stable.js:
-            "License": "MIT/GPL"
-            "Source": "http://code.jquery.com/jquery-1.7.js"
-            "Destination": "com/jquery"
-            "Latest": "jquery-1.7.js"
+        # XXX no https - dead - may be forked on github instead / replaced
+        sh:
+            "License": "GPL3"
+            "Destination": "tooling"
+            "Source":
+                # Latest stable as of 201208
+                shjs-0.6.zip: "http://freefr.dl.sourceforge.net/project/shjs/shjs/0.6/shjs-0.6.zip"
+                # "Trunk" (the project is ghost town)
+                sh.core-trunk.js: "http://shjs.sourceforge.net/sh_main.js"
+                sh.js-trunk.js: "http://shjs.sourceforge.net/lang/sh_javascript.js"
+                sh-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
+            "Build":
+                type: 'zip'
+                dir: "shjs-0.6/shjs-0.6"
+                production:
+                    sh.core-0.6.js: "sh_main.js"
+                    sh.js-0.6.js: "lang/sh_javascript.js"
+                    sh-0.6.css: "sh_style.css"
 
-    #old stable
-    #http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.js
-    # XXX no reliable https
-        ember-debug-stable.js:
+        jasmine:
             "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.js"
-            "Destination": "com/ember"
-            "Latest": "ember-0.9.6.js"
+            "Destination": "tooling"
+            "Source":
+                jasmine-1.2.0.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+                git: "git://github.com/pivotal/jasmine.git"
+            "Build":
+                type: 'thor'
+                args: 'jasmine_dev:build_distribution'
+                dir: "jasmine"
+                production:
+                # Due to the nature of jasmine here, this is a small trick to get stuff also from the package itself 
+                    jasmine-1.2.0.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
+                    jasmine.core-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
+                    jasmine.html-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
+                    jasmine-trunk.css: "lib/jasmine-core/jasmine.css"
+                    jasmine.core-trunk.js: "lib/jasmine-core/jasmine.js"
+                    jasmine.html-trunk.js: "lib/jasmine-core/jasmine-html.js"
 
-    # XXX no reliable https
-        ember-prod-stable.js:
-            "License": "MIT"
-            "Source": "http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"
-            "Destination": "com/ember"
-            "Latest": "ember-0.9.6.min.js"
-
-
-        # -----------------------------
-        # Libraries helpers
-        # -----------------------------
-    # Doesn't have a notino of "stable" releases - whatever is master on github is the "stable" release
-        normalize-stable.css:
-            "License": "Public domain"
-            "Source": "https://raw.github.com/necolas/normalize.css/master/normalize.css"
-            "Destination": "org/normalize"
-            "Latest": "normalize.css"
-
-    # i18n JS
-        i18n-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
-            "Destination": "org/fnando"
-            "Latest": "i18n.js"
-
-    # Chosen, a Select Box Enhancer for jQuery
-        jquery-chosen-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
-            "Destination": "org/harvest"
-            "Latest": "chosen.jquery.js"
-
-
-    # A library for binding to keys and key combos
-    # XXX no reliable https
-        keyboardjs-stable.js:
-            "License": "BSD"
-            "Source": "http://cloud.github.com/downloads/RobertWHurst/KeyboardJS/keyboard.0.2.2.js"
-            "Destination": "org/robertwhurst"
-            "Latest": "keyboard.0.2.2.js"
-
-    # lightweight javascript date library for parsing, manipulating, and formatting dates.
-        jquery-hoverIntent-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/hernan/hoverIntent/master/jquery.hoverIntent.js"
-            "Destination": "com/hoverIntent"
-            "Latest": "jquery.hoverIntent.js"
-
-        raphael-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js"
-            "Destination": "com/raphaeljs"
-            "Latest": "raphael.js"
-
-        momentjs-stable.js:
-            "License": "MIT"
-            "Source": "https://raw.github.com/timrwood/moment/1.7.0/moment.js"
-            "Destination": "org/timrwood"
-            "Latest": "moment.js"
-
-        jquery-history-stable.js:
-            "License": "BSD"
-            "Source": "https://raw.github.com/webitup/history.js/master/build/history.js"
-            "Destination": "org/balupton"
-            "Latest": "history.js"
-
-        mousetrap-stable.js:
-            "License": "Apache"
-            "Source" : 'https://raw.github.com/webitup/mousetrap/master/mousetrap.js'
-            "Destination": 'org/ccampbell'
-            "Latest" : 'mousetrap.js'
 
 
         # -----------------------------
         # Enhancements shims
         # -----------------------------
-        stacktrace-stable.js:
+        stacktrace:
             "License": "PublicDomain"
-            "Source": "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
-            "Destination": "org/eriwen"
-            "Latest": "stacktrace.js"
+            "Destination": "shims-plus"
+            "Source":
+                stacktrace-0.3.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.3.js"
+                # XXX Needs pull request as there is fixes for Safari strict mode not in 0.3
+                stacktrace-jsboot.js: "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
+                stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
 
         # Forked and used in a merged form only in js.core (strict mode working)
         # You should NOT use any of these - they are already provided if you use js.core
-
-        postmessage-stable.js:
+        # XXX no "stable" version notion
+        # XXX to be replaced by a proper shim
+        postmessage:
             "License": "MIT/GPL"
-            "Source": "https://raw.github.com/webitup/jquery-postmessage/master/jquery.ba-postmessage.js"
-            "Destination": "org/cowboy"
-            "Latest": "jquery.ba-postmessage.js"
+            "Destination": "shims-plus"
+            "Source":
+                # Has some changes to fit in jsboot
+                postmessage-jsboot.js: "https://raw.github.com/webitup/jquery-postmessage/master/jquery.ba-postmessage.js"
+                postmessage-trunk.js: "http://github.com/cowboy/jquery-postmessage/raw/master/jquery.ba-postmessage.js"
 
         # -----------------------------
         # Pure shims, then copied to Spitfire - DONT use from here
         # -----------------------------
-        json.js:
+        json3:
             "License": "MIT"
-            "Source": "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
             "Destination": "shims"
-            "Latest": "json3.js"
+            "Source":
+                # XXX upstream doesn't version url - use the fork for stable instead
+                # json3-trunk.js: "http://bestiejs.github.com/json3/lib/json3.js"
+                json3-3.2.3.js: "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
+                json3-trunk.js: "https://raw.github.com/bestiejs/json3/gh-pages/lib/json3.js"
 
         # A nice shim to emulate console when there is none (no "release" per-se either)
-        console.js:
+        # XXX Upstream is not responding to our pull request, and doesn't version
+        console:
             "License": "MIT"
-            "Source": "https://raw.github.com/webitup/console-shim/master/console-shim.js"
             "Destination": "shims"
-            "Latest": "console-shim.js"
+            "Source":
+                console-jsboot.js: "https://raw.github.com/webitup/console-shim/master/console-shim.js"
+                console-trunk.js: "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
 
         # XHR is a terribly buggy thing - this may / should be aggregated unconditionally
-        xmlhttprequest-all.js:
+        xmlhttprequest:
             "License": "LGPL"
-            "Source": "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
             "Destination": "shims"
-            "Latest": "XMLHttpRequest.js"
+            "Source":
+            # XXX upstream doesn't version
+                xhr-jsboot.js: "https://raw.github.com/webitup/xmlhttprequest/master/XMLHttpRequest.js"
+                xhr-trunk.js: "https://raw.github.com/ilinsky/xmlhttprequest/master/XMLHttpRequest.js"
 
         # -----------------------------
         # Loaders, usable directly from here (or compiled inside jsBoot loader)
         # -----------------------------
         # XXX no HTTPS
-        yahoo-stable.js:
+        yahoo:
             "License": "BSD"
-            "Source": "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
             "Destination": "loaders"
-            "Latest": "yui-base.js"
+            "Source":
+                yui.base-3.6.0.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
+                yui.base-trunk.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
 
-        labjs-stable.js:
+        # XXX upstream is dead
+        lab:
             "License": "MIT"
-            "Source": "https://raw.github.com/getify/LABjs/master/LAB.src.js"
             "Destination": "loaders"
-            "Latest": "LAB.src.js"
+            "Source":
+                lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
+                lab-jsboot.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+                lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+            "Build":
+                type: 'zip'
+                dir: 'LABjs-2.0.3'
+                production:
+                    lab-2.0.3.js: 'LAB.src.js'
 
-        headjs-stable.js:
+        head:
             "License": "MIT"
-            "Source": "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
             "Destination": "loaders"
-            "Latest": "head.js"
+            "Source":
+                head-0.96.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
+                git: "git://github.com/headjs/headjs.git"
+            "Build":
+                type: "make"
+                dir: "headjs"
+                args: 'head'
+                production:
+                    head-trunk.js: "dist/head.js"
+            # Uses a makefile: git://github.com/headjs/headjs.git
 
-        requirejs-stable.js:
+        require:
             "License": "BSD"
-            "Source": "https://github.com/jrburke/requirejs/tarball/2.0.4"
             "Destination": "loaders"
-            "Latest": "jrburke-requirejs-9d65832/require.js"
+            "Source":
+            # XXX no https
+                require-2.0.6.js: "http://requirejs.org/docs/release/2.0.6/comments/require.js"
+                # requirejs-2.0.6.js: "https://github.com/jrburke/requirejs/tarball/2.0.6"
+                require-trunk.js: "https://raw.github.com/jrburke/requirejs/master/require.js"
 
 
         # -----------------------------
-        # Tooling
+        # Frameworks
         # -----------------------------
 
-        jasmine-stable.js:
+        # Handlebars
+        handlebars:
             "License": "MIT"
-            "Source": "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
-            "Destination": "com/pivotallabs"
-            "Latest": "jasmine.js"
-        # A state crap we use to handle history in the documentation
-        jquery-bbq-stable.js:
+            "Destination": "frameworks"
+            "Source":
+                handlebars.runtime-1.b6.js: "https://github.com/downloads/wycats/handlebars.js/handlebars.runtime-1.0.0.beta.6"
+                handlebars.main-1.b6.js: "https://github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js"
+                git: "git://github.com/wycats/handlebars.js.git"
+
+            "Build":
+                type: "rake"
+                dir: "handlebars.js"
+                production:
+                    handlebars.runtime-trunk.js: "dist/handlebars.runtime.js"
+                    handlebars.main-trunk.js: "dist/handlebars.js"
+
+
+        # XXX - https bitch!
+        jquery:
             "License": "MIT/GPL"
-            "Source": "https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"
-            "Destination": "org/cowboy"
-            "Latest": "jquery.ba-bbq.js"
+            "Destination": "frameworks"
+            "Source":
+                jquery-1.7.js: "http://code.jquery.com/jquery-1.7.js"
+                jquery-1.8.js: "http://code.jquery.com/jquery-1.8.0.js"
+                jquery-trunk.js: "http://code.jquery.com/jquery-git.js"
+
+        ember:
+            "License": "MIT"
+            "Destination": "frameworks"
+            "Source":
+                ember.prod-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"
+                ember.debug-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.js"
+                ember.prod-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.min.js"
+                ember.debug-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.js"
+                git: "git://github.com/emberjs/ember.js.git"
+            "Build":
+                type: "rake"
+                dir: "ember.js"
+                production:
+                    ember.debug-trunk.js: "dist/ember.js"
+                    ember.prod-trunk.js: "dist/ember.prod.js"
+
+
+        normalize:
+            "License": "Public domain"
+            "Destination": "frameworks"
+            "Source":
+                normalize-2.0.css: "http://necolas.github.com/normalize.css/2.0.1/normalize.css"
+                normalize-trunk.css: "https://raw.github.com/necolas/normalize.css/master/normalize.css"
+
+
+        # -----------------------------
+        # Jquery plugins
+        # -----------------------------
+
+        # Chosen, a Select Box Enhancer for jQuery
+        chosen:
+            "License": "MIT"
+            "Destination": "plugins/jquery"
+            # XXX not "really" versioned - should be forked
+            "Source":
+                chosen-jsboot.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+                chosen-trunk.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+
+        # lightweight javascript date library for parsing, manipulating, and formatting dates.
+        hoverIntent:
+            "License": "MIT"
+            "Destination": "plugins/jquery"
+            # XXX not "really" versioned - should be forked
+            "Source":
+                hoverintent-jsboot.js: "https://raw.github.com/hernan/hoverIntent/master/jquery.hoverIntent.js"
+                hoverintent-trunk.js: "https://raw.github.com/hernan/hoverIntent/master/jquery.hoverIntent.js"
+
+        history:
+            "License": "BSD"
+            "Destination": "plugins/jquery"
+            "Source":
+                history-jsboot.js: "https://raw.github.com/webitup/history.js/master/build/history.js"
+                history-trunk.js: "https://raw.github.com/balupton/history.js/master/scripts/uncompressed/history.js"
+
+
+        # -----------------------------
+        # Some generic, helpful libraries
+        # -----------------------------
+
+        # A library for binding to keys and key combos
+        keyboardjs:
+            "License": "BSD"
+            "Destination": "libs"
+            "Source":
+            # XXX no https
+                keyboard-0.2.2.js: "http://cloud.github.com/downloads/RobertWHurst/KeyboardJS/keyboard.0.2.2.js"
+                keyboard-trunk.js: "https://raw.github.com/RobertWHurst/KeyboardJS/master/keyboard.js"
+
+        mousetrap:
+            "License": "Apache"
+            "Destination": 'libs'
+            "Source":
+                mousetrap-jsboot.js: 'https://raw.github.com/webitup/mousetrap/master/mousetrap.js'
+                mousetrap-trunk.js: 'https://raw.github.com/ccampbell/mousetrap/master/mousetrap.js'
+
+        # i18n JS
+        i18n:
+            "License": "MIT"
+            "Destination": "libs"
+            "Source":
+                i18n-3rc2.zip: "https://github.com/fnando/i18n-js/zipball/v3.0.0.rc2"
+                i18n-trunk.js: "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
+            "Build":
+                type: "zip"
+                dir: "v3.0.0/fnando-i18n-js-5034008"
+                production:
+                    i18n-3rc2.js: "app/assets/javascripts/i18n.js"
+
+        raphael:
+            "License": "MIT"
+            "Destination": "libs"
+            "Source":
+                raphael-2.1.0.zip: "https://github.com/DmitryBaranovskiy/raphael/zipball/v2.1.0"
+                raphael-trunk.js: "https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js"
+            "Build":
+                type: "zip"
+                dir: "v2.1/DmitryBaranovskiy-raphael-7ba1a82"
+                production:
+                    raphael-2.1.0.js: "raphael.js"
+
+        moment:
+            "License": "MIT"
+            "Destination": "libs"
+            "Source":
+                moment-1.7.0.js: "https://raw.github.com/timrwood/moment/1.7.0/moment.js"
+                moment-trunk.js: "https://raw.github.com/timrwood/moment/0ee19c2e8121d3e6d4d011233bb23271bea308ab/moment.js"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # A state crap we use to handle history in the documentation
+        # jquery-bbq-stable.js:
+        #     "License": "MIT/GPL"
+        #     "Source": "https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"
+        #     "Destination": "org/cowboy"
+        #     "Latest": "jquery.ba-bbq.js"
 
 
 

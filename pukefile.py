@@ -3,148 +3,133 @@
 
 global PH
 import pukehelpers as PH
-
-# Need to find-out where one should output the builded stuff from roxish pukefile
-# if FileSystem.exists('../roxish/pukefile.py'):
-#     p = sh('cd ../roxish; puke link static')
-#     if p != Yak.DEPLOY_ROOT:
-#         console.warn('Your deploy path doesn\'t match ROXISH expectations - please adjust to %s unless you know what you are doing.' % p)
-# elif FileSystem.exists(FileSystem.join(Yak.ROXISH_PATH, 'pukefile.py')):
-#     p = sh('cd ' + Yak.ROXISH_PATH + '; puke link static -q').strip()
-#     if p != Yak.DEPLOY_ROOT:
-#         console.warn('Your deploy path doesn\'t match ROXISH expectations - please adjust to %s unless you know what you are doing.' % p)
-# else:
-#     console.warn('Couldn\'t find your Roxish clone! Your DEPLOY_ROOT might or might not be valid')
-
+import yaml
 
 @task("Default task")
 def default():
-    executeTask("build")
-    executeTask("deploy")
-    executeTask("stats")
+  executeTask("build")
+  executeTask("deploy")
 
 @task("Calling all interesting tasks")
 def all():
-    executeTask("build")
+  executeTask("build")
+  # Because sometime you are in a hurry :)
+  executeTask("deploy")
+  executeTask("mint")
+  executeTask("deploy")
+  executeTask("stats")
 #    executeTask("flint")
-    executeTask("mint")
-    executeTask("deploy")
-    executeTask("stats")
-
-# @task("Washing-up the taupe :) - cautious mode")
-# def clean():
-#     PH.globalclean()
+#    executeTask("lint")
 
 
 # XXX remove comments from html
 # XXX have a default favicon
 # XXX have a placeholder homepage
-
 # XXX humans: <link type="text/plain" rel="author" href="http://domain/humans.txt" />
 # humanstxt.org
 
-global FILTERING
-FILTERING="*-stable.js"
+
+@task("Washing-up the taupe :) - cautious mode")
+def clean():
+  PH.cleaner()
+
+
 
 # Get whatever has been built and exfilter some crappy stuff
-@task("Deploy")
+@task("Deploying")
 def deploy():
-    list = FileList(Yak.TMP_ROOT, exclude = "*.zip,*.tar.gz,*.DS_Store")
-    deepcopy(list, Yak.DEPLOY_ROOT)
+  PH.deployer(False)
 
 
-@task("Stats report deploy")
+@task("Stats report")
 def stats():
-    list = FileList(Yak.TMP_ROOT, filter = FILTERING)
-    stats(list, title = "Static statistics - javascript")
-    list = FileList(Yak.TMP_ROOT, filter = FILTERING.replace(".js", "-min.js"))
-    stats(list, title = "Static statistics - minified javascript")
-    list = FileList(Yak.TMP_ROOT, filter = "*-stable.css")
-    stats(list, title = "Static statistics - css")
-    list = FileList(Yak.DEPLOY_ROOT, filter = "*.html,*.xml,*.txt")
-    stats(list, title = "Static statistics - (ht|x)ml + txt")
-    list = FileList(Yak.TMP_ROOT, exclude = "*.html,*.xml,*.txt,*.js,*.css")
-    stats(list, title = "Static statistics - other")
+  PH.stater(Yak.BUILD_ROOT)
 
 @task("Linting")
 def lint():
-    list = FileList(Yak.TMP_ROOT, filter = FILTERING)
-    jslint(list, relax=True)
+  PH.linter(Yak.BUILD_ROOT)
 
-@task("Flint")
+@task("Flinting")
 def flint():
-    list = FileList(Yak.TMP_ROOT, filter = FILTERING)
-    jslint(list, relax=True, fix=True)
+  PH.flinter(Yak.BUILD_ROOT)
 
 @task("Minting")
 def mint():
-    list = FileList(Yak.TMP_ROOT, filter = FILTERING)
-    for burne in list.get():
-        m = burne.replace(".js", "-min.js")
-        minify(burne, m)
+  # Ember doesn't survive strict
+  PH.minter(Yak.BUILD_ROOT, strict = False)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build():
-    sed = Sed()
-    sed.add("<\!--.*-->\s*", "")
-    sed.add("{PUKE-DOM}", Yak.ALLOWED_DOMAIN)
+  # Crossdomain
+  sed = Sed()
+  sed.add("<\!--.*-->\s*", "")
+  sed.add("{PUKE-DOM}", Yak.ALLOWED_DOMAIN)
+  combine("src/crossdomain.xml", Yak.BUILD_ROOT + "/crossdomain.xml", replace = sed)
 
-    # Crossdomain
-    list = "src/crossdomain.xml"
-    combine(list, Yak.TMP_ROOT + "/crossdomain.xml", replace = sed)
+  # Robots
+  sed = Sed()
+  # XXX partially fucked-up
+  sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
+  combine("src/robots.txt", Yak.BUILD_ROOT + "/robots.txt", replace = sed)
 
-    # Robots
-    list = "src/robots.txt"
-    sed = Sed()
-    # XXX partially fucked-up
-    sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
-    combine(list, Yak.TMP_ROOT + "/robots.txt", replace = sed)
-
-    description = "<h2>Third parties</h2>"
-    for (k, burne) in Yak.COLLECTION.items():
-        description += "<section>\n"
-        description += "\t<h3><a href=\"lib/" + burne["Destination"] + "/" + k + "\">" + k + "</a></h3>\n\t<dl>\n"
-        for (key, v) in burne.items():
-            if(isinstance(v, str)):
-                description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + v + "</dd>\n"
-            else:
-                description += "\t\t<dt>" + key + "</dt>\n\t\t<dd>" + "</dd><dd>".join(v) + "</dd>\n"
-        description += "\t</dl>\n</section>\n"
-        deepcopy(burne["Source"], os.path.join(Yak.TMP_ROOT, "lib", burne["Destination"]))
-
-    # h5 = os.path.join(TMP_ROOT, "lib", fulllist["h5bp-latest"]["Destination"])
-    # sh("cd " + h5 + "; rm builder.zip; mv builder* builder.zip")
-    # unpack(os.path.join(h5, "builder.zip"), h5)
+  # Deepcopy other stuff
+  sed = Sed()
+  PH.replacer(sed)
+  list = FileList("src/", exclude="*robots.txt,*crossdomain.xml,*index.html")
+  deepcopy(list, Yak.BUILD_ROOT, replace=sed)
 
 
-    # goog = os.path.join(TMP_ROOT, "lib", fulllist["closure-stable"]["Destination"])
-    # unpack(os.path.join(goog, "closure-library-20111110-r1376.zip"), goog)
+  # Process the remote leaves
+  description = []
 
-    # Unpack these who need it
-    jasm = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["jasmine-stable.js"]["Destination"])
-    unpack(os.path.join(jasm, "jasmine-standalone-1.2.0.zip"), jasm)
-    sh('cd "%s"; rm -Rf jasmine-1.2.0; mv lib/jasmine-1.2.0 .; cp -R jasmine-1.2.0 jasmine-stable; rm jasmine-standalone-1.2.0.zip; rm SpecRunner.html; rm -Rf lib; rm -Rf spec; rm -Rf src;' % jasm)
-    # XXX can't use jasmine with patching       if (result.trace.stack) to if (result.trace && result.trace.stack) {
+  for (name, packinfo) in Yak.COLLECTION.items():
+    # Temporary and build output directories definitions
+    tmpdir = FileSystem.join(Yak.TMP_ROOT, "lib", packinfo["Destination"])
+    builddir = FileSystem.join(Yak.BUILD_ROOT, "lib", packinfo["Destination"])
 
-    # labjs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["labjs-stable.js"]["Destination"])
-    # unpack(os.path.join(labjs, "LABjs-2.0.3.zip"), os.path.join(labjs, "2.0.3"))
+    desclist = []
+    for(localname, url) in packinfo["Source"].items():
+      # Do the fetch of 
+      PH.fetchone(url, tmpdir, localname)
+      # Copy files that "exists" to build directory
+      f = FileSystem.join(tmpdir, localname)
+      if FileSystem.exists(f):
+        d = FileSystem.join(builddir, localname)
+        FileSystem.copyfile(f, d)
+        # Augment desclist with provided localname
+        desclist += [localname]
 
-    requirejs = os.path.join(Yak.TMP_ROOT, "lib", Yak.COLLECTION["requirejs-stable.js"]["Destination"])
-    unpack(os.path.join(requirejs, "2.0.4"), os.path.join(requirejs))
-    FileSystem.remove(os.path.join(requirejs, "2.0.4"))
-    # , "jrburke-requirejs-9d65832"))
+    if "Build" in packinfo:
+      buildinfo = packinfo["Build"]
+      production = buildinfo["production"]
+      tmpdir = FileSystem.join(tmpdir, buildinfo["dir"])
+      extra = ''
+      if 'args' in buildinfo:
+        extra = buildinfo["args"]
+      PH.make(tmpdir, buildinfo["type"], extra)
+      # Copy production to build dir
+      for(local, builded) in production.items():
+        f = FileSystem.join(tmpdir, builded)
+        d = FileSystem.join(builddir, local)
+        FileSystem.copyfile(f, d)
+
+      # Augment description list with build result
+      desclist = desclist + production.keys()
+
+    marker = 'lib/%s/' % packinfo["Destination"]
+    description.append('"%s": [\n"%s%s"\n]' % (name, marker, ('",\n"%s' % marker).join(desclist)))
+    # miam += """
+    #   %s:
+    #     ["%s%s"]
+    # """ % (name, marker, ('", "%s' % marker).join(desclist))
+  FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "static.yaml"), yaml.dump(yaml.load('\n'.join(description))))
+
+  # Write description file
+  # FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "static.json"), '{%s}' % ',\n'.join(description))
+
+  # Build-up the description file
+  file = "src/index.html"
+  sed.add("{PUKE-LIST}", '{%s}' % ',\n'.join(description))
+  deepcopy(file, Yak.BUILD_ROOT, replace=sed)
 
 
-    for (k, burne) in Yak.COLLECTION.items():
-#        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; rm " + k + "; ln -s " + burne["Latest"] + " " +  k )
-        sh("cd " + Yak.TMP_ROOT + "/lib/" + burne["Destination"] + "; cp -R " + burne["Latest"] + " " +  k + "; rm " + burne["Latest"])
-
-    # Build-up the description file
-    file = "src/doc.html"
-    s = Sed()
-    s.add("{PUKE-LIST}", description)
-    deepcopy(file, Yak.TMP_ROOT, replace=s)
-
-    # Deepcopy other stuff
-    list = FileList("src/", exclude="*robots.txt,*crossdomain.xml,*doc.html,*.DS_Store")
-    deepcopy(list, Yak.TMP_ROOT)
