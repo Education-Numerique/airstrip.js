@@ -112,9 +112,11 @@ def donode(path, extra):
   sh('cd "%s"; node %s' % (path, extra))
 
 def dorake(path, extra = ''):
-  System.check_package('ruby')
-  System.check_package('rake')
+  System.check_package('rvm')
+  System.check_package('npm')
   System.check_package('bundle')
+  # System.check_package('ruby')
+  # System.check_package('rake')
   sh('cd "%s"; bundle; rake %s' % (path, extra))
 
 def dothor(path, extra = ''):
@@ -171,9 +173,10 @@ def fetchone(url, dest, rename):
     if type == 'zip' or type == 'gz' or type == 'bz2' or destype == 'zip':
       try:
         dd = FileSystem.join(dest, remotefilename.replace('.' + type, ''))
-        if FileSystem.exists(dd):
-          FileSystem.remove(dd)
-        FileSystem.makedir(dd)
+        if destype != 'zip':
+          if FileSystem.exists(dd):
+            FileSystem.remove(dd)
+          FileSystem.makedir(dd)
         unpack(packpath, dd, verbose = False)
         # puke.FileSystem.remove(packpath)
       except Exception as e:
