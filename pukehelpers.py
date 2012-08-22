@@ -180,7 +180,7 @@ def fetchone(url, dest, rename):
         unpack(packpath, dd, verbose = False)
         # puke.FileSystem.remove(packpath)
       except Exception as e:
-        sh('cd "%s"; 7z x "%s"' % (dd, packpath));
+        sh('cd "%s"; 7z x "%s"' % (dd,  FileSystem.abspath(packpath)));
       FileSystem.remove(packpath)
     else:
       sh('cd "%s"; mv "%s" "%s"' % (dest, remotefilename, rename))
