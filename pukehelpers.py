@@ -182,7 +182,8 @@ def fetchone(url, dest, rename):
         sh('cd "%s"; 7z x "%s"' % (dd,  FileSystem.abspath(packpath)));
       FileSystem.remove(packpath)
     else:
-      sh('cd "%s"; mv "%s" "%s"' % (dest, remotefilename, rename))
+      if remotefilename != rename:
+        sh('cd "%s"; mv "%s" "%s"' % (dest, remotefilename, rename))
       packpath = FileSystem.join(dest, rename)
 
 
