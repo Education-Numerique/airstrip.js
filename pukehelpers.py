@@ -121,7 +121,9 @@ def dorake(path, extra = ''):
 def dothor(path, extra = ''):
   System.check_package('rvm')
   System.check_package('thor')
-  sh('cd "%s"; thor %s' % (path, extra))
+  # System.check_package('tilt')
+  # System.check_package('compass')
+  sh('cd "%s"; bundle; thor %s' % (path, extra))
 
 def domake(path, extra = ''):
   sh('cd "%s"; make %s' % (path, extra))
@@ -146,7 +148,7 @@ def fetchgit(url, dest):
   try:
     std = Std()
     sh(that, std=std, output=True)
-    if std.err:
+    if std.err and (std.err.find('No stash found.') == -1):
       raise std.err
   except:
     # if puke.FileSystem.exists(dest):
