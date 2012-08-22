@@ -171,10 +171,9 @@ def fetchone(url, dest, rename):
     if type == 'zip' or type == 'gz' or type == 'bz2' or destype == 'zip':
       try:
         dd = FileSystem.join(dest, remotefilename.replace('.' + type, ''))
-        if destype != 'zip':
-          if FileSystem.exists(dd):
-            FileSystem.remove(dd)
-          FileSystem.makedir(dd)
+        if FileSystem.exists(dd):
+          FileSystem.remove(dd)
+        FileSystem.makedir(dd)
         unpack(packpath, dd, verbose = False)
         # puke.FileSystem.remove(packpath)
       except Exception as e:
