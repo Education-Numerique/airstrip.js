@@ -115,14 +115,12 @@ def dorake(path, extra = ''):
   System.check_package('rvm')
   System.check_package('npm')
   System.check_package('bundle')
-  # System.check_package('ruby')
-  # System.check_package('rake')
+  System.check_package('rake')
   sh('cd "%s"; bundle; rake %s' % (path, extra))
 
 def dothor(path, extra = ''):
-  System.check_package('ruby')
-  System.check_package('rake')
-  System.check_package('bundle')
+  System.check_package('rvm')
+  System.check_package('thor')
   sh('cd "%s"; thor %s' % (path, extra))
 
 def domake(path, extra = ''):
