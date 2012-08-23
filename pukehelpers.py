@@ -120,7 +120,7 @@ def dorake(path, extra = ''):
 
 def dothor(path, extra = ''):
   System.check_package('rvm')
-  System.check_package('thor')
+  System.check_package('bundle')
   # System.check_package('tilt')
   # System.check_package('compass')
   sh('cd "%s"; bundle; thor %s' % (path, extra))
@@ -147,7 +147,7 @@ def fetchgit(url, dest):
   # Do the deed
   try:
     std = Std()
-    sh(that, std=std, output=True)
+    sh(that, std=std, output=False)
     if std.err and (std.err.find('No stash found.') == -1):
       raise std.err
   except:
