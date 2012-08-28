@@ -26,7 +26,7 @@ yak:
     # License to be replaced in files
         LICENSE: '<a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>'
     # Copyright to be replaced in files
-        COPYRIGHT: '<a href="http://www.webitup.fr">Web It Up</a>'
+        COPYRIGHT: 'All rights reserved <a href="http://www.webitup.fr">Web It Up</a>'
     # Author
         AUTHOR: '<a href="mailto:dev@webitup.fr">Mangled Deutz & Raildecom</a>'
     # Repo base url
