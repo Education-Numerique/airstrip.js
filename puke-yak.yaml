@@ -84,14 +84,14 @@ yak:
                 # "Trunk" (the project is ghost town)
                 sh.core-trunk.js: "http://shjs.sourceforge.net/sh_main.js"
                 sh.js-trunk.js: "http://shjs.sourceforge.net/lang/sh_javascript.js"
-                sh-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
+                sh.core-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
             "Build":
                 type: 'zip'
                 dir: "shjs-0.6/shjs-0.6"
                 production:
                     sh.core-0.6.js: "sh_main.js"
                     sh.js-0.6.js: "lang/sh_javascript.js"
-                    sh-0.6.css: "sh_style.css"
+                    sh.core-0.6.css: "sh_style.css"
 
         jasmine:
             "License": "MIT"
