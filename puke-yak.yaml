@@ -193,6 +193,14 @@ yak:
                 production:
                     lab-2.0.3.js: 'LAB.src.js'
 
+        yepnope:
+            "License": "WTFPL|MIT|BSD"
+            "Destination": "loaders"
+            "Source":
+                yepnope-1.5.4.js: "https://raw.github.com/SlexAxton/yepnope.js/v1.5.4/yepnope.js"
+                yepnope-trunk.js: "https://raw.github.com/SlexAxton/yepnope.js/master/yepnope.js"
+
+
         head:
             "License": "MIT"
             "Destination": "loaders"

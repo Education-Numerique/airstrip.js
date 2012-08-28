@@ -12,6 +12,7 @@ def default():
 
 @task("Calling all interesting tasks")
 def all():
+  Cache.clean()
   executeTask("build")
   # Because sometime you are in a hurry :)
   executeTask("deploy")
