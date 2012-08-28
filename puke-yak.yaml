@@ -105,12 +105,12 @@ yak:
                 dir: "jasmine"
                 production:
                 # Due to the nature of jasmine here, this is a small trick to get stuff also from the package itself 
-                    jasmine-1.2.0.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
                     jasmine.core-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
                     jasmine.html-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
-                    jasmine-trunk.css: "lib/jasmine-core/jasmine.css"
+                    jasmine.html-1.2.0.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
                     jasmine.core-trunk.js: "lib/jasmine-core/jasmine.js"
                     jasmine.html-trunk.js: "lib/jasmine-core/jasmine-html.js"
+                    jasmine.html-trunk.css: "lib/jasmine-core/jasmine.css"
 
 
 
