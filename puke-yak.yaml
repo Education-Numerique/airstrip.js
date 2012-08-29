@@ -30,7 +30,7 @@ yak:
     # Repo base url
         GIT_ROOT: 'https://github.com/jsBoot/airstrip.js/blob/master/src'
     # Homepage
-        HOME: 'http://h.ackitup.org/products/airstrip.js'
+        HOME: 'http://airstrip.jsboot.com'
 
     ############ Platform dependent stuff: change according to your milage
     # ROOT: '${HOME}/buildd'
