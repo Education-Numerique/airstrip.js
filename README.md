@@ -66,7 +66,7 @@ In your DEPLOY_ROOT directory you will find:
 - a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will
 - a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
 loaders (requirejs, labjs), plugins, tooling, shims, etc
-- an airstrip.json file, containing a list of everything that has been built - this is the manifest to be used
+- an airstrip.yaml file, containing a list of everything that has been built - this is the manifest to be used
 in other projects or build systems using this
 
 Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified
