@@ -1,8 +1,11 @@
+AirStrip.js
+=============
+
 This project is meant to ease dealing with and tracking third-party javascript dependencies in large projects.
 
 
 Background
-==========
+-------------
 
 Modern js projects usually depend on numerous third-party libraries and frameworks 
 (say: requirejs, handlebars, i18n, emberjs, jasmine).
@@ -15,7 +18,7 @@ The idea here is to help manage that, and list such dependencies (and versions) 
 
 
 Technology
-==========
+-------------
 
 We use puke (https://github.com/webitup/puke), a (inhouse) versatile python build system.
 
@@ -24,7 +27,7 @@ Dependencies are listed in YAML.
 And ah, all this is likely not working on windows (though we know it does on OSX and reasonable Linuxes).
 
 How to use
-==========
+-------------
 
 - clone: `git clone https://github.com/webitup/airstrip.js`
 - install puke: `pip install puke`
@@ -33,7 +36,7 @@ How to use
 Check the "build" directory.
 
 Doesn't work?
-=============
+-------------
 
 You probably miss a build dependency required by one or the other third-party projects.
 Puke usually give you a hint about what's going wrong.
@@ -44,7 +47,7 @@ whichever method suits you).
 
 
 Configuration
-=============
+-------------
 
 Edit puke-yak.yaml:
 - create a new node "user-USER-box-BOX:", where USER is your unix nickname, and BOX the result of the `uname` command.
@@ -54,7 +57,7 @@ your web server will serve said resources)
 - when done editing, puke again (`puke all`)
 
 Build result
-============
+-------------
 
 In your DEPLOY_ROOT directory you will find:
 - a number of "static" resources, copied from the src directory - these are mondane
@@ -66,7 +69,7 @@ in other projects or build systems using this
 Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified.
 
 Listing and managing simple dependencies
-========================================
+-------------
 
 Edit the puke-yak.yaml file again.
 
@@ -97,7 +100,7 @@ In the case of stacktrace, we track three versions (a stable release, a forked r
 
 
 Zipped dependencies
-===================
+-------------
 
 Some libraries come released in zip files.
 
@@ -130,7 +133,7 @@ key value syntax as the "Source" node) which files (from the extracted dir) to g
 
 
 Git repositories and actual builds
-==================================
+-------------
 
 In order to clone a git repository, just add a "git: sourceurl" entry in your "Source" node.
 
@@ -160,7 +163,7 @@ ember:
 from the dir.
 
 Understanding build and build types
-===================================
+-------------
 
 For now, the following build types are "supported":
 - rake
@@ -176,7 +179,7 @@ There also exist the experimental "sh" build type. By specifying "extra" you can
 
 
 License
-=======
+-------------
 
 
 MIT license.
