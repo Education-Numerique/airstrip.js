@@ -123,7 +123,7 @@ def build():
     #   %s:
     #     ["%s%s"]
     # """ % (name, marker, ('", "%s' % marker).join(desclist))
-  FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "static.yaml"), yaml.dump(yaml.load('\n'.join(description))))
+  FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "airstrip.yaml"), yaml.dump(yaml.load('\n'.join(description))))
 
   # Write description file
   # FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "static.json"), '{%s}' % ',\n'.join(description))

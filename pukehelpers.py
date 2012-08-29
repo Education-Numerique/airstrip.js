@@ -195,6 +195,8 @@ def make(path, type, extra = ''):
     dothor(path, extra)
   elif type == 'make':
     domake(path, extra)
+  elif type == 'sh':
+    sh('cd "%s"; %s' % (path, extra))
 
   # for (k, ipath) in production.items():
   #   FileSystem.copyfile(FileSystem.join(path, ipath), FileSystem.join(destination, k))
