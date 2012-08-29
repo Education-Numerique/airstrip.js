@@ -1,0 +1,237 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Airstrip.js</title>
+  <meta name="description" content="Third-party js dependencies manager">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Airstrip.js</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Third-party js dependencies manager</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/jsBoot/airstrip.js/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/jsBoot/airstrip.js/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/jsBoot/airstrip.js" class="code">View Airstrip.js on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>AirStrip.js</h1>
+
+<p>This project is meant to ease dealing with and tracking third-party javascript dependencies in large projects.</p>
+
+<h2>Background</h2>
+
+<p>Modern js projects usually depend on numerous third-party libraries and frameworks 
+(say: requirejs, handlebars, i18n, emberjs, jasmine).</p>
+
+<p>Tracking versions of these, possibly patching or forking them, maintaining deps lists, then integrating 
+into the project can quickly become tedious.</p>
+
+<p>The idea here is to help manage that, and list such dependencies (and versions) in YAML, build them uniformly,
+"dispatching" the results in a build directory to be then used by said projects.</p>
+
+<h2>Technology</h2>
+
+<p>We use puke (<a href="https://github.com/webitup/puke">https://github.com/webitup/puke</a>), a (inhouse) versatile python build system.</p>
+
+<p>Dependencies are listed in YAML.</p>
+
+<p>And ah, all this is likely not working on windows (though we know it does on OSX and reasonable Linuxes).</p>
+
+<h2>How to use</h2>
+
+<ul>
+<li>clone: <code>git clone https://github.com/jsBoot/airstrip.js</code>
+</li>
+<li>install puke: <code>pip install puke</code>
+</li>
+<li>build it as-is: <code>cd aistrip.js; puke all</code>
+</li>
+</ul><p>Check the "build" directory.</p>
+
+<h2>Doesn't work?</h2>
+
+<p>You probably miss a build dependency required by one or the other third-party projects.
+Puke usually give you a hint about what's going wrong.</p>
+
+<p>Do you have ruby installed, along with rvm and bundle? If not, grab rvm and gem install bundle.
+Do you have nodejs and npm? If not, install them (aptitude install node, or brew install node, or
+whichever method suits you).</p>
+
+<p>Not interested in the provided dependencies and their build requirements? Just wipe-out the Collection
+node (see down below) and specify what you're interested in.</p>
+
+<h2>Configuration</h2>
+
+<p>Edit puke-yak.yaml:</p>
+
+<ul>
+<li>create a new node "user-USER-box-BOX:", where USER is your unix nickname, and BOX the result of the <code>uname</code> command.
+This node will be used to "specialize" your configuration (the generic configuration being stored in the "yak:" node)</li>
+<li>add (at least) a node for "DEPLOY_ROOT": this is where the result of the build will be put (and likely from where
+your web server will serve said resources)</li>
+<li>when done editing, puke again (<code>puke all</code>)</li>
+</ul><h2>Build result</h2>
+
+<p>In your DEPLOY_ROOT directory you will find:</p>
+
+<ul>
+<li>a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will</li>
+<li>a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
+loaders (requirejs, labjs), plugins, tooling, shims, etc</li>
+<li>an airstrip.yaml file, containing a list of everything that has been built - this is the manifest to be used
+in other projects or build systems using this</li>
+</ul><p>Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified
+(we use google closure to minify both css and js files, ECMA5 - not strict).</p>
+
+<h2>Listing and managing simple dependencies</h2>
+
+<p>Edit the puke-yak.yaml file again.</p>
+
+<p>Get the Yak.COLLECTION node.</p>
+
+<p>A typical entry looks like ("stacktrace.js" here):</p>
+
+<pre><code>stacktrace:
+    "License": "PublicDomain"
+    "Destination": "shims-plus"
+    "Source":
+        stacktrace-0.3.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.3.js"
+        stacktrace-jsboot.js: "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
+        stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
+</code></pre>
+
+<p>The root node ("stacktrace") is purely casual.</p>
+
+<p>You should always specify the license of the project, obviously.</p>
+
+<p>The "Destination" node is a category directory (will live under the lib/ output folder).</p>
+
+<p>The "Source" node list "versions" that you want to track for this library. Each version is a key
+value pair, where the key is the final name you desire, and the value the url where to find the source.</p>
+
+<p>In the case of stacktrace, we track three versions (a stable release, a forked release, and the upstream trunk).</p>
+
+<h2>Zipped dependencies</h2>
+
+<p>Some libraries come released in zip files.</p>
+
+<p>Using these just requires:</p>
+
+<ul>
+<li>to have a "WHATEVER.zip: http://sourceurl" entry in your "Source" node</li>
+<li>to specify what to get from the zip in a "Build" node.</li>
+</ul><p>For example, LABJS:</p>
+
+<pre><code>lab:
+    "License": "MIT"
+    "Destination": "loaders"
+    "Source":
+        lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
+        lab-jsboot.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+        lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+    "Build":
+        type: 'zip'
+        dir: 'LABjs-2.0.3'
+        production:
+            lab-2.0.3.js: 'LAB.src.js'
+</code></pre>
+
+<p>Here we track three versions: two direct "source form factor", and one zip (the lab-2.0.3.zip entry 
+in the "Source" node).
+In order to extract a specific file from the zip, we define a "Build" section, type "zip", we name
+the "dir" resulting from the zip extraction, and a "production" node that specifies (using the same
+key value syntax as the "Source" node) which files (from the extracted dir) to get and rename.</p>
+
+<h2>Git repositories and actual builds</h2>
+
+<p>In order to clone a git repository, just add a "git: sourceurl" entry in your "Source" node.</p>
+
+<p>If there is a build step in order to produce the actual result, you specify that using the "Build" node.</p>
+
+<p>For example, Emberjs is built that way:</p>
+
+<pre><code>ember:
+    "License": "MIT"
+    "Destination": "frameworks"
+    "Source":
+        ember.prod-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"
+        ember.debug-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.js"
+        ember.prod-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.min.js"
+        ember.debug-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.js"
+        git: "git://github.com/emberjs/ember.js.git"
+    "Build":
+        type: "rake"
+        dir: "ember.js"
+        production:
+            ember.debug-trunk.js: "dist/ember.js"
+            ember.prod-trunk.js: "dist/ember.prod.js"
+</code></pre>
+
+<p>... specifies a git entry in the Source list. Then requires build type "rake". Then copy two files
+from the dir.</p>
+
+<h2>Understanding build and build types</h2>
+
+<p>For now, the following build types are "supported":</p>
+
+<ul>
+<li>rake</li>
+<li>thor</li>
+<li>make</li>
+</ul><p>You can pass random additional arguments to the command if you want, adding an "extra" node in the "Build" node.</p>
+
+<p>Specifying any other build type (like "zip") will actually trigger no build operation, but is a way to let
+you specify a "working" directory and copy files operations (using the "production" node) from a random dir ("dir").</p>
+
+<p>There also exist the experimental "sh" build type. By specifying "extra" you can perform <em>any</em> build operations that way.</p>
+
+<h2>License</h2>
+
+<p>MIT license.
+Note, though, that the result of the build it produces contains numerous softwares with various licenses,
+and that by using them means you should agree with their individual licenses, not with the MIT license of this system itself. </p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/jsBoot" class="avatar"><img src="https://secure.gravatar.com/avatar/1851e1cf11ea89d6e7a30a6e90274df1?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/jsBoot">jsBoot</a> maintains <a href="https://github.com/jsBoot/airstrip.js">Airstrip.js</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/jsBoot/airstrip.js/tarball/master" class="tar">tar</a><a href="https://github.com/jsBoot/airstrip.js/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
