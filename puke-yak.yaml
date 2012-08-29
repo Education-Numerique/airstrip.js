@@ -7,10 +7,10 @@ user-jenkins-box-Linux:
     DEPLOY_ROOT: '/var/www/deploy/static'
     ALLOWED_DOMAIN: 'app.sn.ackitup.net'
 
-# user-dmp-box-Darwin:
-#     ROOT: '${HOME}/buildd/stage.webitup.org'
-#     DEPLOY_ROOT: '${HOME}/buildd/deploy.webitup.org/web/static'
-#     ALLOWED_DOMAIN: 'app.loft.sn.ackitup.net'
+user-dmp-box-Darwin:
+    ROOT: '${HOME}/buildd/stage.webitup.org'
+    DEPLOY_ROOT: '${HOME}/buildd/deploy.webitup.org/web/static'
+    ALLOWED_DOMAIN: 'app.loft.sn.ackitup.net'
 
 user-raildecom-box-Darwin:
     DEPLOY_ROOT: '${HOME}/workspace/webitup/deploy/static'
@@ -24,7 +24,7 @@ yak:
     # License to be replaced in files
         LICENSE: '<a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>'
     # Copyright to be replaced in files
-        COPYRIGHT: 'All rights reserved <a href="http://www.webitup.fr">Web It Up</a>'
+        COPYRIGHT: 'All rights reserved <a href="http://www.webitup.fr">© Web It Up</a>'
     # Author
         AUTHOR: '<a href="mailto:dev@webitup.fr">Mangled Deutz & Raildecom</a>'
     # Repo base url
