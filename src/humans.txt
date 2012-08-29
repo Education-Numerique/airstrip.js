@@ -2,8 +2,8 @@
   Him: Manûß
   Me: Mangled Deutz
   Site: http://www.webitup.fr
-  Twitter: 
-  Location: 
+  Twitter: jsBoot
+  Location: Paris
 
 /* THANKS */
   Mom
