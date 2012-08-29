@@ -29,7 +29,7 @@ And ah, all this is likely not working on windows (though we know it does on OSX
 How to use
 -------------
 
-- clone: `git clone https://github.com/webitup/airstrip.js`
+- clone: `git clone https://github.com/jsBoot/airstrip.js`
 - install puke: `pip install puke`
 - build it as-is: `cd aistrip.js; puke all`
 
@@ -44,6 +44,9 @@ Puke usually give you a hint about what's going wrong.
 Do you have ruby installed, along with rvm and bundle? If not, grab rvm and gem install bundle.
 Do you have nodejs and npm? If not, install them (aptitude install node, or brew install node, or
 whichever method suits you).
+
+Not interested in the provided dependencies and their build requirements? Just wipe-out the Collection
+node (see down below) and specify what you're interested in.
 
 
 Configuration
@@ -60,13 +63,14 @@ Build result
 -------------
 
 In your DEPLOY_ROOT directory you will find:
-- a number of "static" resources, copied from the src directory - these are mondane
+- a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will
 - a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
 loaders (requirejs, labjs), plugins, tooling, shims, etc
 - an airstrip.json file, containing a list of everything that has been built - this is the manifest to be used
 in other projects or build systems using this
 
-Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified.
+Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified
+(we use google closure to minify both css and js files, ECMA5 - not strict).
 
 Listing and managing simple dependencies
 -------------
