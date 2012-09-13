@@ -9,13 +9,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title dir="ltr">Third-party libraries manager (a.k.a. airstrip)</title>
   <meta name="description" content="JSBoot static base">
-  <meta name="author" content="Web It Up">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Web It Up">
   <link rel="shortcut icon" href="favicon.ico">
 
+  <!-- dean ie7 -->
   <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="lib/shims/ie9-2.1b4.js"></script>
   <![endif]-->
+
+  <!-- Out stylesheet -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Modernizr, to prevent FOUC -->
+  <!-- XXX modernizr interest is more in its tests themselves - predates spitfire 
+  Should find a better crossover between the two -->
+
+  <script src="lib/libs/modernizr-2.6.2.js"></script>
 
   <!--
    * @license {PUKE-PACKAGE-LICENSE}.
@@ -29,39 +39,80 @@
   -->
 
 </head>
-<body id="static">
-  <header>
-    <h1>Third-party libraries manager (a.k.a. airstrip)</h1>
+<body>
+  <noscript>
+    <p id="unsupported-browser">
+      You need to enable javascript to use this product.
+    </p>
+  </noscript>
+  <!--[if lt IE 7]>
+    <p id="very-outdated-browser">Your browser is very outdated, and will likely not work well with our product. You really <a href="http://browsehappy.com/">should consider upgrading</a>, or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this product.</p>.</p>
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <p id="outdated-browser">Your browser is outdated. We will try our best, but you <a href="http://browsehappy.com/">should consider upgrading</a>, or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this product.</p>.</p>
+  <![endif]-->
+
+  <header class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Airstrip.js</a>
+        <!--
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        -->
+      </div>
+    </div>
   </header>
-  <h2>Abstract</h2>
-  <section>
-    This domain is meant to provide commonly used (third-party) frameworks and js libraries.
-    They are usually provided in two versions - release and trunk.
-    Though you can link directly to them, it's recommended you use a jsboot stack instead.
-    Note that some of them are patched, or even forked.
-  </section>
 
-  <h2>Libraries</h2>
-  <article>
-<!--     <a href="index.json">JSON</a>
-    <pre style="whitespace: pre;">
-    {PUKE-LIST}
-    </pre>
- -->
-    <a href="static.yaml">YAML</a>
-    <pre style="whitespace: pre;">
-    {PUKE-LIST}
-    </pre>
-  </article>
-  <footer>
-  </footer>
+  <div class="container">
+    <h1>Third-party libraries manager (a.k.a. airstrip)</h1>
 
-  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+    <h2>Abstract</h2>
+    <section>
+      This domain is meant to provide commonly used (third-party) frameworks and js libraries.
+      They are usually provided in two versions - release and trunk.
+      Though you can link directly to them, it's recommended you use a jsboot stack instead.
+      Note that some of them are patched, or even forked.
+    </section>
+
+    <h2>Libraries</h2>
+    <article>
+  <!--     <a href="index.json">JSON</a>
+      <pre style="whitespace: pre;">
+      {PUKE-LIST}
+      </pre>
+   -->
+      <a href="static.yaml">YAML</a>
+      <pre style="whitespace: pre;">
+      {PUKE-LIST}
+      </pre>
+    </article>
+
+    <footer>
+      <p>&copy; WebItUp 2012</p>
+    </footer>
+
+  </div>
+
+
+  <!-- Prompt IE < 6 users to install Chrome Frame directly. Remove this if you want to support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
-  <!--[if lt IE 7 ]>
+  <!--[if lt IE 6 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
   <![endif]-->
+
+  <script src="lib/frameworks/jquery-1.8.js"></script>
+  <script src="lib/frameworks/bootstrap-stable.js"></script>
 </body>
 </html>
-

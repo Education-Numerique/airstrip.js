@@ -2,7 +2,11 @@
 <!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
 <!-- Read this: www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html -->
 <cross-domain-policy>
+  <!-- Most restrictive policy: -->
+  <!--
+  <site-control permitted-cross-domain-policies="none"/>
+  -->
 	<site-control permitted-cross-domain-policies="master-only"/>
-	<allow-access-from domain="{PUKE-DOM}" to-ports="80" secure="true"/>
+	<allow-access-from domain="{PUKE-DOM}" to-ports="*" secure="true"/>
 	<allow-http-request-headers-from domain="{PUKE-DOM}" headers="*" secure="true"/>
 </cross-domain-policy>

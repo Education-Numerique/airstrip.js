@@ -1,0 +1,44 @@
+@import url(lib/frameworks/normalize-2.0-min.css);
+@import url(lib/plugins/css/html5-css-4.0.0.css);
+/* Bootstrap already do provide these */
+@import url(lib/frameworks/bootstrap-stable.css);
+
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+/**
+ * Outdated browser management
+ */
+#very-outdated-browser, #outdated-browser, #unsupported-browser{
+  background-color: red;
+  border: 1px solid gray;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+#outdated-browser{
+  background-color: orange;
+}
+
+.ie6 #outdated-browser {
+  display: none;
+}
+
+/**
+ * no-js style handling
+ */
+.no-js body > *{
+  display: none;
+}
+
+.no-js header{
+  display: block !important;
+}
+
+.no-js noscript{
+  display: block !important;
+}
+

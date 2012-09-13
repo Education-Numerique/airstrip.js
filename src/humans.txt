@@ -1,14 +1,17 @@
-/* TEAM */
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
   Him: Manûß
   Me: Mangled Deutz
   Site: http://www.webitup.fr
   Twitter: jsBoot
   Location: Paris
 
-/* THANKS */
+# THANKS
   Mom
 
-/* SITE */
+# TECHNOLOGY COLOPHON
   Standards: most of them sux anyhow
   Components: lots of juice
   Software: a shitload of
