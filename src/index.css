@@ -1,7 +1,7 @@
 @import url(lib/frameworks/normalize-2.0-min.css);
-@import url(lib/plugins/css/html5-css-4.0.0.css);
+@import url(lib/plugins/css/html5-css-4.0.0-min.css);
 /* Bootstrap already do provide these */
-@import url(lib/frameworks/bootstrap-stable.css);
+@import url(lib/frameworks/bootstrap-jsboot-min.css);
 
 body {
   padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */

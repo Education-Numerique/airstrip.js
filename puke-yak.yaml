@@ -68,8 +68,8 @@ yak:
                 dir: "tinymce_3.5.6_jquery/tinymce/jscripts/tiny_mce"
                 production:
                 # Does script location detection - needs _full to match unfortunately
-                    tiny_mce_full-3.5.6.js: "tiny_mce_src.js"
-                    tiny_mce_jquery-3.5.6.js: "jquery.tinymce.js"
+                    tiny_mce_full.js: "tiny_mce_src.js"
+                    tiny_mce_jquery.js: "jquery.tinymce.js"
                     themes: "themes"
                     plugins: "plugins"
                     langs: "langs"
