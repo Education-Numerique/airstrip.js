@@ -58,24 +58,25 @@ yak:
         # -----------------------------
 
 
-        tinymce:
-            "License": "LGPL"
-            "Destination": "frameworks/tinymce"
-            "Source":
-                # tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_jquery.zip"
-                tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_dev.zip"
-            Build:
-                type: "zip"
-                dir: "tinymce_3.5.6_dev/tinymce/jscripts/tiny_mce"
-                production:
-                # Does script location detection - needs _full to match unfortunately
-                    tiny_mce_full.js: "tiny_mce_src.js"
-                    tiny_mce_dev.js: "tiny_mce_dev.js"
-                    tiny_mce_jquery.js: "jquery.tinymce.js"
-                    themes: "themes"
-                    plugins: "plugins"
-                    langs: "langs"
-                    utils: "utils"
+        # tinymce:
+        #     "License": "LGPL"
+        #     "Destination": "frameworks/tinymce"
+        #     "Source":
+        #         # tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_jquery.zip"
+        #         tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_dev.zip"
+        #     Build:
+        #         type: "zip"
+        #         dir: "tinymce_3.5.6_dev/tinymce/jscripts/tiny_mce"
+        #         production:
+        #         # Does script location detection - needs _full to match unfortunately
+        #             tiny_mce_full.js: "tiny_mce_src.js"
+        #             tiny_mce_dev.js: "tiny_mce_dev.js"
+        #             tiny_mce_jquery.js: "jquery.tinymce.js"
+        #             classes: "classes"
+        #             themes: "themes"
+        #             plugins: "plugins"
+        #             langs: "langs"
+        #             utils: "utils"
 
 
         # XXX no https - dead - may be forked on github instead / replaced
@@ -268,7 +269,19 @@ yak:
         # -----------------------------
         # Frameworks
         # -----------------------------
-
+        redactor:
+            "License": "?"
+            "Destination": "frameworks"
+            "Source":
+                # tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_jquery.zip"
+                redactor.zip: "http://redactorjs.com/webdownload/redactor/get/#redactor.zip"
+            Build:
+                type: "zip"
+                dir: "#redactor/redactor"
+                production:
+                # Does script location detection - needs _full to match unfortunately
+                    redactor-8.0.js: "redactor.js"
+                    redactor-8.0.css: "redactor.css"
 
         # Handlebars
         handlebars:
@@ -339,16 +352,16 @@ yak:
                 production:
                     # XXX doesn't work - need rewrite for the img/ paths prolly
                     # XXX fake jsboot!
-                    bootstrap-jsboot.css: css/bootstrap.css
+                    css/bootstrap-jsboot.css: css/bootstrap.css
                     bootstrap-jsboot.js: js/bootstrap.js
                     # XXX fake stable!
-                    bootstrap-upstream.css: css/bootstrap.css
+                    css/bootstrap-upstream.css: css/bootstrap.css
                     bootstrap-upstream.js: js/bootstrap.js
                     # XXX Fake trunk
-                    bootstrap-trunk.css: css/bootstrap.css
+                    css/bootstrap-trunk.css: css/bootstrap.css
                     bootstrap-trunk.js: js/bootstrap.js
-                    glyphicons-halflings-white.png: img/glyphicons-halflings-white.png
-                    glyphicons-halflings.png: img/glyphicons-halflings.png
+                    img/glyphicons-halflings-white.png: img/glyphicons-halflings-white.png
+                    img/glyphicons-halflings.png: img/glyphicons-halflings.png
 
         # -----------------------------
         # Plugins
@@ -363,7 +376,6 @@ yak:
                 chosen-jsboot.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
                 chosen-trunk.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
 
-        # lightweight javascript date library for parsing, manipulating, and formatting dates.
         hoverIntent:
             "License": "MIT"
             "Destination": "plugins/jquery"
@@ -435,6 +447,7 @@ yak:
                 production:
                     raphael-2.1.0.js: "raphael.js"
 
+        # lightweight javascript date library for parsing, manipulating, and formatting dates.
         moment:
             "License": "MIT"
             "Destination": "libs"

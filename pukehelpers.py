@@ -187,7 +187,7 @@ def fetchone(url, dest, rename):
     console.info('Git repository')
     fetchgit(url, packpath)
   else:
-    deepcopy(url, dest)
+    deepcopy(url, dest + '/')
     if type == 'zip' or type == 'gz' or type == 'bz2' or destype == 'zip':
       try:
         dd = FileSystem.join(dest, remotefilename.replace('.' + type, ''))

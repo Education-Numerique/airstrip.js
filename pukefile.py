@@ -7,8 +7,9 @@ import yaml
 
 @task("Default task")
 def default():
-  executeTask("mini")
-  executeTask("deploy")
+  pass
+  # executeTask("build", "redactor")
+  # executeTask("deploy")
 
 @task("Calling all interesting tasks")
 def all():
@@ -59,36 +60,8 @@ def mint():
   # Ember doesn't survive strict
   PH.minter(Yak.BUILD_ROOT, strict = False)
 
-
-@task("Minibuild")
-def mini():
-  # Crossdomain
-  sed = Sed()
-  sed.add("<\!--.*-->\s*", "")
-  sed.add("{PUKE-DOM}", Yak.ALLOWED_DOMAIN)
-  combine("src/crossdomain.xml", Yak.BUILD_ROOT + "/crossdomain.xml", replace = sed)
-
-  # Robots
-  sed = Sed()
-  # XXX partially fucked-up
-  sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
-  combine("src/robots.txt", Yak.BUILD_ROOT + "/robots.txt", replace = sed)
-
-  # Deepcopy other stuff
-  sed = Sed()
-  PH.replacer(sed)
-  list = FileList("src/", exclude="*robots.txt,*crossdomain.xml,*index.html")
-  deepcopy(list, Yak.BUILD_ROOT, replace=sed)
-  executeTask("deploy")
-
-  file = "src/index.html"
-  sed.add("{PUKE-LIST}", '{minibuild}')
-  deepcopy(file, Yak.BUILD_ROOT, replace=sed)
-
-
-
 @task("Deploying the static ressources, including approved third party dependencies")
-def build():
+def build(buildonly = False):
   # Crossdomain
   sed = Sed()
   sed.add("<\!--.*-->\s*", "")
@@ -135,7 +108,9 @@ def build():
       extra = ''
       if 'args' in buildinfo:
         extra = buildinfo["args"]
-      PH.make(tmpdir, buildinfo["type"], extra)
+      if not buildonly or buildonly == name:
+        PH.make(tmpdir, buildinfo["type"], extra)
+
       # Copy production to build dir
       for(local, builded) in production.items():
         f = FileSystem.join(tmpdir, builded)
