@@ -140,7 +140,10 @@ def build():
       for(local, builded) in production.items():
         f = FileSystem.join(tmpdir, builded)
         d = FileSystem.join(builddir, local)
-        FileSystem.copyfile(f, d)
+        if FileSystem.isfile(f):
+          FileSystem.copyfile(f, d)
+        elif FileSystem.isdir(f):
+          deepcopy(FileList(f), d)
 
       # Augment description list with build result
       desclist = desclist + production.keys()

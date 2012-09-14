@@ -57,6 +57,24 @@ yak:
         # Tooling
         # -----------------------------
 
+
+        tinymce:
+            "License": "LGPL"
+            "Destination": "frameworks/tinymce"
+            "Source":
+                tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_jquery.zip"
+            Build:
+                type: "zip"
+                dir: "tinymce_3.5.6_jquery/tinymce/jscripts/tiny_mce"
+                production:
+                    tiny.mce-3.5.6.js: "tiny_mce_src.js"
+                    tiny.jquery-3.5.6.js: "jquery.tinymce.js"
+                    themes: "themes"
+                    plugins: "plugins"
+                    langs: "langs"
+                    utils: "utils"
+
+
         # XXX no https - dead - may be forked on github instead / replaced
         sh:
             "License": "GPL3"
@@ -248,6 +266,7 @@ yak:
         # Frameworks
         # -----------------------------
 
+
         # Handlebars
         handlebars:
             "License": "MIT"
@@ -306,7 +325,6 @@ yak:
                 backbone-0.9.2.js: "https://raw.github.com/documentcloud/backbone/0.9.2/backbone.js"
                 backbone-trunk.js: "https://raw.github.com/documentcloud/backbone/master/backbone.js"
 
-
         bootstrap:
             "License": "?"
             "Destination": "frameworks"
@@ -316,6 +334,7 @@ yak:
                 type: "zip"
                 dir: "bootstrap/bootstrap"
                 production:
+                    # XXX doesn't work - need rewrite for the img/ paths prolly
                     # XXX fake jsboot!
                     bootstrap-jsboot.css: css/bootstrap.css
                     bootstrap-jsboot.js: js/bootstrap.js
