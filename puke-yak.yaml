@@ -66,7 +66,7 @@ yak:
                 tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_dev.zip"
             Build:
                 type: "zip"
-                dir: "tinymce_3.5.6/tinymce/jscripts/tiny_mce"
+                dir: "tinymce_3.5.6_dev/tinymce/jscripts/tiny_mce"
                 production:
                 # Does script location detection - needs _full to match unfortunately
                     tiny_mce_full.js: "tiny_mce_src.js"
