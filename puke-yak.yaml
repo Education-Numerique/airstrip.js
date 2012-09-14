@@ -222,7 +222,7 @@ yak:
             "Destination": "loaders"
             "Source":
             # XXX dig down last time I checked
-                # lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
+                lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
                 lab-jsboot.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
                 lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
             # "Build":
