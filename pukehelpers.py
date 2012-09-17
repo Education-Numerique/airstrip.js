@@ -201,6 +201,8 @@ def fetchone(url, dest, rename):
       FileSystem.remove(packpath)
     else:
       if remotefilename != rename:
+        if not FileSystem.exists(FileSystem.dirname(FileSystem.join(dest, rename))):
+          FileSystem.makedir(FileSystem.dirname(FileSystem.join(dest, rename)))
         sh('cd "%s"; mv "%s" "%s"' % (dest, remotefilename, rename))
       packpath = FileSystem.join(dest, rename)
 

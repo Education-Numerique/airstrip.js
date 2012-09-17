@@ -97,6 +97,8 @@ def build(buildonly = False):
       f = FileSystem.join(tmpdir, localname)
       if FileSystem.exists(f):
         d = FileSystem.join(builddir, localname)
+        # if not FileSystem.exists(FileSystem.dirname(d)):
+        #   FileSystem.makedir(FileSystem.dirname(d));
         FileSystem.copyfile(f, d)
         # Augment desclist with provided localname
         desclist += [localname]

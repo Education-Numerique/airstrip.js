@@ -208,6 +208,9 @@ yak:
 
 
 
+
+
+
         # -----------------------------
         # Loaders, usable directly from here (or compiled inside jsBoot loader)
         # -----------------------------
@@ -350,18 +353,19 @@ yak:
                 type: "zip"
                 dir: "bootstrap/bootstrap"
                 production:
-                    # XXX doesn't work - need rewrite for the img/ paths prolly
-                    # XXX fake jsboot!
-                    css/bootstrap-jsboot.css: css/bootstrap.css
-                    bootstrap-jsboot.js: js/bootstrap.js
-                    # XXX fake stable!
-                    css/bootstrap-upstream.css: css/bootstrap.css
-                    bootstrap-upstream.js: js/bootstrap.js
+                    bootstrap/css/bootstrap-jsboot.css: "css/bootstrap.css"
+                    bootstrap-jsboot.js: "js/bootstrap.js"
+
                     # XXX Fake trunk
-                    css/bootstrap-trunk.css: css/bootstrap.css
-                    bootstrap-trunk.js: js/bootstrap.js
-                    img/glyphicons-halflings-white.png: img/glyphicons-halflings-white.png
-                    img/glyphicons-halflings.png: img/glyphicons-halflings.png
+                    bootstrap/css/bootstrap-trunk.css: "css/bootstrap.css"
+                    bootstrap-trunk.js: "js/bootstrap.js"
+
+                    bootstrap/img/glyphicons-halflings-white.png: "img/glyphicons-halflings-white.png"
+                    bootstrap/img/glyphicons-halflings.png: "img/glyphicons-halflings.png"
+
+
+
+
 
         # -----------------------------
         # Plugins
@@ -371,10 +375,56 @@ yak:
         chosen:
             "License": "MIT"
             "Destination": "plugins/jquery"
-            # XXX not "really" versioned - should be forked
             "Source":
-                chosen-jsboot.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+                chosen-jsboot.css: "https://raw.github.com/jsBoot/chosen/master/chosen/chosen.css"
+                chosen-jsboot.js: "https://raw.github.com/jsBoot/chosen/master/chosen/chosen.jquery.js"
+
+                chosen-trunk.css: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.css"
                 chosen-trunk.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+
+                chosen-sprite.png: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen-sprite.png"
+
+        # Notifications growl style
+        gritter:
+            "License": "MIT/GPL"
+            "Destination": "plugins/jquery/gritter"
+            "Source":
+                gritter/css/gritter-jsboot.css: "https://raw.github.com/jsBoot/Gritter/master/css/jquery.gritter.css"
+                gritter-jsboot.js: "https://raw.github.com/jsBoot/Gritter/master/js/jquery.gritter.js"
+
+                gritter/css/gritter-trunk.css: "https://raw.github.com/jboesch/Gritter/master/css/jquery.gritter.css"
+                gritter-trunk.js: "https://raw.github.com/jboesch/Gritter/master/js/jquery.gritter.js"
+
+                gritter/images/gritter-light.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter-light.png"
+                gritter/images/gritter-long.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter-long.png"
+                gritter/images/gritter.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter.png"
+                gritter/images/ie-spacer.gif: "https://raw.github.com/jsBoot/Gritter/master/images/ie-spacer.gif"
+
+        # Dummy validation
+        validate:
+            "License": "MIT/GPL"
+            "Destination": "plugins/jquery"
+            "Source":
+                validate-trunk.js: https://raw.github.com/jzaefferer/jquery-validation/master/jquery.validate.js
+                validate-1.10.js: https://raw.github.com/jzaefferer/jquery-validation/1.10.0/jquery.validate.js
+
+        # Stylable form elements
+        # XXX - like with the others, if the sprite changes, collision occurs :/
+        uniform:
+            "License": "MIT"
+            "Destination": "plugins/jquery"
+            "Source":
+                uniform-trunk.js: https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js
+                css/uniform-trunk.css: https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css
+                uniform-1.5.zip: https://github.com/downloads/pixelmatrix/uniform/uniform.1.5.zip
+            Build:
+                type: zip
+                dir: uniform.1.5/uniform
+                production:
+                    uniform-1.5.js: jquery.uniform.js
+                    css/uniform-1.5.css: css/uniform.default.css
+                    images/sprite.png: images/sprite.png
+
 
         hoverIntent:
             "License": "MIT"

@@ -10,11 +10,9 @@ Background
 Modern js projects usually depend on numerous third-party libraries and frameworks 
 (say: requirejs, handlebars, i18n, emberjs, jasmine).
 
-Tracking versions of these, possibly patching or forking them, maintaining deps lists, then integrating 
-into the project can quickly become tedious.
+Tracking versions of these, possibly patching or forking them, maintaining deps lists, then integrating into the project can quickly become tedious.
 
-The idea here is to help manage that, and list such dependencies (and versions) in YAML, build them uniformly,
-"dispatching" the results in a build directory to be then used by said projects.
+The idea here is to help manage that, and list such dependencies (and versions) in YAML, build them uniformly, "dispatching" the results in a build directory to be then used by said projects.
 
 
 Technology
