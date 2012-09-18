@@ -18,6 +18,16 @@ r = Require('puke-yak.yaml')
 r.yak('yak')
 r.yak('user-%s-%s-%s' % (Env.get("PUKE_LOGIN", System.LOGIN), 'box', Env.get("PUKE_OS", System.OS)))
 
+# Airstrip yank in additional description files
+l = FileList('yanks', filter = '*.yaml');
+# Yak.COLLECTION['toto'] = {}
+yanks = {}
+for i in l.get():
+  a = Load(i)
+  yanks = Utils.deepmerge(yanks, a.content['yanks'])
+
+Yak.COLLECTION = yanks
+
 # Aggregate package name and version to the "root" path, if not the default
 if Yak.ROOT != './build':
   Yak.ROOT = FileSystem.join(Yak.ROOT, Yak.PACKAGE['NAME'], Yak.PACKAGE['VERSION'])

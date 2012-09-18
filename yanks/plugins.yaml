@@ -1,0 +1,98 @@
+yanks:
+  # -----------------------------
+  # Plugins
+  # -----------------------------
+
+  # Chosen, a Select Box Enhancer for jQuery
+  chosen:
+    License: "MIT"
+    Destination: "plugins/jquery"
+    Source:
+      chosen-stable.js: "https://raw.github.com/jsBoot/chosen/master/chosen/chosen.jquery.js"
+      stable/chosen-stable.css: "https://raw.github.com/jsBoot/chosen/master/chosen/chosen.css"
+      stable/chosen-sprite.png: "https://raw.github.com/jsBoot/chosen/master/chosen/chosen-sprite.png"
+
+      chosen-trunk.js: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.jquery.js"
+      trunk/chosen-trunk.css: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen.css"
+      trunk/chosen-sprite.png: "https://raw.github.com/harvesthq/chosen/master/chosen/chosen-sprite.png"
+
+  # Notifications growl style
+  gritter:
+    License: ["MIT", "GPL"]
+    Destination: "plugins/jquery"
+    Source:
+      gritter-stable.js: "https://raw.github.com/jsBoot/Gritter/master/js/jquery.gritter.js"
+      stable/css/gritter-stable.css: "https://raw.github.com/jsBoot/Gritter/master/css/jquery.gritter.css"
+      stable/images/gritter-light.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter-light.png"
+      stable/images/gritter-long.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter-long.png"
+      stable/images/gritter.png: "https://raw.github.com/jsBoot/Gritter/master/images/gritter.png"
+      stable/images/ie-spacer.gif: "https://raw.github.com/jsBoot/Gritter/master/images/ie-spacer.gif"
+
+      gritter-trunk.js: "https://raw.github.com/jboesch/Gritter/master/js/jquery.gritter.js"
+      trunk/css/gritter-trunk.css: "https://raw.github.com/jboesch/Gritter/master/css/jquery.gritter.css"
+      trunk/images/gritter-light.png: "https://raw.github.com/jboesch/Gritter/master/images/gritter-light.png"
+      trunk/images/gritter-long.png: "https://raw.github.com/jboesch/Gritter/master/images/gritter-long.png"
+      trunk/images/gritter.png: "https://raw.github.com/jboesch/Gritter/master/images/gritter.png"
+      trunk/images/ie-spacer.gif: "https://raw.github.com/jboesch/Gritter/master/images/ie-spacer.gif"
+
+
+  # Dummy validation
+  validate:
+    License: ["MIT", "GPL"]
+    Destination: "plugins/jquery"
+    Source:
+      validate-1.10.js: https://raw.github.com/jzaefferer/jquery-validation/1.10.0/jquery.validate.js
+      validate-trunk.js: https://raw.github.com/jzaefferer/jquery-validation/master/jquery.validate.js
+
+  # Stylable form elements
+  uniform:
+    License: "MIT"
+    Destination: "plugins/jquery"
+    Source:
+      uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
+      trunk/css/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css"
+      trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/images/sprite.png"
+
+      uniform-1.5.zip: "https://github.com/downloads/pixelmatrix/uniform/uniform.1.5.zip"
+    Build:
+      type: "zip"
+      dir: "uniform.1.5/uniform"
+      production:
+        uniform-1.5.js: "jquery.uniform.js"
+        1.5/css/uniform-1.5.css: "css/uniform.default.css"
+        1.5/images/sprite.png: "images/sprite.png"
+
+  datatable:
+    License: ["GPL", "BSD"]
+    Destination: "plugins/jquery"
+    Source:
+      datatable-1.9.zip: "http://datatables.net/releases/DataTables-1.9.3.zip"
+
+      datatable-trunk.js: "https://raw.github.com/DataTables/DataTables/master/media/js/jquery.dataTables.js"
+      trunk/css/datatable-trunk.css: "https://raw.github.com/DataTables/DataTables/master/media/css/jquery.dataTables.css"
+      trunk/images/back_disabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/back_disabled.png"
+      trunk/images/back_enabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/back_enabled.png"
+      trunk/images/back_enabled_hover.png: "https://raw.github.com/DataTables/DataTables/master/media/images/back_enabled_hover.png"
+      trunk/images/forward_disabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/forward_disabled.png"
+      trunk/images/forward_enabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/forward_enabled.png"
+      trunk/images/forward_enabled_hover.png: "https://raw.github.com/DataTables/DataTables/master/media/images/forward_enabled_hover.png"
+      trunk/images/sort_asc.png: "https://raw.github.com/DataTables/DataTables/master/media/images/sort_asc.png"
+      trunk/images/sort_asc_disabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/sort_asc_disabled.png"
+      trunk/images/sort_desc.png: "https://raw.github.com/DataTables/DataTables/master/media/images/sort_desc.png"
+      trunk/images/sort_desc_disabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/sort_desc_disabled.png"
+    Build:
+      type: "zip"
+      dir: "DataTables-1.9.3/DataTables-1.9.3"
+      production:
+        datatable-1.9.js: "media/js/jquery.dataTables.js"
+        1.9/css/datatable-1.9.css: "media/css/jquery.dataTables.css"
+        1.9/images: "media/images"
+
+  # XXX not "really" versioned - should be forked
+  hoverIntent:
+    License: "MIT"
+    Destination: "plugins/jquery"
+    Source:
+      hoverintent-stable.js: "https://raw.github.com/jsBoot/hoverIntent/master/jquery.hoverIntent.js"
+      hoverintent-trunk.js: "https://raw.github.com/hernan/hoverIntent/master/jquery.hoverIntent.js"
+

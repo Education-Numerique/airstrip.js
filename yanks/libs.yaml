@@ -1,0 +1,98 @@
+yanks:
+  # -----------------------------
+  # Some generic, helpful libraries
+  # -----------------------------
+
+  # Redactor
+  # XXX - https please!
+  # XXX - no trunk
+  # XXX - no proper version
+  # XXX - pay for - need a special license
+  redactor:
+    License: "http://redactorjs.com/license/"
+    Destination: "libs"
+    Source:
+      zip: "http://redactorjs.com/webdownload/redactor/get/#redactor.zip"
+    Build:
+      type: "zip"
+      dir: "#redactor/redactor"
+      production:
+        redactor-stable.js: "redactor.js"
+        redactor-stable.css: "redactor.css"
+        redactor-trunk.js: "redactor.js"
+        redactor-trunk.css: "redactor.css"
+
+  mousetrap:
+    License: "Apache"
+    Destination: "libs"
+    Source:
+      mousetrap-stable.js: 'https://raw.github.com/jsBoot/mousetrap/master/mousetrap.js'
+      mousetrap-trunk.js: 'https://raw.github.com/ccampbell/mousetrap/master/mousetrap.js'
+
+  # i18n JS
+  i18n:
+    License: "MIT"
+    Destination: "libs"
+    Source:
+      i18n-3rc2.zip: "https://github.com/fnando/i18n-js/zipball/v3.0.0.rc2"
+      i18n-trunk.js: "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
+    Build:
+      type: "zip"
+      dir: "v3.0.0/fnando-i18n-js-5034008"
+      production:
+        i18n-3rc2.js: "app/assets/javascripts/i18n.js"
+
+  raphael:
+    License: "MIT"
+    Destination: "libs"
+    Source:
+      raphael-2.1.0.zip: "https://github.com/DmitryBaranovskiy/raphael/zipball/v2.1.0"
+      raphael-trunk.js: "https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael.js"
+    Build:
+      type: "zip"
+      dir: "v2.1/DmitryBaranovskiy-raphael-7ba1a82"
+      production:
+        raphael-2.1.0.js: "raphael.js"
+
+  # lightweight javascript date library for parsing, manipulating, and formatting dates.
+  moment:
+    License: "MIT"
+    Destination: "libs"
+    Source:
+      moment-1.7.0.js: "https://raw.github.com/timrwood/moment/1.7.0/moment.js"
+      moment-trunk.js: "https://raw.github.com/timrwood/moment/0ee19c2e8121d3e6d4d011233bb23271bea308ab/moment.js"
+
+  # Should/may be turned into shims rather
+  bigscreen:
+    License: "Apache"
+    Destination: "shims-plus"
+    Source:
+      bigscreen-stable.js: "https://raw.github.com/jsBoot/BigScreen/master/bigscreen.js"
+      bigscreen-trunk.js: "https://raw.github.com/bdougherty/BigScreen/master/bigscreen.js"
+
+  history:
+    License: "BSD"
+    Destination: "shims-plus"
+    Source:
+      history-stable.js: "https://raw.github.com/jsBoot/history.js/master/build/history.js"
+      history-trunk.js: "https://raw.github.com/balupton/history.js/master/scripts/uncompressed/history.js"
+
+  # XXX no https
+  # XXX has an unused jsBoot repository
+  # Deprecated in profit of mousetrap
+  # keyboardjs:
+  #   License: "BSD"
+  #   Destination: "libs"
+  #   Source:
+  #     keyboard-0.2.2.js: "http://cloud.github.com/downloads/RobertWHurst/KeyboardJS/keyboard.0.2.2.js"
+  #     keyboard-trunk.js: "https://raw.github.com/RobertWHurst/KeyboardJS/master/keyboard.js"
+
+
+  # Kind of spitfire redundant really
+  # XXX poses a problem that it bundles too much (html5shiv eg)
+  # XXX no trunk
+  modernizr:
+    License: "MIT"
+    Destination: "libs"
+    Source:
+      modernizr-2.6.2.js: "http://modernizr.com/downloads/modernizr-2.6.2.js"

@@ -1,0 +1,46 @@
+yanks:
+  # XXX - no https
+  # XXX - dead - may be forked on github instead / replaced
+  sh:
+    License: "GPL"
+    Destination: "tooling"
+    Source:
+      # "Trunk" (the project is ghost town)
+      sh.core-trunk.js: "http://shjs.sourceforge.net/sh_main.js"
+      sh.js-trunk.js: "http://shjs.sourceforge.net/lang/sh_javascript.js"
+      sh.core-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
+      # Latest stable as of 201208
+      shjs-0.6.zip: "http://freefr.dl.sourceforge.net/project/shjs/shjs/0.6/shjs-0.6.zip"
+    Build:
+      type: "zip"
+      dir: "shjs-0.6/shjs-0.6"
+      production:
+        sh.core-0.6.js: "sh_main.js"
+        sh.js-0.6.js: "lang/sh_javascript.js"
+        sh.core-0.6.css: "sh_style.css"
+
+  jasmine:
+    License: "MIT"
+    Destination: "tooling"
+    Source:
+      jasmine-1.2.0.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+      git: "git://github.com/pivotal/jasmine.git"
+    Build:
+      type: "thor"
+      args: "jasmine_dev:build_distribution"
+      dir: "jasmine"
+      production:
+      # Due to the nature of jasmine here, this is a small trick to get stuff also from the package itself 
+        jasmine.core-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
+        jasmine.html-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
+        jasmine.html-1.2.0.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
+        jasmine.core-trunk.js: "lib/jasmine-core/jasmine.js"
+        jasmine.html-trunk.js: "lib/jasmine-core/jasmine-html.js"
+        jasmine.html-trunk.css: "lib/jasmine-core/jasmine.css"
+
+  ietester:
+    License: "?"
+    Destination: "tooling/bin"
+    Source:
+      install-ietester-v0.4.12.exe: "http://www.my-debugbar.com/ietester/install-ietester-v0.4.12.exe"
+

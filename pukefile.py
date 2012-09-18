@@ -86,8 +86,8 @@ def build(buildonly = False):
 
   for (name, packinfo) in Yak.COLLECTION.items():
     # Temporary and build output directories definitions
-    tmpdir = FileSystem.join(Yak.TMP_ROOT, "lib", packinfo["Destination"])
-    builddir = FileSystem.join(Yak.BUILD_ROOT, "lib", packinfo["Destination"])
+    tmpdir = FileSystem.join(Yak.TMP_ROOT, "lib", packinfo["Destination"], name)
+    builddir = FileSystem.join(Yak.BUILD_ROOT, "lib", packinfo["Destination"], name)
 
     desclist = []
     for(localname, url) in packinfo["Source"].items():
@@ -101,7 +101,7 @@ def build(buildonly = False):
         #   FileSystem.makedir(FileSystem.dirname(d));
         FileSystem.copyfile(f, d)
         # Augment desclist with provided localname
-        desclist += [localname]
+        desclist += [FileSystem.join(name, localname)]
 
     if "Build" in packinfo:
       buildinfo = packinfo["Build"]
@@ -117,13 +117,26 @@ def build(buildonly = False):
       for(local, builded) in production.items():
         f = FileSystem.join(tmpdir, builded)
         d = FileSystem.join(builddir, local)
+        desclist += [FileSystem.join(name, local)]
         if FileSystem.isfile(f):
           FileSystem.copyfile(f, d)
         elif FileSystem.isdir(f):
           deepcopy(FileList(f), d)
 
-      # Augment description list with build result
-      desclist = desclist + production.keys()
+      # ["coin%s" % key for key in ['item1', 'item2']]
+
+
+      # map((lambda item: "%s%s" % (name, item)), ['item1', 'item2'])
+      # # Augment description list with build result
+      # bitch = production.keys();
+
+      # for x in bitch:
+      #   bitch[x] = FileSystem.join(name, bitch[x]);
+
+      # print bitch
+      # raise "toto"
+
+      # desclist = desclist + production.keys()
 
     marker = 'lib/%s/' % packinfo["Destination"]
     description.append('"%s": [\n"%s%s"\n]' % (name, marker, ('",\n"%s' % marker).join(desclist)))

@@ -1,0 +1,90 @@
+yanks:
+  # -----------------------------
+  # Tooling
+  # -----------------------------
+
+  # -----------------------------
+  # Enhancements shims
+  # -----------------------------
+  # XXX Needs pull request as there is fixes for Safari strict mode not in 0.3
+  stacktrace:
+    License: "PublicDomain"
+    Destination: "shims-plus"
+    Source:
+      stacktrace-0.3.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.3.js"
+      stacktrace-0.4.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.4.js"
+      stacktrace-stable.js: "https://raw.github.com/jsBoot/javascript-stacktrace/master/stacktrace.js"
+      stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
+
+  # Forked and used in a merged form only in js.core (strict mode working)
+  # You should NOT use any of these - they are already provided if you use js.core
+  # XXX no "stable" version notion
+  # XXX to be replaced by a proper shim
+  postmessage:
+    License: ["MIT", "GPL"]
+    Destination: "shims-plus"
+    Source:
+      # Has some changes to fit in jsboot
+      postmessage-stable.js: "https://raw.github.com/jsBoot/jquery-postmessage/master/jquery.ba-postmessage.js"
+      postmessage-trunk.js: "http://github.com/cowboy/jquery-postmessage/raw/master/jquery.ba-postmessage.js"
+
+
+  # -----------------------------
+  # Pure shims, then copied to Spitfire - DONT use from here
+  # -----------------------------
+  # XXX upstream doesn't version url - use the fork for stable instead
+  # XXX awaiting pull request result
+  json3:
+    License: "MIT"
+    Destination: "shims"
+    Source:
+      # json3-trunk.js: "http://bestiejs.github.com/json3/lib/json3.js"
+      json3-3.2.3.js: "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
+      json3-trunk.js: "https://raw.github.com/bestiejs/json3/gh-pages/lib/json3.js"
+
+  # A nice shim to emulate console when there is none (no "release" per-se either)
+  # XXX Upstream doesn't version
+  console:
+    License: "MIT"
+    Destination: "shims"
+    Source:
+      console-stable.js: "https://raw.github.com/jsBoot/console-shim/master/console-shim.js"
+      console-trunk.js: "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
+
+  # XHR is a terribly buggy thing - this may / should be aggregated unconditionally
+  # XXX upstream doesn't version
+  xmlhttprequest:
+    License: "LGPL"
+    Destination: "shims"
+    Source:
+      xhr-stable.js: "https://raw.github.com/jsBoot/xmlhttprequest/master/XMLHttpRequest.js"
+      xhr-trunk.js: "https://raw.github.com/ilinsky/xmlhttprequest/master/XMLHttpRequest.js"
+
+  ie7:
+    License: "MIT"
+    Destination: "shims"
+    Source:
+      ie7.zip: "http://ie7-js.googlecode.com/files/ie7-2.1%28beta4%29.zip"
+    Build:
+      type: "zip"
+      dir: "ie7-2.1%28beta4%29/ie7"
+      production:
+        ie9-2.1b4.js: "IE9.js"
+
+  pie:
+    License: ["Apache", "GPL"]
+    Destination: "shims"
+    Source:
+      pie.zip: "https://github.com/downloads/lojjic/PIE/PIE-1.0.0.zip"
+    Build:
+      type: "zip"
+      dir: "PIE-1.0.0"
+      production:
+      # XXX remember to send - also, need to be copied over the same domain
+      # Content-type: text/x-component
+        pie-1.0.0.htc: "PIE.htc"
+      # The js approach needs detaching and attaching to be done manually
+        pie-1.0.0.js: "PIE.js"
+
+
+

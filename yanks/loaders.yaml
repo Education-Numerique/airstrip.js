@@ -1,0 +1,56 @@
+# -----------------------------
+# Loaders, usable directly from here (or compiled inside jsBoot loader)
+# -----------------------------
+yanks:
+  # XXX no https
+  require:
+    License: "BSD"
+    Destination: "loaders"
+    Source:
+      require-2.0.6.js: "http://requirejs.org/docs/release/2.0.6/comments/require.js"
+      # requirejs-2.0.6.js: "https://github.com/jrburke/requirejs/tarball/2.0.6"
+      require-trunk.js: "https://raw.github.com/jrburke/requirejs/master/require.js"
+
+  # XXX no HTTPS
+  # XXX no trunk
+  yahoo:
+    License: "BSD"
+    Destination: "loaders"
+    Source:
+      yui.base-3.6.0.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
+      yui.base-trunk.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
+
+  # XXX upstream is dead
+  lab:
+    License: "MIT"
+    Destination: "loaders"
+    Source:
+      lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
+      lab-fork.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+      lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+    Build:
+      type: 'zip'
+      dir: 'LABjs-2.0.3'
+      production:
+        lab-2.0.3.js: 'LAB.src.js'
+
+  yepnope:
+    License: ["WTFPL", "MIT", "BSD"]
+    Destination: "loaders"
+    Source:
+      yepnope-1.5.4.js: "https://raw.github.com/SlexAxton/yepnope.js/v1.5.4/yepnope.js"
+      yepnope-trunk.js: "https://raw.github.com/SlexAxton/yepnope.js/master/yepnope.js"
+
+
+  head:
+    License: "MIT"
+    Destination: "loaders"
+    Source:
+      head-0.96.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
+      git: "git://github.com/headjs/headjs.git"
+    Build:
+      type: "make"
+      dir: "headjs"
+      args: "head"
+      production:
+        head-trunk.js: "dist/head.js"

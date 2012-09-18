@@ -1,0 +1,101 @@
+yanks:
+  # -----------------------------
+  # Frameworks
+  # -----------------------------
+
+  # Handlebars
+  handlebars:
+    License: "MIT"
+    Destination: "frameworks"
+    Source:
+      handlebars.runtime-1.b6.js: "https://github.com/downloads/wycats/handlebars.js/handlebars.runtime-1.0.0.beta.6"
+      handlebars.main-1.b6.js: "https://github.com/downloads/wycats/handlebars.js/handlebars-1.0.0.beta.6.js"
+      handlebars.runtime-1.rc1.js: "https://github.com/downloads/wycats/handlebars.js/handlebars.runtime-1.0.rc.1.js"
+      handlebars.main-1.rc1.js: "https://github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.js"
+      git: "git://github.com/wycats/handlebars.js.git"
+    Build:
+      type: "rake"
+      dir: "handlebars.js"
+      production:
+        handlebars.runtime-trunk.js: "dist/handlebars.runtime.js"
+        handlebars.main-trunk.js: "dist/handlebars.js"
+
+
+  # Jquery
+  # XXX - https please!
+  jquery:
+    License: ["MIT", "GPL"]
+    Destination: "frameworks"
+    Source:
+      jquery-1.7.js: "http://code.jquery.com/jquery-1.7.js"
+      jquery-1.8.js: "http://code.jquery.com/jquery-1.8.1.js"
+      jquery-trunk.js: "http://code.jquery.com/jquery-git.js"
+
+  # Ember
+  ember:
+    License: "MIT"
+    Destination: "frameworks"
+    Source:
+      ember.prod-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"
+      ember.debug-0.9.6.js: "https://github.com/downloads/emberjs/ember.js/ember-0.9.6.js"
+      ember.prod-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.min.js"
+      ember.debug-1.0.pre.js: "https://github.com/downloads/emberjs/ember.js/ember-1.0.pre.js"
+      git: "git://github.com/emberjs/ember.js.git"
+    Build:
+      type: "rake"
+      dir: "ember.js"
+      production:
+        ember.debug-trunk.js: "dist/ember.js"
+        ember.prod-trunk.js: "dist/ember.prod.js"
+
+
+  normalize:
+    License: "Public domain"
+    Destination: "frameworks"
+    Source:
+      normalize-2.0.css: "http://necolas.github.com/normalize.css/2.0.1/normalize.css"
+      normalize-trunk.css: "https://raw.github.com/necolas/normalize.css/master/normalize.css"
+
+  h5bp:
+    Destination: "frameworks"
+    License: "MIT"
+    Source:
+      h5bp.zip: "https://github.com/h5bp/html5-boilerplate/zipball/v4.0.0"
+    Build:
+      type: "zip"
+      dir: "v4/h5bp-html5-boilerplate-2279296"
+      production:
+        html5-css-4.0.0.css: "css/main.css"
+
+
+  backbone:
+    License: "MIT"
+    Destination: "frameworks"
+    Source:
+      # backbone-stable.js: "http://backbonejs.org/backbone.js"
+      backbone-0.9.2.js: "https://raw.github.com/documentcloud/backbone/0.9.2/backbone.js"
+      backbone-trunk.js: "https://raw.github.com/documentcloud/backbone/master/backbone.js"
+
+  # XXX - no proper version
+  # XXX - no trunk
+  bootstrap:
+    License: "Apache"
+    Destination: "frameworks"
+    Source:
+      bootstrap-stable.zip: "http://twitter.github.com/bootstrap/assets/bootstrap.zip"
+    Build:
+      type: "zip"
+      dir: "bootstrap/bootstrap"
+      production:
+        bootstrap.core-stable.js: "js/bootstrap.js"
+        stable/css/bootstrap.responsive-stable.css: "css/bootstrap-responsive.css"
+        stable/css/bootstrap.core-stable.css: "css/bootstrap.css"
+        stable/img/glyphicons-halflings-white.png: "img/glyphicons-halflings-white.png"
+        stable/img/glyphicons-halflings.png: "img/glyphicons-halflings.png"
+
+        bootstrap.core-trunk.js: "js/bootstrap.js"
+        trunk/css/bootstrap.responsive-trunk.css: "css/bootstrap-responsive.css"
+        trunk/css/bootstrap.core-trunk.css: "css/bootstrap.css"
+        trunk/img/glyphicons-halflings-white.png: "img/glyphicons-halflings-white.png"
+        trunk/img/glyphicons-halflings.png: "img/glyphicons-halflings.png"
+

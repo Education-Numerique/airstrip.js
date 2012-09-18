@@ -1,19 +1,30 @@
 AirStrip.js
 =============
 
-This project is meant to ease dealing with and tracking third-party javascript dependencies in large projects.
-
-
-Background
+About
 -------------
 
-Modern js projects usually depend on numerous third-party libraries and frameworks 
+This project is meant to ease dealing with third-party javascript dependencies in large projects.
+
+Problem
+-------------
+
+Modern javascript projects usually depend on numerous third-party libraries and frameworks 
 (say: requirejs, handlebars, i18n, emberjs, jasmine).
 
-Tracking versions of these, possibly patching or forking them, maintaining deps lists, then integrating into the project can quickly become tedious.
+Picking these, building, minifying, then tracking versions, possibly patching or forking them, maintaining dependencies, then integrating into a project can quickly become borringly repetitive and tedious.
 
-The idea here is to help manage that, and list such dependencies (and versions) in YAML, build them uniformly, "dispatching" the results in a build directory to be then used by said projects.
+Solution
+-------------
 
+The idea here is to help do that, by providing numerous, widely used libraries for each problem, build them uniformly, list various versions, then "dispatching" the results in a build directory to be then used by said projects - and obviously an "environment" to help you doing that for the (other) libraries you might want on top of that.
+
+What it is not
+-------------
+
+Airstrip doesn't provide a way to "combine" multiple javascript libraries into a monolithic one (though you can easily do that with puke), and it doesn't manage dependencies between said libraries (yet).
+
+See Airstrip rather as a unified gateway, to heterogenous backends and build systems.
 
 Technology
 -------------
@@ -28,7 +39,7 @@ How to use
 -------------
 
 - clone: `git clone https://github.com/jsBoot/airstrip.js`
-- install puke: `pip install puke`
+- install puke: `pip install puke` (if you don't have pip, read http://www.pip-installer.org/en/latest/installing.html)
 - build it as-is: `cd aistrip.js; puke all`
 
 Check the "build" directory.
@@ -43,7 +54,7 @@ Do you have ruby installed, along with rvm and bundle? If not, grab rvm and gem 
 Do you have nodejs and npm? If not, install them (aptitude install node, or brew install node, or
 whichever method suits you).
 
-Not interested in the provided dependencies and their build requirements? Just wipe-out the Collection
+Not interested in the provided dependencies and their build requirements? Just wipe-out the 
 node (see down below) and specify what you're interested in.
 
 
@@ -64,18 +75,14 @@ In your DEPLOY_ROOT directory you will find:
 - a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will
 - a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
 loaders (requirejs, labjs), plugins, tooling, shims, etc
-- an airstrip.yaml file, containing a list of everything that has been built - this is the manifest to be used
-in other projects or build systems using this
+- an airstrip.yaml file, containing a list of everything that has been built - this is the manifest to be used in other projects or build systems using this
 
-Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified
-(we use google closure to minify both css and js files, ECMA5 - not strict).
+Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified (we use google closure to minify both css and js files, ECMA5 - not strict).
 
 Listing and managing simple dependencies
 -------------
 
-Edit the puke-yak.yaml file again.
-
-Get the Yak.COLLECTION node.
+Edit (or create a new) a yaml file in yanks folder.
 
 A typical entry looks like ("stacktrace.js" here):
 
@@ -85,13 +92,13 @@ stacktrace:
     "Destination": "shims-plus"
     "Source":
         stacktrace-0.3.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.3.js"
-        stacktrace-jsboot.js: "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
+        stacktrace-stable.js: "https://raw.github.com/webitup/javascript-stacktrace/master/stacktrace.js"
         stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
 ```
 
 The root node ("stacktrace") is purely casual.
 
-You should always specify the license of the project, obviously.
+You should always specify the license of the project, obviously. This is provisional only for now, but should be either a string (like "MIT"), an array of strings (like ["MIT", "GPL"]), or an url if this is a custom licence.
 
 The "Destination" node is a category directory (will live under the lib/ output folder).
 
@@ -118,7 +125,7 @@ lab:
     "Destination": "loaders"
     "Source":
         lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
-        lab-jsboot.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
+        lab-stable.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
         lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
     "Build":
         type: 'zip'

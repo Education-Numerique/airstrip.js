@@ -1,0 +1,71 @@
+
+
+  # This is a piece of shite
+  # tinymce:
+  #   License: "LGPL"
+  #   Destination: "frameworks/tinymce"
+  #   Source:
+  #     # tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_jquery.zip"
+  #     tiny.zip: "http://github.com/downloads/tinymce/tinymce/tinymce_3.5.6_dev.zip"
+  #   Build:
+  #     type: "zip"
+  #     dir: "tinymce_3.5.6_dev/tinymce/jscripts/tiny_mce"
+  #     production:
+  #     # Does script location detection - needs _full to match unfortunately
+  #       tiny_mce_full.js: "tiny_mce_src.js"
+  #       tiny_mce_dev.js: "tiny_mce_dev.js"
+  #       tiny_mce_jquery.js: "jquery.tinymce.js"
+  #       classes: "classes"
+  #       themes: "themes"
+  #       plugins: "plugins"
+  #       langs: "langs"
+  #       utils: "utils"
+
+
+
+
+
+
+
+
+
+# Respond and other MQ solutions
+# https://github.com/h5bp/html5-boilerplate/issues/816#issuecomment-2512805
+
+# pie, 
+#   "html5shim-latest.js":
+#     {
+#       License: "MIT/GPL",
+#       Source: "https://html5shim.googlecode.com/svn/trunk/html5.js",
+#       Destination: "org/",
+#       "Latest": "html5.js"
+#     },
+
+
+    # A state crap we use to handle history in the documentation
+    # jquery-bbq-stable.js:
+    #   License: "MIT/GPL"
+    #   Source: "https://raw.github.com/cowboy/jquery-bbq/v1.2.1/jquery.ba-bbq.js"
+    #   Destination: "org/cowboy"
+    #   "Latest": "jquery.ba-bbq.js"
+
+
+
+    # # Forks that are not used per-se
+    # es5-stable.js:
+    #   License: "MIT"
+    #   Source: "https://raw.github.com/webitup/es5-shim/master/es5-shim.js"
+    #   Destination: "org/kriskowal"
+    #   "Latest": "es5-shim.js"
+
+
+
+
+# # We don't use closure (yet)
+#   "closure-latest":
+#     {
+#       License: "Apache",
+#       Source:  "http://closure-library.googlecode.com/files/closure-library-20111110-r1376.zip",
+#       Destination: "com/google", 
+#       "Latest": "closure/goog"
+#     },
