@@ -28,7 +28,7 @@ yanks:
     Destination: "frameworks"
     Source:
       jquery-1.7.js: "http://code.jquery.com/jquery-1.7.js"
-      jquery-1.8.js: "http://code.jquery.com/jquery-1.8.1.js"
+      jquery-1.8.js: "http://code.jquery.com/jquery-1.8.2.js"
       jquery-trunk.js: "http://code.jquery.com/jquery-git.js"
 
   # Ember

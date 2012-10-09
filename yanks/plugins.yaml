@@ -49,9 +49,10 @@ yanks:
     License: "MIT"
     Destination: "plugins/jquery"
     Source:
-      uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
-      trunk/css/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css"
-      trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/images/sprite.png"
+      # Has been changed radically
+      # uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
+      # trunk/css/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css"
+      # trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/images/sprite.png"
 
       uniform-1.5.zip: "https://github.com/downloads/pixelmatrix/uniform/uniform.1.5.zip"
     Build:
