@@ -12,7 +12,9 @@ yanks:
     License: "http://redactorjs.com/license/"
     Destination: "libs"
     Source:
-      zip: "http://redactorjs.com/webdownload/redactor/get/#redactor.zip"
+      zip: "http://imperavi.com/webdownload/redactor/getold/#redactor83.zip"
+      # redactor-8.1.zip: "http://imperavi.com/webdownload/redactor/gettrial/#redactor81.zip"
+      # http://redactorjs.com/webdownload/redactor/get/#redactor.zip"
     Build:
       type: "zip"
       dir: "#redactor/redactor"

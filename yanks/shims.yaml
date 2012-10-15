@@ -32,15 +32,36 @@ yanks:
   # -----------------------------
   # Pure shims, then copied to Spitfire - DONT use from here
   # -----------------------------
-  # XXX upstream doesn't version url - use the fork for stable instead
-  # XXX awaiting pull request result
+  # Forks that are not used per-se
+  es5:
+    License: "MIT"
+    Destination: "shims"
+    Source:
+      es5-shim-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-shim.js"
+      es5-sham-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-sham.js"
+      es5-2.0.2.zip: "https://github.com/kriskowal/es5-shim/zipball/v2.0.2"
+    Build:
+      type: "zip"
+      dir: "v2.0/kriskowal-es5-shim-a474ef7"
+      production:
+        es5-shim-2.0.2.js: "es5-shim.js"
+        es5-sham-2.0.2.js: "es5-sham.js"
+
+
+
   json3:
     License: "MIT"
     Destination: "shims"
     Source:
       # json3-trunk.js: "http://bestiejs.github.com/json3/lib/json3.js"
-      json3-3.2.3.js: "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
+      # json3-3.2.3.js: "https://raw.github.com/webitup/json3/gh-pages/lib/json3.js"
       json3-trunk.js: "https://raw.github.com/bestiejs/json3/gh-pages/lib/json3.js"
+      json3-3.2.4.zip: "https://github.com/bestiejs/json3/zipball/v3.2.4"
+    Build:
+      type: "zip"
+      dir: "v3.2/bestiejs-json3-a9559aa"
+      production:
+        json3-3.2.4.js: "lib/json3.js"
 
   # A nice shim to emulate console when there is none (no "release" per-se either)
   # XXX Upstream doesn't version

@@ -51,12 +51,6 @@
 
 
 
-    # # Forks that are not used per-se
-    # es5-stable.js:
-    #   License: "MIT"
-    #   Source: "https://raw.github.com/webitup/es5-shim/master/es5-shim.js"
-    #   Destination: "org/kriskowal"
-    #   "Latest": "es5-shim.js"
 
 
 

@@ -82,6 +82,7 @@ yanks:
     License: "Apache"
     Destination: "frameworks"
     Source:
+      # bootstrap-2.1.1.zip: "https://github.com/twitter/bootstrap/zipball/v2.1.1"
       bootstrap-stable.zip: "http://twitter.github.com/bootstrap/assets/bootstrap.zip"
     Build:
       type: "zip"
