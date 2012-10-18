@@ -1,6 +1,7 @@
 yanks:
   # XXX - no https
   # XXX - dead - may be forked on github instead / replaced
+  # investigate http://code.google.com/p/google-code-prettify/
   sh:
     License: "GPL"
     Destination: "tooling"

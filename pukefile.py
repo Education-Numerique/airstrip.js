@@ -58,7 +58,11 @@ def flint():
 @task("Minting")
 def mint():
   # Ember doesn't survive strict
-  PH.minter(Yak.BUILD_ROOT, strict = False)
+  PH.minter(Yak.BUILD_ROOT, strict = True)
+  # Yahoo and yep don't support strict
+  list = FileList(Yak.BUILD_ROOT, filter = "*ember*,*yahoo*,*yepnope*", exclude = "*-min.js")
+  for burne in list.get():
+    minify(burne, re.sub(r"(.*).js$", r"\1-min.js", burne), strict = False)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build(buildonly = False):
