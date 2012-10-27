@@ -42,6 +42,7 @@ yanks:
     Destination: "plugins/jquery"
     Source:
       validate-1.10.js: https://raw.github.com/jzaefferer/jquery-validation/1.10.0/jquery.validate.js
+      validate-stable.js: https://raw.github.com/jzaefferer/jquery-validation/1.10.0/jquery.validate.js
       validate-trunk.js: https://raw.github.com/jzaefferer/jquery-validation/master/jquery.validate.js
 
   # Stylable form elements
@@ -62,6 +63,10 @@ yanks:
         uniform-1.5.js: "jquery.uniform.js"
         1.5/css/uniform-1.5.css: "css/uniform.default.css"
         1.5/images/sprite.png: "images/sprite.png"
+
+        uniform-stable.js: "jquery.uniform.js"
+        stable/css/uniform-stable.css: "css/uniform.default.css"
+        stable/images/sprite.png: "images/sprite.png"
 
   datatable:
     License: ["GPL", "BSD"]
@@ -88,6 +93,10 @@ yanks:
         datatable-1.9.js: "media/js/jquery.dataTables.js"
         1.9/css/datatable-1.9.css: "media/css/jquery.dataTables.css"
         1.9/images: "media/images"
+
+        datatable-stable.js: "media/js/jquery.dataTables.js"
+        stable/css/datatable-stable.css: "media/css/jquery.dataTables.css"
+        stable/images: "media/images"
 
   # XXX not "really" versioned - should be forked
   hoverIntent:

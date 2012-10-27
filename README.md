@@ -24,7 +24,7 @@ What it is not
 
 Airstrip doesn't provide a way to "combine" multiple javascript libraries into a monolithic one (though you can easily do that with puke), and it doesn't manage dependencies between said libraries (yet).
 
-See Airstrip rather as a unified gateway, to heterogenous backends and build systems.
+The jsboot.js/airstrip.js projects will focus on that.
 
 Technology
 -------------
@@ -61,28 +61,27 @@ node (see down below) and specify what you're interested in.
 Configuration
 -------------
 
-Edit puke-yak.yaml:
-- create a new node "user-USER-box-BOX:", where USER is your unix nickname, and BOX the result of the `uname` command.
-This node will be used to "specialize" your configuration (the generic configuration being stored in the "yak:" node)
-- add (at least) a node for "DEPLOY_ROOT": this is where the result of the build will be put (and likely from where
-your web server will serve said resources)
+Edit config.yaml:
+- create a new node "config-USER-BOX:", where USER is your unix nickname, and BOX the result of the `uname` command, or create a file named "config-USER-BOX.yaml", and add a "userYank" top node into it.
+This node will be used to "specialize" your configuration (the generic configuration being stored in the baseYank and defaultYank nodes)
+- add a node for example for "root": this is the root under which the other directories will live (eg: tmp, build, deploy...)
 - when done editing, puke again (`puke all`)
 
 Build result
 -------------
 
-In your DEPLOY_ROOT directory you will find:
+In your path: deploy directory you will find:
 - a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will
 - a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
 loaders (requirejs, labjs), plugins, tooling, shims, etc
-- an airstrip.yaml file, containing a list of everything that has been built - this is the manifest to be used in other projects or build systems using this
+- an airstrip.json file, containing a list of everything that has been built - this is the manifest to be used in other projects or build systems using this
 
-Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified (we use google closure to minify both css and js files, ECMA5 - not strict).
+Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified (we use google closure to minify both css and js files, ECMA5, strict when possible).
 
 Listing and managing simple dependencies
 -------------
 
-Edit (or create a new) a yaml file in yanks folder.
+Edit (or create a new) yaml file in yanks folder.
 
 A typical entry looks like ("stacktrace.js" here):
 
@@ -192,5 +191,5 @@ License
 
 
 MIT license.
-Note, though, that the result of the build it produces contains numerous softwares with various licenses,
-and that by using them means you should agree with their individual licenses, not with the MIT license of this system itself. 
+Note, though, that the result of the build contains numerous softwares with various licenses,
+and that by using them means you should agree with their individual licenses, not with the MIT license of this system itself. But you knew that, right?

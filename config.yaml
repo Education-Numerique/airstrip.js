@@ -1,0 +1,93 @@
+##################
+# Package metadata. Unless you are forking, this shouldn't change.
+# These are used to fill templated variables inside files (eg: {PUKE-FOO-BAR})
+# and in some cases to construct build / deploy paths
+##################
+baseYank:
+  package:
+    # Code name (eg: {PUKE-PACKAGE-NAME})
+      name: airstrip.js
+    # Version  (eg: {PUKE-PACKAGE-VERSION})
+      version: '1.0.0-rc1'
+  rights:
+    # License link (eg: {PUKE-RIGHTS-LICENSE})
+      license: '<a href="http://en.wikipedia.org/wiki/MIT_License">MIT</a>'
+    # Copyright to be replaced in files (eg: {PUKE-RIGHTS-COPYRIGHT})
+      copyright: 'All rights reserved <a href="http://www.webitup.fr">© Web It Up</a>'
+    # Author (eg: {PUKE-RIGHTS-AUTHOR})
+      author: '<a href="mailto:dev@webitup.fr">Mangled Deutz & Raildecom</a>'
+  git:
+    # Repository base url (eg: {PUKE-GIT-ROOT})
+      root: 'https://github.com/jsBoot/airstrip.js/blob/master/src'
+
+##################
+# Platform dependent stuff
+# These specify build- / run- time paths.
+# You should override them either by adding a config-USERNAME-UNAME node in this file
+# or by creating a config-USERNAME-UNAME.yaml file and adding a "userYank" node in it.
+##################
+defaultYank:
+  # Base root path against which relative paths may be resolved
+  # ROOT: '${HOME}/buildd'
+  root: './'
+
+  # Specific paths - if using a relative path, will be resolved against "root"
+  # You may mix env variables as well (${HOME}) - see puke documentation for more
+  paths:
+      tmp: 'tmp'
+      build: 'build'
+      deploy: 'lib'
+      doc: 'doc'
+
+  links:
+      # Where to find airstraip dependency
+      allowed:
+        url: 'h.ackitup.net'
+
+  settings:
+      # Instruct puke to copy trunk versions of the shims - only of use for me:
+      # VARIANT: "bleed"
+      variant: "bleednot"
+
+
+##################
+# Private for contributors and wiu deployment needs
+##################
+
+# Integration
+config-jenkins-linux:
+  # ROOT: '/opt/puke/jenkins-roxee'
+  paths:
+    deploy: '/var/www/deploy/static'
+  # DOC_ROOT: '/var/www/deploy/static/doc/spitfire'
+  links:
+      allowed:
+        url: 'app.sn.ackitup.net'
+
+# Roxee box
+config-roxee-Linux:
+  paths:
+    deploy: '/home/roxee/www/static'
+    # DOC_ROOT: '/home/roxee/doc/spitfire'
+  links:
+      allowed:
+        url: 'app.roxee.net'
+
+config-dmp-darwin:
+  root: "${HOME}/buildd/stage.webitup.org"
+  paths:
+    deploy: "${HOME}/buildd/deploy.webitup.org/web/static"
+
+  links:
+      allowed:
+        url: 'app.loft.sn.ackitup.net'
+
+# Raildecom workin
+yank:
+  paths:
+    deploy: '${HOME}/workspace/webitup/deploy/static'
+  links:
+      allowed:
+        url: 'app.sn.ackitup.net'
+
+

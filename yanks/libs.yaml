@@ -17,7 +17,7 @@ yanks:
       # http://redactorjs.com/webdownload/redactor/get/#redactor.zip"
     Build:
       type: "zip"
-      dir: "#redactor/redactor"
+      dir: "#redactor83/redactor"
       production:
         redactor-stable.js: "redactor.js"
         redactor-stable.css: "redactor.css"
@@ -31,18 +31,19 @@ yanks:
       mousetrap-stable.js: 'https://raw.github.com/jsBoot/mousetrap/master/mousetrap.js'
       mousetrap-trunk.js: 'https://raw.github.com/ccampbell/mousetrap/master/mousetrap.js'
 
-  # i18n JS
+  # i18n JS - XXX RC3 available
   i18n:
     License: "MIT"
     Destination: "libs"
     Source:
-      i18n-3rc2.zip: "https://github.com/fnando/i18n-js/zipball/v3.0.0.rc2"
+      i18n-3rc3.zip: "https://github.com/fnando/i18n-js/zipball/v3.0.0.rc3"
       i18n-trunk.js: "https://raw.github.com/fnando/i18n-js/master/vendor/assets/javascripts/i18n.js"
     Build:
       type: "zip"
-      dir: "v3.0.0/fnando-i18n-js-5034008"
+      dir: "v3.0.0/fnando-i18n-js-e51df62"
       production:
-        i18n-3rc2.js: "app/assets/javascripts/i18n.js"
+        i18n-3.0.js: "app/assets/javascripts/i18n.js"
+        i18n-stable.js: "app/assets/javascripts/i18n.js"
 
   raphael:
     License: "MIT"
@@ -54,14 +55,16 @@ yanks:
       type: "zip"
       dir: "v2.1/DmitryBaranovskiy-raphael-7ba1a82"
       production:
-        raphael-2.1.0.js: "raphael.js"
+        raphael-2.1.js: "raphael.js"
+        raphael-stable.js: "raphael.js"
 
   # lightweight javascript date library for parsing, manipulating, and formatting dates.
   moment:
     License: "MIT"
     Destination: "libs"
     Source:
-      moment-1.7.0.js: "https://raw.github.com/timrwood/moment/1.7.0/moment.js"
+      moment-1.7.js: "https://raw.github.com/timrwood/moment/1.7.2/moment.js"
+      moment-stable.js: "https://raw.github.com/timrwood/moment/1.7.2/moment.js"
       moment-trunk.js: "https://raw.github.com/timrwood/moment/0ee19c2e8121d3e6d4d011233bb23271bea308ab/moment.js"
 
   # Should/may be turned into shims rather
@@ -97,4 +100,5 @@ yanks:
     License: "MIT"
     Destination: "libs"
     Source:
-      modernizr-2.6.2.js: "http://modernizr.com/downloads/modernizr-2.6.2.js"
+      modernizr-2.6.js: "http://modernizr.com/downloads/modernizr-2.6.2.js"
+      modernizr-stable.js: "http://modernizr.com/downloads/modernizr-2.6.2.js"

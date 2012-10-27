@@ -2,36 +2,23 @@
 # -*- coding: utf8 -*-
 
 global PH
-import pukehelpers as PH
-import yaml
+import helpers as PH
+import re
 
 @task("Default task")
 def default():
-  pass
-  # executeTask("build", "redactor")
-  # executeTask("deploy")
-
-@task("Calling all interesting tasks")
-def all():
-  Cache.clean()
   executeTask("build")
-  # Because sometime you are in a hurry :)
   executeTask("deploy")
+
+@task("All")
+def all():
+  executeTask("build")
   executeTask("mint")
   executeTask("deploy")
   executeTask("stats")
-#    executeTask("flint")
-#    executeTask("lint")
 
 
-# XXX remove comments from html
-# XXX have a default favicon
-# XXX have a placeholder homepage
-# XXX humans: <link type="text/plain" rel="author" href="http://domain/humans.txt" />
-# humanstxt.org
-
-
-@task("Washing-up the taupe :) - cautious mode")
+@task("Wash the taupe!")
 def clean():
   PH.cleaner()
 
@@ -43,57 +30,53 @@ def deploy():
   PH.deployer(False)
 
 
-@task("Stats report")
+@task("Stats report deploy")
 def stats():
-  PH.stater(Yak.BUILD_ROOT)
+  PH.stater(Yak.build_root)
 
-@task("Linting")
-def lint():
-  PH.linter(Yak.BUILD_ROOT)
-
-@task("Flinting")
-def flint():
-  PH.flinter(Yak.BUILD_ROOT)
 
 @task("Minting")
 def mint():
-  # Ember doesn't survive strict
-  PH.minter(Yak.BUILD_ROOT, strict = True)
-  # Yahoo and yep don't support strict
-  list = FileList(Yak.BUILD_ROOT, filter = "*ember*,*yahoo*,*yepnope*", exclude = "*-min.js")
-  for burne in list.get():
-    minify(burne, re.sub(r"(.*).js$", r"\1-min.js", burne), strict = False)
+  # These dont survive strict
+  PH.minter(Yak.build_root, filter = "*ember*,*yahoo.js,*yepnope.js,*modernizr*,*jasmine*", strict = False)
+  PH.minter(Yak.build_root, excluding = "*ember*,*yahoo*,*yepnope*,*modernizr*,*jasmine*", strict = True)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build(buildonly = False):
   # Crossdomain
   sed = Sed()
   sed.add("<\!--.*-->\s*", "")
-  sed.add("{PUKE-DOM}", Yak.ALLOWED_DOMAIN)
-  combine("src/crossdomain.xml", Yak.BUILD_ROOT + "/crossdomain.xml", replace = sed)
+  combine("src/crossdomain.xml", Yak.build_root + "/crossdomain.xml", replace = sed)
 
   # Robots
   sed = Sed()
   # XXX partially fucked-up
   sed.add("(?:^|\n+)(?:#[^\n]*\n*)+", "")
-  combine("src/robots.txt", Yak.BUILD_ROOT + "/robots.txt", replace = sed)
+  combine("src/robots.txt", Yak.build_root + "/robots.txt", replace = sed)
 
   # Deepcopy other stuff
   sed = Sed()
   PH.replacer(sed)
   list = FileList("src/", exclude="*robots.txt,*crossdomain.xml,*index.html")
-  deepcopy(list, Yak.BUILD_ROOT, replace=sed)
+  deepcopy(list, Yak.build_root, replace=sed)
 
 
   # Process the remote leaves
-  description = []
+  description = {}
 
-  for (name, packinfo) in Yak.COLLECTION.items():
+  # Yak.collection.items()
+  colls = PH.getyanks()
+  # print Yak.collection
+  # for name in Yak.collection:
+  #   print name
+  for name in colls:
+    packinfo = colls[name]
     # Temporary and build output directories definitions
-    tmpdir = FileSystem.join(Yak.TMP_ROOT, "lib", packinfo["Destination"], name)
-    builddir = FileSystem.join(Yak.BUILD_ROOT, "lib", packinfo["Destination"], name)
+    tmpdir = FileSystem.join(Yak.tmp_root, "lib", packinfo["Destination"], name)
+    builddir = FileSystem.join(Yak.build_root, "lib", packinfo["Destination"], name)
 
     desclist = []
+    marker = 'lib/%s/' % packinfo["Destination"]
     for(localname, url) in packinfo["Source"].items():
       # Do the fetch of 
       PH.fetchone(url, tmpdir, localname)
@@ -105,7 +88,7 @@ def build(buildonly = False):
         #   FileSystem.makedir(FileSystem.dirname(d));
         FileSystem.copyfile(f, d)
         # Augment desclist with provided localname
-        desclist += [FileSystem.join(name, localname)]
+        desclist += [FileSystem.join(marker, name, localname)]
 
     if "Build" in packinfo:
       buildinfo = packinfo["Build"]
@@ -121,7 +104,7 @@ def build(buildonly = False):
       for(local, builded) in production.items():
         f = FileSystem.join(tmpdir, builded)
         d = FileSystem.join(builddir, local)
-        desclist += [FileSystem.join(name, local)]
+        desclist += [FileSystem.join(marker, name, local)]
         if FileSystem.isfile(f):
           FileSystem.copyfile(f, d)
         elif FileSystem.isdir(f):
@@ -142,20 +125,28 @@ def build(buildonly = False):
 
       # desclist = desclist + production.keys()
 
-    marker = 'lib/%s/' % packinfo["Destination"]
-    description.append('"%s": [\n"%s%s"\n]' % (name, marker, ('",\n"%s' % marker).join(desclist)))
+    description[name] = desclist
+    # description[name] = "%s%s" % (name, marker, ('",\n"%s' % marker).join(desclist)))
+
     # miam += """
     #   %s:
     #     ["%s%s"]
     # """ % (name, marker, ('", "%s' % marker).join(desclist))
-  FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "airstrip.yaml"), yaml.dump(yaml.load('\n'.join(description))))
+  # FileSystem.writefile(FileSystem.join(Yak.build_root, "airstrip.yaml"), yaml.dump(yaml.load('\n'.join(description))))
 
+
+    # print json.dumps(description)
+    # raise "toto"
+
+  shortversion = Yak.package['version'].split('-').pop(0).split('.')
+  shortversion = shortversion[0] + "." + shortversion[1]
+  PH.describe(shortversion, "airstrip", description)
   # Write description file
-  # FileSystem.writefile(FileSystem.join(Yak.BUILD_ROOT, "static.json"), '{%s}' % ',\n'.join(description))
+  # FileSystem.writefile(FileSystem.join(Yak.build_root, "airstrip.json"), '{%s}' % ',\n'.join(description))
 
   # Build-up the description file
   file = "src/index.html"
-  sed.add("{PUKE-LIST}", '{%s}' % ',\n'.join(description))
-  deepcopy(file, Yak.BUILD_ROOT, replace=sed)
+  sed.add("{PUKE-LIST}", json.dumps(description, indent=4))
+  deepcopy(file, Yak.build_root, replace=sed)
 
 

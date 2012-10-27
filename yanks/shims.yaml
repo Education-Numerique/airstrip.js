@@ -11,7 +11,6 @@ yanks:
     License: "PublicDomain"
     Destination: "shims-plus"
     Source:
-      stacktrace-0.3.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.3.js"
       stacktrace-0.4.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.4.js"
       stacktrace-stable.js: "https://raw.github.com/jsBoot/javascript-stacktrace/master/stacktrace.js"
       stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
@@ -44,8 +43,10 @@ yanks:
       type: "zip"
       dir: "v2.0/kriskowal-es5-shim-a474ef7"
       production:
-        es5-shim-2.0.2.js: "es5-shim.js"
-        es5-sham-2.0.2.js: "es5-sham.js"
+        es5-shim-2.0.js: "es5-shim.js"
+        es5-sham-2.0.js: "es5-sham.js"
+        es5-shim-stable.js: "es5-shim.js"
+        es5-sham-stable.js: "es5-sham.js"
 
 
 
@@ -61,7 +62,8 @@ yanks:
       type: "zip"
       dir: "v3.2/bestiejs-json3-a9559aa"
       production:
-        json3-3.2.4.js: "lib/json3.js"
+        json3-3.2.js: "lib/json3.js"
+        json3-stable.js: "lib/json3.js"
 
   # A nice shim to emulate console when there is none (no "release" per-se either)
   # XXX Upstream doesn't version
@@ -90,7 +92,8 @@ yanks:
       type: "zip"
       dir: "ie7-2.1%28beta4%29/ie7"
       production:
-        ie9-2.1b4.js: "IE9.js"
+        ie9-2.1.js: "IE9.js"
+        ie9-stable.js: "IE9.js"
 
   pie:
     License: ["Apache", "GPL"]
@@ -103,9 +106,11 @@ yanks:
       production:
       # XXX remember to send - also, need to be copied over the same domain
       # Content-type: text/x-component
-        pie-1.0.0.htc: "PIE.htc"
+        pie-1.0.htc: "PIE.htc"
       # The js approach needs detaching and attaching to be done manually
-        pie-1.0.0.js: "PIE.js"
+        pie-1.0.js: "PIE.js"
 
+        pie-stable.htc: "PIE.htc"
+        pie-stable.js: "PIE.js"
 
 

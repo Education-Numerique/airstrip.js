@@ -1,0 +1,50 @@
+{
+  "name": "Airstrip.js",
+  "version": "1.0.0-rc1",
+
+  "description": "A third-party manager and build tool for javascript projects.",
+  "keywords": ["third-party", "build", "manager", "dependencies"],
+  "maintainers": [
+    {
+      "name": "Mangled Deutz",
+      "email": "dev@webitup.fr",
+      "web": "http://www.webitup.fr"
+    }
+  ],
+  "contributors":[
+    {
+      "name": "Mangled Deutz",
+      "email": "dev@webitup.fr",
+      "web": "http://www.webitup.fr"
+    },
+    {
+      "name": "Raildecom",
+      "email": "dev@webitup.fr",
+      "web": "http://www.webitup.fr"
+    }
+  ],
+  "bugs": "https://github.com/jsBoot/airstrip.js/issues",
+  "licenses": [
+     {
+         "type": "MIT",
+         "url": "http://en.wikipedia.org/wiki/MIT_License"
+     }
+  ],
+  "repositories": [
+         {
+              "type": "git",
+              "url": "https://github.com/jsBoot/airstrip.js.git"
+         }
+  ],
+  "dependencies": {
+  },
+
+  "homepage": "http://airstrip.jsboot.com",
+
+  "directories": {
+    "src": "src",
+    "doc": "build/doc",
+    "test": "build/dist/airstrip.js/1.0/tests",
+    "lib": "build/dist/airstrip.js/1.0/"
+  }
+}

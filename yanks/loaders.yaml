@@ -7,7 +7,8 @@ yanks:
     License: "BSD"
     Destination: "loaders"
     Source:
-      require-2.0.6.js: "http://requirejs.org/docs/release/2.0.6/comments/require.js"
+      require-2.1.js: "http://requirejs.org/docs/release/2.1.1/comments/require.js"
+      require-stable.js: "http://requirejs.org/docs/release/2.1.1/comments/require.js"
       # requirejs-2.0.6.js: "https://github.com/jrburke/requirejs/tarball/2.0.6"
       require-trunk.js: "https://raw.github.com/jrburke/requirejs/master/require.js"
 
@@ -17,8 +18,9 @@ yanks:
     License: "BSD"
     Destination: "loaders"
     Source:
-      yui.base-3.6.0.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
-      yui.base-trunk.js: "http://yui.yahooapis.com/3.6.0/build/yui-base/yui-base.js"
+      yui.base-3.7.js: "http://yui.yahooapis.com/3.7.3/build/yui-base/yui-base.js"
+      yui.base-stable.js: "http://yui.yahooapis.com/3.7.3/build/yui-base/yui-base.js"
+      yui.base-trunk.js: "http://yui.yahooapis.com/3.7.3/build/yui-base/yui-base.js"
 
   # XXX upstream is dead
   lab:
@@ -32,13 +34,15 @@ yanks:
       type: 'zip'
       dir: 'LABjs-2.0.3'
       production:
-        lab-2.0.3.js: 'LAB.src.js'
+        lab-2.0.js: 'LAB.src.js'
+        lab-stable.js: 'LAB.src.js'
 
   yepnope:
     License: ["WTFPL", "MIT", "BSD"]
     Destination: "loaders"
     Source:
-      yepnope-1.5.4.js: "https://raw.github.com/SlexAxton/yepnope.js/v1.5.4/yepnope.js"
+      yepnope-1.5.js: "https://raw.github.com/SlexAxton/yepnope.js/v1.5.4/yepnope.js"
+      yepnope-stable.js: "https://raw.github.com/SlexAxton/yepnope.js/v1.5.4/yepnope.js"
       yepnope-trunk.js: "https://raw.github.com/SlexAxton/yepnope.js/master/yepnope.js"
 
 
@@ -47,6 +51,7 @@ yanks:
     Destination: "loaders"
     Source:
       head-0.96.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
+      head-stable.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
       git: "git://github.com/headjs/headjs.git"
     Build:
       type: "make"

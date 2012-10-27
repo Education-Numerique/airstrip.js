@@ -1,30 +1,93 @@
 yanks:
   # XXX - no https
   # XXX - dead - may be forked on github instead / replaced
-  # investigate http://code.google.com/p/google-code-prettify/
-  sh:
-    License: "GPL"
+  # deprecated for http://code.google.com/p/google-code-prettify/
+  # sh:
+  #   License: "GPL"
+  #   Destination: "tooling"
+  #   Source:
+  #     # "Trunk" (the project is ghost town)
+  #     sh.core-trunk.js: "http://shjs.sourceforge.net/sh_main.js"
+  #     sh.js-trunk.js: "http://shjs.sourceforge.net/lang/sh_javascript.js"
+  #     sh.core-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
+  #     # Latest stable as of 201208
+  #     shjs-0.6.zip: "http://freefr.dl.sourceforge.net/project/shjs/shjs/0.6/shjs-0.6.zip"
+  #   Build:
+  #     type: "zip"
+  #     dir: "shjs-0.6/shjs-0.6"
+  #     production:
+  #       sh.core-0.6.js: "sh_main.js"
+  #       sh.js-0.6.js: "lang/sh_javascript.js"
+  #       sh.core-0.6.css: "sh_style.css"
+
+
+  prettify:
+    License: "Apache"
     Destination: "tooling"
     Source:
-      # "Trunk" (the project is ghost town)
-      sh.core-trunk.js: "http://shjs.sourceforge.net/sh_main.js"
-      sh.js-trunk.js: "http://shjs.sourceforge.net/lang/sh_javascript.js"
-      sh.core-trunk.css: "http://shjs.sourceforge.net/sh_style.css"
-      # Latest stable as of 201208
-      shjs-0.6.zip: "http://freefr.dl.sourceforge.net/project/shjs/shjs/0.6/shjs-0.6.zip"
+      pretty-trunk.svn: "http://google-code-prettify.googlecode.com/svn/trunk"
+      pretty-1.0.svn: "http://google-code-prettify.googlecode.com/svn/branches/release-1-Jun-2011"
     Build:
-      type: "zip"
-      dir: "shjs-0.6/shjs-0.6"
+      type: "sh"
+      args: "make; cd ../trunk; make"
+      dir: "release-1-Jun-2011"
       production:
-        sh.core-0.6.js: "sh_main.js"
-        sh.js-0.6.js: "lang/sh_javascript.js"
-        sh.core-0.6.css: "sh_style.css"
+        prettify-1.0.js: "distrib/google-code-prettify/prettify.js"
+        prettify-1.0.css: "distrib/google-code-prettify/prettify.css"
+
+        lang-css-1.0.js: "distrib/google-code-prettify/lang-css.js"
+        lang-sql-1.0.js: "distrib/google-code-prettify/lang-sql.js"
+        lang-yaml-1.0.js: "distrib/google-code-prettify/lang-yaml.js"
+
+        prettify-stable.js: "distrib/google-code-prettify/prettify.js"
+        prettify-stable.css: "distrib/google-code-prettify/prettify.css"
+
+        lang-css-stable.js: "distrib/google-code-prettify/lang-css.js"
+        lang-sql-stable.js: "distrib/google-code-prettify/lang-sql.js"
+        lang-yaml-stable.js: "distrib/google-code-prettify/lang-yaml.js"
+
+        prettify-trunk.js: "../trunk/distrib/google-code-prettify/prettify.js"
+        prettify-trunk.css: "../trunk/distrib/google-code-prettify/prettify.css"
+
+        lang-css-trunk.js: "../trunk/distrib/google-code-prettify/lang-css.js"
+        lang-sql-trunk.js: "../trunk/distrib/google-code-prettify/lang-sql.js"
+        lang-yaml-trunk.js: "../trunk/distrib/google-code-prettify/lang-yaml.js"
+
+   #   987 distrib/google-code-prettify/lang-apollo.js
+   #  2808 src/lang-clj.js
+   #  1444 distrib/google-code-prettify/lang-clj.js
+   #  2348 src/lang-go.js
+   #   282 distrib/google-code-prettify/lang-go.js
+   #  4649 src/lang-hs.js
+   #   569 distrib/google-code-prettify/lang-hs.js
+   #  3553 src/lang-lisp.js
+   #   755 distrib/google-code-prettify/lang-lisp.js
+   #  2443 src/lang-lua.js
+   #   552 distrib/google-code-prettify/lang-lua.js
+   #  2976 src/lang-ml.js
+   #  1105 distrib/google-code-prettify/lang-ml.js
+   #  3022 src/lang-n.js
+   #  1400 distrib/google-code-prettify/lang-n.js
+   #  1294 src/lang-proto.js
+   #   302 distrib/google-code-prettify/lang-proto.js
+   #  2564 src/lang-scala.js
+   #   915 distrib/google-code-prettify/lang-scala.js
+   #  1861 src/lang-tex.js
+   #   285 distrib/google-code-prettify/lang-tex.js
+   #  3514 src/lang-vb.js
+   #  1713 distrib/google-code-prettify/lang-vb.js
+   #  2230 src/lang-vhdl.js
+   #  1449 distrib/google-code-prettify/lang-vhdl.js
+   #  1911 src/lang-wiki.js
+   #   543 distrib/google-code-prettify/lang-wiki.js
+   # 25439 src/lang-xq.js
+   # 23242 distrib/google-code-prettify/lang-xq.js
 
   jasmine:
     License: "MIT"
     Destination: "tooling"
     Source:
-      jasmine-1.2.0.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+      jasmine-1.2.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
       git: "git://github.com/pivotal/jasmine.git"
     Build:
       type: "thor"
@@ -32,16 +95,23 @@ yanks:
       dir: "jasmine"
       production:
       # Due to the nature of jasmine here, this is a small trick to get stuff also from the package itself 
-        jasmine.core-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
-        jasmine.html-1.2.0.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
-        jasmine.html-1.2.0.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
+        jasmine.core-1.2.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
+        jasmine.html-1.2.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
+        jasmine.html-1.2.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
+
+        jasmine.core-stable.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.js"
+        jasmine.html-stable.js: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine-html.js"
+        jasmine.html-stable.css: "../jasmine-standalone-1.2.0/lib/jasmine-1.2.0/jasmine.css"
+
         jasmine.core-trunk.js: "lib/jasmine-core/jasmine.js"
         jasmine.html-trunk.js: "lib/jasmine-core/jasmine-html.js"
         jasmine.html-trunk.css: "lib/jasmine-core/jasmine.css"
 
   ietester:
-    License: "?"
+    License: "Free both for personal and professional usage"
     Destination: "tooling/bin"
     Source:
-      install-ietester-v0.4.12.exe: "http://www.my-debugbar.com/ietester/install-ietester-v0.4.12.exe"
+      install-ietester-0.4.exe: "http://www.my-debugbar.com/ietester/install-ietester-v0.4.12.exe"
+      install-ietester-stable.exe: "http://www.my-debugbar.com/ietester/install-ietester-v0.4.12.exe"
+      install-ietester-trunk.exe: "http://www.my-debugbar.com/ietester/install-ietester-v0.4.12.exe"
 
