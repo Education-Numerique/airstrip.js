@@ -42,7 +42,7 @@ How to use
 - install puke: `pip install puke` (if you don't have pip, read http://www.pip-installer.org/en/latest/installing.html)
 - build it as-is: `cd aistrip.js; puke all`
 
-Check the "build" directory.
+Serve the "build" directory from your "static" webserver. Check the airstrip.json file for a list of builded stuff (replace .js / .css by -min.js / -min.css for minified versions).
 
 Doesn't work?
 -------------
@@ -72,11 +72,16 @@ Build result
 
 In your path: deploy directory you will find:
 - a number of "static" resources, copied from the src directory - these are mondane, edit or remove them at will
-- a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), 
-loaders (requirejs, labjs), plugins, tooling, shims, etc
+- a lib directory, with category subdirectories, containing said built dependencies: frameworks (emberjs, jquery), loaders (requirejs, labjs), plugins, tooling, shims, etc
 - an airstrip.json file, containing a list of everything that has been built - this is the manifest to be used in other projects or build systems using this
 
 Every dependency has been built or fetched, in versions specified in the yaml file, renamed, and minified (we use google closure to minify both css and js files, ECMA5, strict when possible).
+
+How you organize your versions management is up-to-you, but we do try to provide for each library in:
+- a "trunk" version
+- simplify versions names to match only major.minor
+- never remove a version once added
+- have a "stable" version that points to the currently recommended version
 
 Listing and managing simple dependencies
 -------------
@@ -180,10 +185,9 @@ For now, the following build types are "supported":
 
 You can pass random additional arguments to the command if you want, adding an "extra" node in the "Build" node.
 
-Specifying any other build type (like "zip") will actually trigger no build operation, but is a way to let
-you specify a "working" directory and copy files operations (using the "production" node) from a random dir ("dir").
+Specifying any other build type (like "zip") will actually trigger no build operation, but is a way to let you specify a "working" directory and copy files operations (using the "production" node) from a random dir ("dir").
 
-There also exist the experimental "sh" build type. By specifying "extra" you can perform *any* build operations that way.
+There also exist the experimental "sh" build type. By specifying "extra" you can perform *any* build operations that way that will get executed in a shell.
 
 
 License

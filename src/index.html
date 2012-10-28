@@ -13,18 +13,57 @@
   <meta name="author" content="Web It Up">
   <link rel="shortcut icon" href="favicon.ico">
 
-  <!-- dean ie7 -->
   <!--[if lt IE 9]>
   <script src="lib/shims/ie7/ie9-stable-min.js"></script>
   <![endif]-->
 
-  <!-- Out stylesheet -->
-  <link rel="stylesheet" href="index-min.css">
+  <style type="text/css" media="all">
+    @import url(lib/frameworks/normalize/normalize-stable-min.css);
+    @import url(lib/frameworks/h5bp/html5-css-stable-min.css);
+    /* Bootstrap already do provide these */
+    @import url(lib/frameworks/bootstrap/stable/css/bootstrap.core-stable-min.css);
+    @import url(lib/frameworks/bootstrap/stable/css/bootstrap.responsive-stable-min.css);
 
-  <!-- Modernizr, to prevent FOUC -->
+    body {
+      padding-top: 60px;
+    }
+
+    #very-outdated-browser, #outdated-browser, #unsupported-browser{
+      background-color: red;
+      border: 1px solid gray;
+      width: 90%;
+      margin: auto;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #outdated-browser{
+      background-color: orange;
+    }
+
+    .ie6 #outdated-browser {
+      display: none;
+    }
+
+    /**
+     * no-js style handling
+     */
+    .no-js body > *{
+      display: none;
+    }
+
+    .no-js header{
+      display: block !important;
+    }
+
+    .no-js noscript{
+      display: block !important;
+    }
+  </style>
+
+  <!-- Modernizr -->
   <!-- XXX modernizr interest is more in its tests themselves - predates spitfire 
   Should find a better crossover between the two -->
-
   <script src="lib/libs/modernizr/modernizr-stable-min.js"></script>
 
   <!--
@@ -108,7 +147,7 @@
     <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
   <![endif]-->
 
-  <script src="lib/frameworks/jquery/jquery-stable-min.js"></script>
-  <script src="lib/frameworks/bootstrap/bootstrap.core-stable-min.js"></script>
+  <script async="true" src="lib/frameworks/jquery/jquery-stable-min.js"></script>
+  <script async="true" src="lib/frameworks/bootstrap/bootstrap.core-stable-min.js"></script>
 </body>
 </html>
