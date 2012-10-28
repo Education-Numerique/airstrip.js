@@ -38,8 +38,8 @@ def stats():
 @task("Minting")
 def mint():
   # These dont survive strict
-  PH.minter(Yak.build_root, filter = "*ember*,*yahoo.js,*yepnope.js,*modernizr*,*jasmine*", strict = False)
-  PH.minter(Yak.build_root, excluding = "*ember*,*yahoo*,*yepnope*,*modernizr*,*jasmine*", strict = True)
+  PH.minter(Yak.build_root, filter = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js", strict = False)
+  PH.minter(Yak.build_root, excluding = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js", strict = True)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build(buildonly = False):
