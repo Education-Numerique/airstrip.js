@@ -26,12 +26,13 @@ yanks:
     Destination: "tooling"
     Source:
       pretty-trunk.svn: "http://google-code-prettify.googlecode.com/svn/trunk"
+      pretty.zip: "http://google-code-prettify.googlecode.com/files/prettify-1-Jun-2011.tar.bz2"
       pretty-1.0.svn: "http://google-code-prettify.googlecode.com/svn/branches/release-1-Jun-2011"
     Build:
       type: "sh"
-      # args: "make; cd ../trunk; make"
-      args: "cd ../trunk; make"
-      dir: "release-1-Jun-2011"
+      dir: "prettify-1-Jun-2011.tar/google-code-prettify"
+      args: "cd ../../trunk; make"
+      # dir: "release-1-Jun-2011"
       production:
         prettify-1.0.js: "distrib/google-code-prettify/prettify.js"
         prettify-1.0.css: "distrib/google-code-prettify/prettify.css"
@@ -47,12 +48,12 @@ yanks:
         lang-sql-stable.js: "distrib/google-code-prettify/lang-sql.js"
         lang-yaml-stable.js: "distrib/google-code-prettify/lang-yaml.js"
 
-        prettify-trunk.js: "../trunk/distrib/google-code-prettify/prettify.js"
-        prettify-trunk.css: "../trunk/distrib/google-code-prettify/prettify.css"
+        prettify-trunk.js: "../../trunk/distrib/google-code-prettify/prettify.js"
+        prettify-trunk.css: "../../trunk/distrib/google-code-prettify/prettify.css"
 
-        lang-css-trunk.js: "../trunk/distrib/google-code-prettify/lang-css.js"
-        lang-sql-trunk.js: "../trunk/distrib/google-code-prettify/lang-sql.js"
-        lang-yaml-trunk.js: "../trunk/distrib/google-code-prettify/lang-yaml.js"
+        lang-css-trunk.js: "../../trunk/distrib/google-code-prettify/lang-css.js"
+        lang-sql-trunk.js: "../../trunk/distrib/google-code-prettify/lang-sql.js"
+        lang-yaml-trunk.js: "../../trunk/distrib/google-code-prettify/lang-yaml.js"
 
    #   987 distrib/google-code-prettify/lang-apollo.js
    #  2808 src/lang-clj.js
