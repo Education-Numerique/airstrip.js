@@ -29,7 +29,8 @@ yanks:
       pretty-1.0.svn: "http://google-code-prettify.googlecode.com/svn/branches/release-1-Jun-2011"
     Build:
       type: "sh"
-      args: "make; cd ../trunk; make"
+      # args: "make; cd ../trunk; make"
+      args: "cd ../trunk; make"
       dir: "release-1-Jun-2011"
       production:
         prettify-1.0.js: "distrib/google-code-prettify/prettify.js"
