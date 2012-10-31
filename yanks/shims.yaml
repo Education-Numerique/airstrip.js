@@ -25,7 +25,7 @@ yanks:
     Source:
       # Has some changes to fit in jsboot
       postmessage-stable.js: "https://raw.github.com/jsBoot/jquery-postmessage/master/jquery.ba-postmessage.js"
-      postmessage-trunk.js: "http://github.com/cowboy/jquery-postmessage/raw/master/jquery.ba-postmessage.js"
+      postmessage-trunk.js: "https://raw.github.com/cowboy/jquery-postmessage/master/jquery.ba-postmessage.js"
 
 
   # -----------------------------
