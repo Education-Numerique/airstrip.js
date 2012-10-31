@@ -73,6 +73,7 @@ yanks:
       production:
         html5-css-4.0.css: "css/main.css"
         html5-css-stable.css: "css/main.css"
+        html5-css-trunk.css: "css/main.css"
 
 
   backbone:
