@@ -50,8 +50,8 @@ yanks:
     License: "MIT"
     Destination: "loaders"
     Source:
-      head-0.96.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
-      head-stable.js: "https://raw.github.com/headjs/headjs/v0.96/dist/head.js"
+      head-0.9.js: "https://raw.github.com/headjs/headjs/v0.98/dist/head.js"
+      head-stable.js: "https://raw.github.com/headjs/headjs/v0.98/dist/head.js"
       git: "git://github.com/headjs/headjs.git"
     Build:
       type: "make"

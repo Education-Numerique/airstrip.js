@@ -45,7 +45,7 @@ yanks:
       validate-stable.js: https://raw.github.com/jzaefferer/jquery-validation/1.10.0/jquery.validate.js
       validate-trunk.js: https://raw.github.com/jzaefferer/jquery-validation/master/jquery.validate.js
 
-  # Stylable form elements
+  # Stylable form elements --- XXX lagging behind!
   uniform:
     License: "MIT"
     Destination: "plugins/jquery"
@@ -72,7 +72,7 @@ yanks:
     License: ["GPL", "BSD"]
     Destination: "plugins/jquery"
     Source:
-      datatable-1.9.zip: "http://datatables.net/releases/DataTables-1.9.3.zip"
+      datatable-1.9.zip: "http://datatables.net/releases/DataTables-1.9.4.zip"
 
       datatable-trunk.js: "https://raw.github.com/DataTables/DataTables/master/media/js/jquery.dataTables.js"
       trunk/css/datatable-trunk.css: "https://raw.github.com/DataTables/DataTables/master/media/css/jquery.dataTables.css"
@@ -88,7 +88,7 @@ yanks:
       trunk/images/sort_desc_disabled.png: "https://raw.github.com/DataTables/DataTables/master/media/images/sort_desc_disabled.png"
     Build:
       type: "zip"
-      dir: "DataTables-1.9.3/DataTables-1.9.3"
+      dir: "DataTables-1.9.4/DataTables-1.9.4"
       production:
         datatable-1.9.js: "media/js/jquery.dataTables.js"
         1.9/css/datatable-1.9.css: "media/css/jquery.dataTables.css"
@@ -98,7 +98,6 @@ yanks:
         stable/css/datatable-stable.css: "media/css/jquery.dataTables.css"
         stable/images: "media/images"
 
-  # XXX not "really" versioned - should be forked
   hoverIntent:
     License: "MIT"
     Destination: "plugins/jquery"

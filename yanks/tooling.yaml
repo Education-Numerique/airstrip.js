@@ -89,7 +89,7 @@ yanks:
     License: "MIT"
     Destination: "tooling"
     Source:
-      jasmine-1.2.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
+      jasmine-1.2.0.zip: "https://github.com/downloads/pivotal/jasmine/jasmine-standalone-1.2.0.zip"
       git: "git://github.com/pivotal/jasmine.git"
     Build:
       type: "thor"
