@@ -24,6 +24,41 @@ yanks:
         redactor-trunk.js: "redactor.js"
         redactor-trunk.css: "redactor.css"
 
+
+  # XXX this is TOTAL FUCKING CRAP
+  mathjax:
+    License:
+    Destination: "libs"
+    Source:
+      zip: "https://github.com/mathjax/MathJax/zipball/v2.1-latest"
+      # mathjax-2.1.js: "http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js"
+      # mathjax-stable.js: "http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js"
+      # mathjax-trunk.js: "http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js"
+    Build:
+      type: "zip"
+      dir: "v2/mathjax-MathJax-24a378e"
+      # cp -R unpacked/extensions ."
+      production:
+        2.1/MathJax.js: "unpacked/MathJax.js"
+        2.1/extensions: "unpacked/extensions"
+        2.1/config: "unpacked/config"
+        2.1/jax: "unpacked/jax"
+        stable/MathJax.js: "unpacked/MathJax.js"
+        stable/extensions: "unpacked/extensions"
+        stable/config: "unpacked/config"
+        stable/jax: "unpacked/jax"
+        latest/MathJax.js: "unpacked/MathJax.js"
+        latest/extensions: "unpacked/extensions"
+        latest/config: "unpacked/config"
+        latest/jax: "unpacked/jax"
+        trunk/MathJax.js: "unpacked/MathJax.js"
+        trunk/extensions: "unpacked/extensions"
+        trunk/config: "unpacked/config"
+        trunk/jax: "unpacked/jax"
+        # Total, impossible fucking crap
+        images: "images"
+
+
   mousetrap:
     License: "Apache"
     Destination: "libs"
