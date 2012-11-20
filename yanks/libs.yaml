@@ -57,6 +57,7 @@ yanks:
         trunk/jax: "unpacked/jax"
         # Total, impossible fucking crap
         images: "images"
+        fonts: "fonts"
 
 
   mousetrap:
