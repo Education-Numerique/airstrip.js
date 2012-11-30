@@ -38,10 +38,10 @@ yanks:
     Source:
       es5-shim-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-shim.js"
       es5-sham-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-sham.js"
-      es5-2.0.4.zip: "https://github.com/kriskowal/es5-shim/zipball/v2.0.4"
+      es5-2.0.5.zip: "https://github.com/kriskowal/es5-shim/zipball/v2.0.5"
     Build:
       type: "zip"
-      dir: "v2.0/kriskowal-es5-shim-3c25776"
+      dir: "v2.0/kriskowal-es5-shim-ff224e9"
       production:
         es5-shim-2.0.js: "es5-shim.js"
         es5-sham-2.0.js: "es5-sham.js"
