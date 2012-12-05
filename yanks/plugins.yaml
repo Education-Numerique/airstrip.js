@@ -47,26 +47,48 @@ yanks:
 
   # Stylable form elements --- XXX lagging behind!
   uniform:
+  #   License: "MIT"
+  #   Destination: "plugins/jquery"
+  #   Source:
+  #     # Has been changed radically
+  #     # uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
+  #     # trunk/css/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css"
+  #     # trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/images/sprite.png"
+
+  #     uniform-1.5.zip: "https://github.com/downloads/pixelmatrix/uniform/uniform.1.5.zip"
+  #   Build:
+  #     type: "zip"
+  #     dir: "uniform.1.5/uniform"
+  #     production:
+  #       uniform-1.5.js: "jquery.uniform.js"
+  #       1.5/css/uniform-1.5.css: "css/uniform.default.css"
+  #       1.5/images/sprite.png: "images/sprite.png"
+
+  #       uniform-stable.js: "jquery.uniform.js"
+  #       stable/css/uniform-stable.css: "css/uniform.default.css"
+  #       stable/images/sprite.png: "images/sprite.png"
+
+  # uniform2:
     License: "MIT"
     Destination: "plugins/jquery"
     Source:
-      # Has been changed radically
-      # uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
-      # trunk/css/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/css/uniform.default.css"
-      # trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/images/sprite.png"
-
-      uniform-1.5.zip: "https://github.com/downloads/pixelmatrix/uniform/uniform.1.5.zip"
+      uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
+      trunk/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/uniform.default.css"
+      trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/sprite.png"
+      trunk/images/bg-input-focus.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input-focus.png"
+      trunk/images/bg-input.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input.png"
+      uniform-1.7.5.zip: "https://github.com/pixelmatrix/uniform/archive/v1.7.5.zip"
     Build:
       type: "zip"
-      dir: "uniform.1.5/uniform"
+      dir: "v1.7.5/uniform-1.7.5"
       production:
-        uniform-1.5.js: "jquery.uniform.js"
-        1.5/css/uniform-1.5.css: "css/uniform.default.css"
-        1.5/images/sprite.png: "images/sprite.png"
+        uniform-1.7.js: "jquery.uniform.js"
+        1.7/css/uniform-1.7.css: "css/uniform.default.css"
+        1.7/images: "images"
 
         uniform-stable.js: "jquery.uniform.js"
         stable/css/uniform-stable.css: "css/uniform.default.css"
-        stable/images/sprite.png: "images/sprite.png"
+        stable/images: "images"
 
   datatable:
     License: ["GPL", "BSD"]
