@@ -42,8 +42,8 @@ def mint():
   #   minify(burne, re.sub(r"(.*).js$", r"\1-min.js", burne), strict = False, ecma3 = True)
   # raise "toto"
   # These dont survive strict
-  PH.minter(Yak.build_root, filter = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js", excluding=",*latest/jax*", strict = False)
-  PH.minter(Yak.build_root, excluding = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js,*latest/jax*", strict = True)
+  PH.minter(Yak.build_root, filter = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js", excluding=",*/jax*,*mathjax/fonts*", strict = False)
+  PH.minter(Yak.build_root, excluding = "*ember*.js,*yahoo*.js,*yepnope*.js,*modernizr*.js,*jasmine*.js,*/jax*,*mathjax/fonts*", strict = True)
 
 @task("Deploying the static ressources, including approved third party dependencies")
 def build(buildonly = False):
