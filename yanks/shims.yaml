@@ -6,26 +6,22 @@ yanks:
   # -----------------------------
   # Enhancements shims
   # -----------------------------
-  # XXX Needs pull request as there is fixes for Safari strict mode not in 0.3
+
+  # Useful in debug mode only
+  console:
+    License: "MIT"
+    Destination: "shims-plus"
+    Source:
+      console-stable.js: "https://raw.github.com/jsBoot/console-shim/pullme/console-shim.js"
+      console-trunk.js: "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
+
+  # XXX pull request to get for callee
   stacktrace:
     License: "PublicDomain"
     Destination: "shims-plus"
     Source:
-      stacktrace-0.4.js: "https://github.com/downloads/eriwen/javascript-stacktrace/stacktrace-0.4.js"
       stacktrace-stable.js: "https://raw.github.com/jsBoot/javascript-stacktrace/master/stacktrace.js"
       stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
-
-  # Forked and used in a merged form only in js.core (strict mode working)
-  # You should NOT use any of these - they are already provided if you use js.core
-  # XXX no "stable" version notion
-  # XXX to be replaced by a proper shim
-  postmessage:
-    License: ["MIT", "GPL"]
-    Destination: "shims-plus"
-    Source:
-      # Has some changes to fit in jsboot
-      postmessage-stable.js: "https://raw.github.com/jsBoot/jquery-postmessage/master/jquery.ba-postmessage.js"
-      postmessage-trunk.js: "https://raw.github.com/cowboy/jquery-postmessage/master/jquery.ba-postmessage.js"
 
 
   # -----------------------------
@@ -48,8 +44,6 @@ yanks:
         es5-shim-stable.js: "es5-shim.js"
         es5-sham-stable.js: "es5-sham.js"
 
-
-
   json3:
     License: "MIT"
     Destination: "shims"
@@ -65,15 +59,6 @@ yanks:
         json3-3.2.js: "lib/json3.js"
         json3-stable.js: "lib/json3.js"
 
-  # A nice shim to emulate console when there is none (no "release" per-se either)
-  # XXX Upstream doesn't version
-  console:
-    License: "MIT"
-    Destination: "shims"
-    Source:
-      console-stable.js: "https://raw.github.com/jsBoot/console-shim/master/console-shim.js"
-      console-trunk.js: "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
-
   # XHR is a terribly buggy thing - this may / should be aggregated unconditionally
   # XXX upstream doesn't version
   xmlhttprequest:
@@ -82,6 +67,7 @@ yanks:
     Source:
       xhr-stable.js: "https://raw.github.com/jsBoot/xmlhttprequest/master/XMLHttpRequest.js"
       xhr-trunk.js: "https://raw.github.com/ilinsky/xmlhttprequest/master/XMLHttpRequest.js"
+
 
   ie7:
     License: "MIT"
@@ -112,5 +98,18 @@ yanks:
 
         pie-stable.htc: "PIE.htc"
         pie-stable.js: "PIE.js"
+
+
+  # Forked and used in a merged form only in js.core (strict mode working)
+  # You should NOT use any of these - they are already provided if you use js.core
+  # XXX no "stable" version notion
+  # XXX to be replaced by a proper shim
+  postmessage:
+    License: ["MIT", "GPL"]
+    Destination: "shims-plus"
+    Source:
+      # Has some changes to fit in jsboot
+      postmessage-stable.js: "https://raw.github.com/jsBoot/jquery-postmessage/master/jquery.ba-postmessage.js"
+      postmessage-trunk.js: "https://raw.github.com/cowboy/jquery-postmessage/master/jquery.ba-postmessage.js"
 
 

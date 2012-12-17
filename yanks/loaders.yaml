@@ -2,6 +2,21 @@
 # Loaders, usable directly from here (or compiled inside jsBoot loader)
 # -----------------------------
 yanks:
+  # XXX upstream is dead
+  lab:
+    License: "MIT"
+    Destination: "loaders"
+    Source:
+      lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
+      lab-stable.js: "https://raw.github.com/jsBoot/LABjs/master/LAB.src.js"
+      lab-trunk.js: "https://raw.github.com/jsBoot/LABjs/master/LAB.src.js"
+    Build:
+      type: 'zip'
+      dir: 'LABjs-2.0.3'
+      production:
+        lab-2.0.js: 'LAB.src.js'
+
+
   # XXX no https
   require:
     License: "BSD"
@@ -22,20 +37,7 @@ yanks:
       yui.base-stable.js: "http://yui.yahooapis.com/3.7.3/build/yui-base/yui-base.js"
       yui.base-trunk.js: "http://yui.yahooapis.com/3.7.3/build/yui-base/yui-base.js"
 
-  # XXX upstream is dead
-  lab:
-    License: "MIT"
-    Destination: "loaders"
-    Source:
-      lab-2.0.3.zip: "http://labjs.com/releases/LABjs-2.0.3.zip"
-      lab-fork.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
-      lab-trunk.js: "https://raw.github.com/getify/LABjs/master/LAB.src.js"
-    Build:
-      type: 'zip'
-      dir: 'LABjs-2.0.3'
-      production:
-        lab-2.0.js: 'LAB.src.js'
-        lab-stable.js: 'LAB.src.js'
+
 
   yepnope:
     License: ["WTFPL", "MIT", "BSD"]
