@@ -36,7 +36,7 @@ defaultYank:
   paths:
       tmp: 'tmp'
       build: 'build'
-      deploy: 'lib'
+      deploy: '${AIRSTRIP_DIR}|lib'
       doc: 'doc'
 
   links:
@@ -76,7 +76,7 @@ config-roxee-Linux:
 config-dmp-darwin:
   root: "${HOME}/buildd/stage.webitup.org"
   paths:
-    deploy: "${HOME}/buildd/deploy.webitup.org/web/static"
+    deploy: "${AIRSTRIP_DIR}|/Users/dmp/buildd/deploy.webitup.org/web/static"
 
   links:
       allowed:

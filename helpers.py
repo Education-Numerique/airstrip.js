@@ -200,7 +200,7 @@ def describe(shortversion, name, description):
 
 def getyanks():
   # Airstrip yank in additional description files
-  l = FileList('yanks', filter = '*.yaml');
+  l = FileList('yanks', filter = '*.yaml', exclude = '*xxx*');
   yanks = {}
   for i in l.get():
     a = Load(i)
