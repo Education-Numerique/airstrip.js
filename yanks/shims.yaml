@@ -12,7 +12,7 @@ yanks:
     License: "MIT"
     Destination: "shims-plus"
     Source:
-      console-stable.js: "https://raw.github.com/jsBoot/console-shim/pullme/console-shim.js"
+      console-stable.js: "https://raw.github.com/jsBoot/console-shim/jsboot/console-shim.js"
       console-trunk.js: "https://raw.github.com/kayahr/console-shim/master/console-shim.js"
 
   # XXX pull request to get for callee
