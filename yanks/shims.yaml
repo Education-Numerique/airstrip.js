@@ -43,8 +43,8 @@ yanks:
       production:
         es5-shim-2.0.js: "es5-shim.js"
         es5-sham-2.0.js: "es5-sham.js"
-        es5-shim-stable.js: "es5-shim.js"
-        es5-sham-stable.js: "es5-sham.js"
+        # es5-shim-stable.js: "es5-shim.js"
+        # es5-sham-stable.js: "es5-sham.js"
 
   json3:
     License: "MIT"
