@@ -20,7 +20,7 @@ yanks:
     License: "PublicDomain"
     Destination: "shims-plus"
     Source:
-      stacktrace-stable.js: "https://raw.github.com/jsBoot/javascript-stacktrace/master/stacktrace.js"
+      stacktrace-stable.js: "https://raw.github.com/jsBoot/javascript-stacktrace/jsboot/stacktrace.js"
       stacktrace-trunk.js: "https://raw.github.com/eriwen/javascript-stacktrace/master/stacktrace.js"
 
 
@@ -34,6 +34,8 @@ yanks:
     Source:
       es5-shim-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-shim.js"
       es5-sham-trunk.js: "https://raw.github.com/kriskowal/es5-shim/master/es5-sham.js"
+      es5-shim-stable.js: "https://raw.github.com/jsBoot/es5-shim/jsboot/es5-shim.js"
+      es5-sham-stable.js: "https://raw.github.com/jsBoot/es5-shim/jsboot/es5-sham.js"
       es5-2.0.5.zip: "https://github.com/kriskowal/es5-shim/zipball/v2.0.5"
     Build:
       type: "zip"
