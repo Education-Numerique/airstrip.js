@@ -65,7 +65,7 @@ config-jenkins-linux:
         url: 'app.sn.ackitup.net'
 
 # Roxee box
-config-www-data-Linux:
+config-www-data-linux:
   paths:
     deploy: '/home/lxxl-deploy/lxxl'
   links:
