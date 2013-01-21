@@ -38,7 +38,7 @@ yanks:
     Destination: "frameworks"
     Source:
       zepto-1.0.zip: "https://github.com/madrobby/zepto/archive/v1.0rc1.zip"
-      zepto-stable.js: "git@github.com:jsBoot/zepto.git"
+      zepto-stable.js: "https://github.com/jsBoot/zepto.git"
       # zepto-trunk.js: "git@github.com:madrobby/zepto.git"
     Build:
       args: "rake; cd ../../zepto; rake"

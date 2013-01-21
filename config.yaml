@@ -65,13 +65,12 @@ config-jenkins-linux:
         url: 'app.sn.ackitup.net'
 
 # Roxee box
-config-roxee-Linux:
+config-www-data-Linux:
   paths:
-    deploy: '/home/roxee/www/static'
-    # DOC_ROOT: '/home/roxee/doc/spitfire'
+    deploy: '/home/lxxl-deploy/lxxl'
   links:
       allowed:
-        url: 'app.roxee.net'
+        url: 'www.education-et-numerique.fr'
 
 config-dmp-darwin:
   root: "${HOME}/buildd/stage.webitup.org"

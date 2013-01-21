@@ -72,11 +72,11 @@ yanks:
     License: "MIT"
     Destination: "plugins/jquery"
     Source:
-      uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
-      trunk/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/uniform.default.css"
-      trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/sprite.png"
-      trunk/images/bg-input-focus.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input-focus.png"
-      trunk/images/bg-input.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input.png"
+#      uniform-trunk.js: "https://raw.github.com/pixelmatrix/uniform/master/jquery.uniform.js"
+#      trunk/uniform-trunk.css: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/uniform.default.css"
+#      trunk/images/sprite.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/sprite.png"
+#      trunk/images/bg-input-focus.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input-focus.png"
+#      trunk/images/bg-input.png: "https://raw.github.com/pixelmatrix/uniform/master/themes/default/images/bg-input.png"
       uniform-1.7.5.zip: "https://github.com/pixelmatrix/uniform/archive/v1.7.5.zip"
     Build:
       type: "zip"
